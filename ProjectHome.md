@@ -1,0 +1,2 @@
+A students project from Heidelberg, Germany.
+We want to train a neuronal network with a webcam to detect patterns on a tv stream / saved video. The special thing is the planned experimental usage of clustered server environment to get more CPU power. (not integreted yet)
