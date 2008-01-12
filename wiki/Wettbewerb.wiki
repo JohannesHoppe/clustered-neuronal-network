@@ -1,0 +1,2 @@
+#summary Todo: Infos zum Wettbewerb
+#labels Wettbewerb
