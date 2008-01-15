@@ -35,7 +35,7 @@ namespace Clustered_NN.Forms
 
 
         /// <summary>
-        /// This cunstructor should be used!
+        /// This constructor should be used!
         /// </summary>
         /// <param name="parentForm">The parent form.</param>
         /// <param name="cnnProject">The CNN project.</param>
@@ -54,14 +54,14 @@ namespace Clustered_NN.Forms
             this._imageProvider.OnFrame += new ImageProvider.OnFrameDelegate(ImageProvider_OnFrame);
             this._imageProvider.StartPresentation();
 
-            // adjust storable size
-            imlMatching.ImageSize = _cnnProject.ImagePatternSize;
-            imlNotMatching.ImageSize = _cnnProject.ImagePatternSize;
+
+            this.lvMatching.SmallImageList = this._cnnProject.Matching;
+            this.lvNotMatching.SmallImageList = this._cnnProject.NotMatching;
 
             try
             {
-                lvMatching.Columns[0].Width = _cnnProject.ImagePatternSize.Width + 20;
-                lvNotMatching.Columns[0].Width = _cnnProject.ImagePatternSize.Width + 20;
+                lvMatching.Columns[0].Width = this._cnnProject.ImagePatternSize.Width + 20;
+                lvNotMatching.Columns[0].Width = this._cnnProject.ImagePatternSize.Width + 20;
             }
             catch (Exception) { }
 
@@ -132,7 +132,7 @@ namespace Clustered_NN.Forms
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void btnCapture_Click(object sender, EventArgs e)
         {
-            ImageList imlUsed = (chkMatching.Checked) ? imlMatching : imlNotMatching;
+            ImageList imlUsed = (chkMatching.Checked) ? this._cnnProject.Matching : this._cnnProject.NotMatching;
             ListView lvUsed = (chkMatching.Checked) ? lvMatching : lvNotMatching;
 
             Image selectedImage;
@@ -145,8 +145,13 @@ namespace Clustered_NN.Forms
                 selectedImage = ImageHandling.GeneralizeImage(selectedImage);
 
 
-                imlUsed.Images.Add(selectedImage);
-                ListViewItem lvi = lvUsed.Items.Add(imlUsed.Images.Count.ToString() + ".", imlUsed.Images.Count - 1);
+                string imageName = (imlUsed.Images.Count + 1).ToString() + ".";
+
+                imlUsed.Images.Add(imageName, selectedImage);
+
+                ListViewItem lvi = lvUsed.Items.Add(
+                    imageName,
+                    imlUsed.Images.Count - 1);
 
 
                 // scroll down in list
@@ -162,6 +167,17 @@ namespace Clustered_NN.Forms
             {
                 StaticClasses.ShowException(ex);
             }
+        }
+
+        private void openToolStripButton_Matching_Click(object sender, EventArgs e)
+        {
+            openFileDialog.ShowDialog();
+
+            foreach (string fileName in openFileDialog.FileNames)
+            {
+                throw new NotImplementedException("Tara!!");
+            }
+            
         }
 
 

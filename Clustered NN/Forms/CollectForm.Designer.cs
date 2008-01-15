@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CollectForm));
             this.lblTooltip = new System.Windows.Forms.Label();
             this.pnlContentHolder = new System.Windows.Forms.Panel();
@@ -37,16 +36,23 @@
             this.tblTrainingQueue = new System.Windows.Forms.TableLayoutPanel();
             this.lvMatching = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.imlMatching = new System.Windows.Forms.ImageList(this.components);
             this.btnCapture = new System.Windows.Forms.Button();
             this.lvNotMatching = new System.Windows.Forms.ListView();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.imlNotMatching = new System.Windows.Forms.ImageList(this.components);
             this.chkMatching = new System.Windows.Forms.CheckBox();
             this.chkNotMatching = new System.Windows.Forms.CheckBox();
             this.gbImageProvider = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlDeviceControl = new System.Windows.Forms.FlowLayoutPanel();
+            this.toolStripMatching = new System.Windows.Forms.ToolStrip();
+            this.openToolStripButton_Matching = new System.Windows.Forms.ToolStripButton();
+            this.saveToolStripButton_Matching = new System.Windows.Forms.ToolStripButton();
+            this.deleteToolStripButton_Matching = new System.Windows.Forms.ToolStripButton();
+            this.toolStripNotMatching = new System.Windows.Forms.ToolStrip();
+            this.openToolStripButton_NotMatching = new System.Windows.Forms.ToolStripButton();
+            this.saveToolStripButton_NotMatching = new System.Windows.Forms.ToolStripButton();
+            this.deleteToolStripButton_NotMatching = new System.Windows.Forms.ToolStripButton();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox = new Clustered_NN.Classes.ImageSelectingPictureBox();
             this.pnlContentHolder.SuspendLayout();
             this.tblContent.SuspendLayout();
@@ -54,6 +60,8 @@
             this.tblTrainingQueue.SuspendLayout();
             this.gbImageProvider.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.toolStripMatching.SuspendLayout();
+            this.toolStripNotMatching.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,6 +122,8 @@
             this.tblTrainingQueue.Controls.Add(this.lvNotMatching, 2, 2);
             this.tblTrainingQueue.Controls.Add(this.chkMatching, 0, 1);
             this.tblTrainingQueue.Controls.Add(this.chkNotMatching, 2, 1);
+            this.tblTrainingQueue.Controls.Add(this.toolStripMatching, 0, 3);
+            this.tblTrainingQueue.Controls.Add(this.toolStripNotMatching, 2, 3);
             this.tblTrainingQueue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblTrainingQueue.Location = new System.Drawing.Point(3, 16);
             this.tblTrainingQueue.Name = "tblTrainingQueue";
@@ -133,7 +143,6 @@
             this.lvMatching.Location = new System.Drawing.Point(3, 76);
             this.lvMatching.Name = "lvMatching";
             this.lvMatching.Size = new System.Drawing.Size(305, 119);
-            this.lvMatching.SmallImageList = this.imlMatching;
             this.lvMatching.TabIndex = 4;
             this.lvMatching.UseCompatibleStateImageBehavior = false;
             this.lvMatching.View = System.Windows.Forms.View.List;
@@ -141,12 +150,6 @@
             // columnHeader1
             // 
             this.columnHeader1.Width = 40;
-            // 
-            // imlMatching
-            // 
-            this.imlMatching.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imlMatching.ImageSize = new System.Drawing.Size(16, 16);
-            this.imlMatching.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // btnCapture
             // 
@@ -169,7 +172,6 @@
             this.lvNotMatching.Location = new System.Drawing.Point(342, 76);
             this.lvNotMatching.Name = "lvNotMatching";
             this.lvNotMatching.Size = new System.Drawing.Size(307, 119);
-            this.lvNotMatching.SmallImageList = this.imlNotMatching;
             this.lvNotMatching.TabIndex = 3;
             this.lvNotMatching.UseCompatibleStateImageBehavior = false;
             this.lvNotMatching.View = System.Windows.Forms.View.List;
@@ -177,12 +179,6 @@
             // columnHeader2
             // 
             this.columnHeader2.Width = 40;
-            // 
-            // imlNotMatching
-            // 
-            this.imlNotMatching.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imlNotMatching.ImageSize = new System.Drawing.Size(16, 16);
-            this.imlNotMatching.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // chkMatching
             // 
@@ -256,6 +252,95 @@
             this.pnlDeviceControl.Size = new System.Drawing.Size(159, 294);
             this.pnlDeviceControl.TabIndex = 6;
             // 
+            // toolStripMatching
+            // 
+            this.toolStripMatching.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripButton_Matching,
+            this.saveToolStripButton_Matching,
+            this.deleteToolStripButton_Matching});
+            this.toolStripMatching.Location = new System.Drawing.Point(3, 201);
+            this.toolStripMatching.Margin = new System.Windows.Forms.Padding(3);
+            this.toolStripMatching.Name = "toolStripMatching";
+            this.toolStripMatching.Size = new System.Drawing.Size(305, 25);
+            this.toolStripMatching.TabIndex = 12;
+            this.toolStripMatching.Text = "toolStripMatching";
+            // 
+            // openToolStripButton_Matching
+            // 
+            this.openToolStripButton_Matching.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.openToolStripButton_Matching.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton_Matching.Image")));
+            this.openToolStripButton_Matching.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.openToolStripButton_Matching.Name = "openToolStripButton_Matching";
+            this.openToolStripButton_Matching.Size = new System.Drawing.Size(23, 22);
+            this.openToolStripButton_Matching.Text = "&Open and Include Matching File";
+            this.openToolStripButton_Matching.Click += new System.EventHandler(this.openToolStripButton_Matching_Click);
+            // 
+            // saveToolStripButton_Matching
+            // 
+            this.saveToolStripButton_Matching.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.saveToolStripButton_Matching.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton_Matching.Image")));
+            this.saveToolStripButton_Matching.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.saveToolStripButton_Matching.Name = "saveToolStripButton_Matching";
+            this.saveToolStripButton_Matching.Size = new System.Drawing.Size(23, 22);
+            this.saveToolStripButton_Matching.Text = "&Save Selected File";
+            // 
+            // deleteToolStripButton_Matching
+            // 
+            this.deleteToolStripButton_Matching.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.deleteToolStripButton_Matching.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripButton_Matching.Image")));
+            this.deleteToolStripButton_Matching.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.deleteToolStripButton_Matching.Name = "deleteToolStripButton_Matching";
+            this.deleteToolStripButton_Matching.Size = new System.Drawing.Size(23, 22);
+            this.deleteToolStripButton_Matching.Text = "&Delete Selected File";
+            // 
+            // toolStripNotMatching
+            // 
+            this.toolStripNotMatching.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripButton_NotMatching,
+            this.saveToolStripButton_NotMatching,
+            this.deleteToolStripButton_NotMatching});
+            this.toolStripNotMatching.Location = new System.Drawing.Point(342, 201);
+            this.toolStripNotMatching.Margin = new System.Windows.Forms.Padding(3);
+            this.toolStripNotMatching.Name = "toolStripNotMatching";
+            this.toolStripNotMatching.Size = new System.Drawing.Size(307, 25);
+            this.toolStripNotMatching.TabIndex = 13;
+            this.toolStripNotMatching.Text = "toolStripNotMatching";
+            // 
+            // openToolStripButton_NotMatching
+            // 
+            this.openToolStripButton_NotMatching.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.openToolStripButton_NotMatching.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton_NotMatching.Image")));
+            this.openToolStripButton_NotMatching.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.openToolStripButton_NotMatching.Name = "openToolStripButton_NotMatching";
+            this.openToolStripButton_NotMatching.Size = new System.Drawing.Size(23, 22);
+            this.openToolStripButton_NotMatching.Text = "&Open and Include Not Matching File";
+            // 
+            // saveToolStripButton_NotMatching
+            // 
+            this.saveToolStripButton_NotMatching.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.saveToolStripButton_NotMatching.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton_NotMatching.Image")));
+            this.saveToolStripButton_NotMatching.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.saveToolStripButton_NotMatching.Name = "saveToolStripButton_NotMatching";
+            this.saveToolStripButton_NotMatching.Size = new System.Drawing.Size(23, 22);
+            this.saveToolStripButton_NotMatching.Text = "&Save Selected File";
+            // 
+            // deleteToolStripButton_NotMatching
+            // 
+            this.deleteToolStripButton_NotMatching.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.deleteToolStripButton_NotMatching.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripButton_NotMatching.Image")));
+            this.deleteToolStripButton_NotMatching.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.deleteToolStripButton_NotMatching.Name = "deleteToolStripButton_NotMatching";
+            this.deleteToolStripButton_NotMatching.Size = new System.Drawing.Size(23, 22);
+            this.deleteToolStripButton_NotMatching.Text = "&Delete Selected File";
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.DefaultExt = "png";
+            this.openFileDialog.FileName = "*.jpg";
+            this.openFileDialog.Filter = "JPEG files|*.jpg";
+            this.openFileDialog.Multiselect = true;
+            this.openFileDialog.Title = "Open File(s)";
+            // 
             // pictureBox
             // 
             this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -285,6 +370,10 @@
             this.tblTrainingQueue.PerformLayout();
             this.gbImageProvider.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.toolStripMatching.ResumeLayout(false);
+            this.toolStripMatching.PerformLayout();
+            this.toolStripNotMatching.ResumeLayout(false);
+            this.toolStripNotMatching.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -309,7 +398,15 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.CheckBox chkMatching;
         private System.Windows.Forms.CheckBox chkNotMatching;
-        private System.Windows.Forms.ImageList imlMatching;
-        private System.Windows.Forms.ImageList imlNotMatching;
+        private System.Windows.Forms.ToolStrip toolStripMatching;
+        private System.Windows.Forms.ToolStripButton openToolStripButton_Matching;
+        private System.Windows.Forms.ToolStripButton saveToolStripButton_Matching;
+        private System.Windows.Forms.ToolStripButton deleteToolStripButton_Matching;
+        private System.Windows.Forms.ToolStrip toolStripNotMatching;
+        private System.Windows.Forms.ToolStripButton openToolStripButton_NotMatching;
+        private System.Windows.Forms.ToolStripButton saveToolStripButton_NotMatching;
+        private System.Windows.Forms.ToolStripButton deleteToolStripButton_NotMatching;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+
     }
 }

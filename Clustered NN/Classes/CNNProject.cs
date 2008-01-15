@@ -13,8 +13,26 @@ namespace Clustered_NN.Classes
     {
         // config
         public Size _imagePatternSize = new Size(20, 20);
-        //private Size _imagePatternSize = new Size(100, 100);
         // config
+        
+        private ImageList _imlMatching;
+        private ImageList _imlNotMatching;
+
+
+        public CNNProject()
+        {
+
+            this._imlMatching = new ImageList();
+            this._imlMatching.ColorDepth = ColorDepth.Depth8Bit;
+            this._imlMatching.ImageSize = this._imagePatternSize;
+            this._imlMatching.TransparentColor = Color.Transparent;
+
+            this._imlNotMatching = new ImageList();
+            this._imlNotMatching.ColorDepth = ColorDepth.Depth8Bit;
+            this._imlNotMatching.ImageSize = this._imagePatternSize;
+            this._imlNotMatching.TransparentColor = Color.Transparent;
+        }
+
 
         /// <summary>
         /// The global size of a training pattern
@@ -27,8 +45,36 @@ namespace Clustered_NN.Classes
                 return _imagePatternSize;
             }
         }
+
+
+        /// <summary>
+        /// A list with matching images
+        /// </summary>
+        /// <value>The matching.</value>
+        public ImageList Matching
+        {
+            get { return _imlMatching; }
+            set { _imlMatching = value; }
+        }
+
+
+        /// <summary>
+        ///A list with images that don't match
+        /// </summary>
+        /// <value>The not matching.</value>
+        public ImageList NotMatching
+        {
+            get { return _imlNotMatching; }
+            set { _imlNotMatching = value; }
+        }
+	
+	
+
     }
 
+
+    #region maybe used later
+    /*
     /// <summary>
     /// holds a list of SimpleImageItems
     /// </summary>
@@ -81,4 +127,7 @@ namespace Clustered_NN.Classes
             }
         }
     }
+    */
+    #endregion
+
 }

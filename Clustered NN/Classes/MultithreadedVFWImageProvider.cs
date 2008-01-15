@@ -217,7 +217,7 @@ namespace Clustered_NN.Classes
             // 
             this.btnStart.BackColor = System.Drawing.Color.LightGray;
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(100, 24);
+            this.btnStart.Size = new System.Drawing.Size(120, 24);
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = false;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
@@ -227,7 +227,7 @@ namespace Clustered_NN.Classes
             // 
             this.cmbDevices.FormattingEnabled = true;
             this.cmbDevices.Name = "cmbDevices";
-            this.cmbDevices.Size = new System.Drawing.Size(100, 21);
+            this.cmbDevices.Size = new System.Drawing.Size(120, 21);
 
             // 
             // btnDeviceProperties
@@ -235,7 +235,7 @@ namespace Clustered_NN.Classes
             this.btnDeviceProperties.Enabled = false;
             this.btnDeviceProperties.BackColor = System.Drawing.Color.LightGray;
             this.btnDeviceProperties.Name = "btnDeviceProperties";
-            this.btnDeviceProperties.Size = new System.Drawing.Size(100, 24);
+            this.btnDeviceProperties.Size = new System.Drawing.Size(120, 24);
             this.btnDeviceProperties.Text = "Device";
             this.btnDeviceProperties.UseVisualStyleBackColor = false;
             this.btnDeviceProperties.Click += new System.EventHandler(this.btnDeviceProperties_Click);
