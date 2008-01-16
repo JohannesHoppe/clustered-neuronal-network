@@ -497,6 +497,10 @@ namespace Clustered_NN.Classes
         {
             get
             {
+                if (this.Image == null) {
+                    throw new ImageNotInitializedException();
+                }
+
                 return ImageHandling.cropImage(this.Image, this._rectangleFinalShape);
             }
         }
@@ -513,5 +517,25 @@ namespace Clustered_NN.Classes
         }
 
 
+    }
+
+
+    class ImageNotInitializedException : Exception
+    {
+
+        /// <summary>
+        /// Gets a message that describes the current exception.
+        /// Thrown by Image.SelectedArea
+        /// </summary>
+        /// <value></value>
+        /// <returns>The error message that explains the reason for the exception</returns>
+        public override string Message
+        {
+            get
+            {
+                return "There is currently no image loaded!"  + System.Environment.NewLine
+                     + "Is the device connected properly?";
+            }
+        }
     }
 }

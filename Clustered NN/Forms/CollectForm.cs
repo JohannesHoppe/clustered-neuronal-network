@@ -58,10 +58,11 @@ namespace Clustered_NN.Forms
             this.lvMatching.SmallImageList = this._cnnProject.Matching;
             this.lvNotMatching.SmallImageList = this._cnnProject.NotMatching;
 
+            // formats column with to the exact needed space
             try
             {
-                lvMatching.Columns[0].Width = this._cnnProject.ImagePatternSize.Width + 20;
-                lvNotMatching.Columns[0].Width = this._cnnProject.ImagePatternSize.Width + 20;
+                lvMatching.Columns[0].Width = this._cnnProject.ImagePatternSize.Width + 40;
+                lvNotMatching.Columns[0].Width = this._cnnProject.ImagePatternSize.Width + 40;
             }
             catch (Exception) { }
 
@@ -128,38 +129,86 @@ namespace Clustered_NN.Forms
         /// <summary>
         /// Handles the Click event of the btnCapture control.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void btnCapture_Click(object sender, EventArgs e)
         {
-            ImageList imlUsed = (chkMatching.Checked) ? this._cnnProject.Matching : this._cnnProject.NotMatching;
-            ListView lvUsed = (chkMatching.Checked) ? lvMatching : lvNotMatching;
 
-            Image selectedImage;
+            ListView lvUsed = (chkMatching.Checked) ? lvMatching : lvNotMatching;
+            CNNProject.Counter counterUsed = (chkMatching.Checked) ? this._cnnProject.MatchingCounter : this._cnnProject.NotMatchingCounter;
+
+            CaptureNewImage(lvUsed, counterUsed);
+        }
+
+
+        /// <summary>
+        /// Handles the Click event of the openToolStripButton_Matching control.
+        /// </summary>
+        private void openToolStripButton_Matching_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                foreach (string fileName in openFileDialog.FileNames)
+                {
+                    throw new NotImplementedException("Tara!!");
+                }
+            }
+
+        }
+
+
+        private void saveToolStripButton_Matching_Click(object sender, EventArgs e)
+        {
+            ImageList imlUsed = this._cnnProject.Matching;
+            ListView lvUsed = lvMatching;
+
+            SaveSelectedImages(lvUsed);
+        }
+
+
+        #region image actions
+
+
+        /// <summary>
+        /// Captures the the current selected area in the PictureBox
+        /// </summary>
+        /// <param name="lvUsed">one of the both ListViews</param>
+        /// <param name="counterUsed">one of the both Counters</param>
+
+        private void CaptureNewImage(ListView lvUsed, CNNProject.Counter counterUsed)
+        {
+            
+            ImageList imlUsed = lvUsed.SmallImageList;
 
             try
             {
-                selectedImage = pictureBox.GetResizedSelectedArea(_cnnProject.ImagePatternSize);
+                Image selectedImage = pictureBox.GetResizedSelectedArea(_cnnProject.ImagePatternSize);
 
-                // makes an image easier identifiable
+                // makes the image easier identifiable
                 selectedImage = ImageHandling.GeneralizeImage(selectedImage);
 
 
-                string imageName = (imlUsed.Images.Count + 1).ToString() + ".";
+                string imageName = (counterUsed.Value + 1).ToString().PadLeft(3, '0');
 
                 imlUsed.Images.Add(imageName, selectedImage);
 
                 ListViewItem lvi = lvUsed.Items.Add(
-                    imageName,
+                    imageName + ".",
                     imlUsed.Images.Count - 1);
 
 
-                // scroll down in list
+                // not to forget, increments the counter
+                counterUsed.Increment();
+
+                // scroll down in list (and select the last itemn, too)
                 lvi.Selected = true;
                 lvi.EnsureVisible();
 
             }
             catch (RectangleDoesNotFitToImageException ex)
+            {
+                StaticClasses.ShowError(ex.Message);
+            }
+            catch (ImageNotInitializedException ex)
             {
                 StaticClasses.ShowError(ex.Message);
             }
@@ -169,16 +218,113 @@ namespace Clustered_NN.Forms
             }
         }
 
-        private void openToolStripButton_Matching_Click(object sender, EventArgs e)
-        {
-            openFileDialog.ShowDialog();
 
-            foreach (string fileName in openFileDialog.FileNames)
-            {
-                throw new NotImplementedException("Tara!!");
+        /// <summary>
+        /// Saves the selected images.
+        /// </summary>
+        /// <param name="lvUsed">The used ListView</param>
+        private void SaveSelectedImages(ListView lvUsed)
+        {
+
+            List<string> imageKeys = GetSelectedItemImageKeys(lvUsed);
+
+            if (imageKeys.Count > 0) {
+
+                // just asks for the first file name
+                saveFileDialog.FileName = imageKeys[0].ToString() + ".jpg";
+
+
+                // Save was pressed
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                   
+                    List<Image> images = GetSelectedItemImages(lvUsed);
+
+                    for(int i = 0; i < images.Count; i++)
+                    {
+
+                        string fileName;
+
+                        // first time: we use the provided name
+                        if (i == 0)
+                        {
+                            fileName = saveFileDialog.FileName;
+                        }
+                        // second time: we use the counting number
+                        else
+                        {
+                            string path = System.IO.Path.GetDirectoryName(saveFileDialog.FileName);
+                            fileName = path + "\\" + imageKeys[i].ToString() + ".jpg";
+                        }
+
+
+                        ImageHandling.SaveJpeg(
+                           fileName,
+                           new Bitmap(images[i]),
+                           0);
+                    }
+                }
+
+            } else {
+
+                MessageBox.Show("Please select an image file first!",
+                                "No Selection",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
             }
-            
+               
         }
+
+
+        /// <summary>
+        /// Gets the selected image keys of the selected items in the list
+        /// </summary>
+        /// <param name="lvUsed">The listView</param>
+        /// <returns>the keys</returns>
+        private List<string> GetSelectedItemImageKeys(ListView lvUsed)
+        {
+
+            List<string> imageKeys = new List<string>();
+
+            ImageList imlUsed = lvUsed.SmallImageList;
+            ListView.SelectedListViewItemCollection collection = lvUsed.SelectedItems;
+
+            foreach (ListViewItem item in collection)
+            {
+                int imageIndex = item.ImageIndex;
+                imageKeys.Add(imlUsed.Images.Keys[imageIndex]);
+            }
+
+            return imageKeys;
+        }
+
+
+        /// <summary>
+        /// Gets the selected images of the selected items in the list
+        /// </summary>
+        /// <param name="lvUsed">The listView</param>
+        /// <returns>the images</returns>
+        private List<Image> GetSelectedItemImages(ListView lvUsed)
+        {
+
+            List<Image> images = new List<Image>();
+
+            ImageList imlUsed = lvUsed.SmallImageList;
+            ListView.SelectedListViewItemCollection collection = lvUsed.SelectedItems;
+            foreach (ListViewItem item in collection)
+            {
+                int imageIndex = item.ImageIndex;
+                images.Add(imlUsed.Images[imageIndex]);
+            }
+
+            return images;
+        }
+           
+
+        #endregion
+
+
+
 
 
     }
