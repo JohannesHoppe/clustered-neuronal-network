@@ -40,26 +40,30 @@ namespace Clustered_NN.Classes
 
         /// <summary>
         /// Saving Bitmap as JPEG
+        /// a quality of 80 means a compression of 20%
+        /// overrides existing files
         /// </summary>
         /// <param name="path">The path.</param>
-        /// <param name="img">The img.</param>
-        /// <param name="quality">The quality.</param>
-        public static void SaveJpeg(string path, Bitmap img, long quality)
+        /// <param name="bmp">The bitmap.</param>
+        /// <param name="quality">The quality (worst: 0 - best: 100L)</param>
+        public static void SaveJpeg(string path, Bitmap bmp, long quality)
         {
             // Encoder parameter for image quality
             EncoderParameter qualityParam =
-               new EncoderParameter(Encoder.Quality, (long)quality);
+               new EncoderParameter(Encoder.Quality, quality);
 
             // Jpeg image codec
-            ImageCodecInfo jpegCodec =
-               ImageHandling.getEncoderInfo("image/jpeg");
+            ImageCodecInfo jpegCodec = ImageHandling.getEncoderInfo("image/jpeg");
 
-            if (jpegCodec == null) throw new Exception("The jpeg codec is not available!");
+            if (jpegCodec == null)
+            {
+                throw new Exception("The jpeg codec is not available!");
+            }
 
             EncoderParameters encoderParams = new EncoderParameters(1);
             encoderParams.Param[0] = qualityParam;
 
-            img.Save(path, jpegCodec, encoderParams);
+            bmp.Save(path, jpegCodec, encoderParams);
         }
 
         /// <summary>

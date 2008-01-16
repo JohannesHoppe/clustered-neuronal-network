@@ -51,9 +51,9 @@
             this.deleteToolStripButton_NotMatching = new System.Windows.Forms.ToolStripButton();
             this.gbImageProvider = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox = new Clustered_NN.Classes.ImageSelectingPictureBox();
             this.pnlDeviceControl = new System.Windows.Forms.FlowLayoutPanel();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.pictureBox = new Clustered_NN.Classes.ImageSelectingPictureBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.pnlContentHolder.SuspendLayout();
             this.tblContent.SuspendLayout();
@@ -256,6 +256,7 @@
             this.deleteToolStripButton_Matching.Name = "deleteToolStripButton_Matching";
             this.deleteToolStripButton_Matching.Size = new System.Drawing.Size(23, 22);
             this.deleteToolStripButton_Matching.Text = "&Delete Selected File";
+            this.deleteToolStripButton_Matching.Click += new System.EventHandler(this.deleteToolStripButton_Matching_Click);
             // 
             // toolStripNotMatching
             // 
@@ -278,6 +279,7 @@
             this.openToolStripButton_NotMatching.Name = "openToolStripButton_NotMatching";
             this.openToolStripButton_NotMatching.Size = new System.Drawing.Size(23, 22);
             this.openToolStripButton_NotMatching.Text = "&Open and Include Not Matching File";
+            this.openToolStripButton_NotMatching.Click += new System.EventHandler(this.openToolStripButton_NotMatching_Click);
             // 
             // saveToolStripButton_NotMatching
             // 
@@ -287,6 +289,7 @@
             this.saveToolStripButton_NotMatching.Name = "saveToolStripButton_NotMatching";
             this.saveToolStripButton_NotMatching.Size = new System.Drawing.Size(23, 22);
             this.saveToolStripButton_NotMatching.Text = "&Save Selected File";
+            this.saveToolStripButton_NotMatching.Click += new System.EventHandler(this.saveToolStripButton_NotMatching_Click);
             // 
             // deleteToolStripButton_NotMatching
             // 
@@ -296,6 +299,7 @@
             this.deleteToolStripButton_NotMatching.Name = "deleteToolStripButton_NotMatching";
             this.deleteToolStripButton_NotMatching.Size = new System.Drawing.Size(23, 22);
             this.deleteToolStripButton_NotMatching.Text = "&Delete Selected File";
+            this.deleteToolStripButton_NotMatching.Click += new System.EventHandler(this.deleteToolStripButton_NotMatching_Click);
             // 
             // gbImageProvider
             // 
@@ -326,6 +330,15 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(652, 300);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
+            // pictureBox
+            // 
+            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox.Location = new System.Drawing.Point(168, 3);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(352, 288);
+            this.pictureBox.TabIndex = 5;
+            this.pictureBox.TabStop = false;
+            // 
             // pnlDeviceControl
             // 
             this.pnlDeviceControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -342,15 +355,6 @@
             this.openFileDialog.Filter = "JPEG files|*.jpg";
             this.openFileDialog.Multiselect = true;
             this.openFileDialog.Title = "Open File(s)";
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox.Location = new System.Drawing.Point(168, 3);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(352, 288);
-            this.pictureBox.TabIndex = 5;
-            this.pictureBox.TabStop = false;
             // 
             // saveFileDialog
             // 
