@@ -22,6 +22,9 @@ namespace Clustered_NN.Forms
         private ImageProvider _imageProvider;
 
 
+        /// <summary>
+        /// Not to be used directly!
+        /// </summary>
         public CollectForm()
         {
             InitializeComponent();
@@ -69,26 +72,66 @@ namespace Clustered_NN.Forms
         }
 
 
+        #region form events
+
         /// <summary>
-        /// At the moment I don't know for what I need this Event
+        /// Handles the Click event of the btnCapture control.
         /// </summary>
-        private void ImageProvider_OnFrame(object sender, EventArgs e)
+        private void btnCapture_Click(object sender, EventArgs e)
         {
-            //throw new Exception("The method or operation is not implemented.");
+
+            ListView lvUsed = (chkMatching.Checked) ? lvMatching : lvNotMatching;
+            CNNProject.Counter counterUsed = (chkMatching.Checked) ? this._cnnProject.MatchingCounter : this._cnnProject.NotMatchingCounter;
+
+            CaptureNewImage(lvUsed, counterUsed);
         }
 
 
         /// <summary>
-        /// Stops the video if the form isn't available anymore
+        /// Open and includes a image for lvMatching
         /// </summary>
-        private void CollectForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void openToolStripButton_Matching_Click(object sender, EventArgs e)
         {
-            if (_imageProvider != null)
-            {
-                _imageProvider.StopPresentation();
-            }
+            OpenImages(lvMatching, this._cnnProject.MatchingCounter);
+        }
+        /// <summary>
+        /// Open and includes a image for lvNotMatching
+        /// </summary>
+        private void openToolStripButton_NotMatching_Click(object sender, EventArgs e)
+        {
+            OpenImages(lvNotMatching, this._cnnProject.NotMatchingCounter);
+        }
 
-            _parentForm.Close();
+
+        /// <summary>
+        /// Saves the selected images from lvMatching
+        /// </summary>
+        private void saveToolStripButton_Matching_Click(object sender, EventArgs e)
+        {
+            SaveSelectedImages(lvMatching);
+        }
+        /// <summary>
+        /// Saves the selected images from lvNotMatching
+        /// </summary>
+        private void saveToolStripButton_NotMatching_Click(object sender, EventArgs e)
+        {
+            SaveSelectedImages(lvNotMatching);
+        }
+
+
+        /// <summary>
+        /// Deletes the selected images from lvMatching
+        /// </summary>
+        private void deleteToolStripButton_Matching_Click(object sender, EventArgs e)
+        {
+            DeleteSelectedImages(lvMatching);
+        }
+        /// <summary>
+        /// Deletes the selected images from lvNotMatching
+        /// </summary>
+        private void deleteToolStripButton_NotMatching_Click(object sender, EventArgs e)
+        {
+            DeleteSelectedImages(lvNotMatching);
         }
 
 
@@ -127,42 +170,30 @@ namespace Clustered_NN.Forms
 
 
         /// <summary>
-        /// Handles the Click event of the btnCapture control.
+        /// At the moment I don't know for what I need this Event :-)
         /// </summary>
-        private void btnCapture_Click(object sender, EventArgs e)
+        private void ImageProvider_OnFrame(object sender, EventArgs e)
         {
-
-            ListView lvUsed = (chkMatching.Checked) ? lvMatching : lvNotMatching;
-            CNNProject.Counter counterUsed = (chkMatching.Checked) ? this._cnnProject.MatchingCounter : this._cnnProject.NotMatchingCounter;
-
-            CaptureNewImage(lvUsed, counterUsed);
+            //throw new Exception("The method or operation is not implemented.");
         }
 
 
         /// <summary>
-        /// Handles the Click event of the openToolStripButton_Matching control.
+        /// Stops the video if the form isn't available anymore
         /// </summary>
-        private void openToolStripButton_Matching_Click(object sender, EventArgs e)
+        private void CollectForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (_imageProvider != null)
             {
-
-                foreach (string fileName in openFileDialog.FileNames)
-                {
-                    throw new NotImplementedException("Tara!!");
-                }
+                _imageProvider.StopPresentation();
             }
 
+            _parentForm.Close();
         }
 
 
-        private void saveToolStripButton_Matching_Click(object sender, EventArgs e)
-        {
-            ImageList imlUsed = this._cnnProject.Matching;
-            ListView lvUsed = lvMatching;
 
-            SaveSelectedImages(lvUsed);
-        }
+        #endregion
 
 
         #region image actions
@@ -173,11 +204,8 @@ namespace Clustered_NN.Forms
         /// </summary>
         /// <param name="lvUsed">one of the both ListViews</param>
         /// <param name="counterUsed">one of the both Counters</param>
-
         private void CaptureNewImage(ListView lvUsed, CNNProject.Counter counterUsed)
         {
-            
-            ImageList imlUsed = lvUsed.SmallImageList;
 
             try
             {
@@ -186,22 +214,10 @@ namespace Clustered_NN.Forms
                 // makes the image easier identifiable
                 selectedImage = ImageHandling.GeneralizeImage(selectedImage);
 
-
                 string imageName = (counterUsed.Value + 1).ToString().PadLeft(3, '0');
 
-                imlUsed.Images.Add(imageName, selectedImage);
-
-                ListViewItem lvi = lvUsed.Items.Add(
-                    imageName + ".",
-                    imlUsed.Images.Count - 1);
-
-
-                // not to forget, increments the counter
-                counterUsed.Increment();
-
-                // scroll down in list (and select the last itemn, too)
-                lvi.Selected = true;
-                lvi.EnsureVisible();
+                // !
+                AddImageToList(lvUsed, selectedImage, imageName, counterUsed);
 
             }
             catch (RectangleDoesNotFitToImageException ex)
@@ -212,10 +228,70 @@ namespace Clustered_NN.Forms
             {
                 StaticClasses.ShowError(ex.Message);
             }
+            // TODO: Do not handle errors by catching non-specific exceptions
             catch (Exception ex)
             {
                 StaticClasses.ShowException(ex);
             }
+        }
+
+
+        /// <summary>
+        /// Opens some images and includes them to the ListView and ImageList
+        /// </summary>
+        /// <param name="lvUsed">The lv used.</param>
+        /// <param name="counterUsed">The counter used.</param>
+        private void OpenImages(ListView lvUsed, CNNProject.Counter counterUsed)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                foreach (string fileName in openFileDialog.FileNames)
+                {
+                    try
+                    {
+                        // uses the next free number
+                        string imageName = (counterUsed.Value + 1).ToString().PadLeft(3, '0');
+
+                        Image selectedImage = Image.FromFile(fileName);
+
+                        // !
+                        AddImageToList(lvUsed, selectedImage, imageName, counterUsed);
+
+                    }
+                    // TODO: Do not handle errors by catching non-specific exceptions
+                    catch (Exception ex)
+                    {
+                        StaticClasses.ShowException(ex);
+                    }
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Adds the image to the given ListView as well to the connected ImageList
+        /// called by CaptureNewImage and OpenImages
+        /// </summary>
+        /// <param name="lvUsed">The lv used.</param>
+        /// <param name="selectedImage">The selected image.</param>
+        /// <param name="imageName">Name of the image.</param>
+        /// <param name="counterUsed">One of the both counters</param>
+        private void AddImageToList(ListView lvUsed, Image selectedImage, string imageName, CNNProject.Counter counterUsed)
+        {
+
+            // first: add to ImageList
+            ImageList imlUsed = lvUsed.SmallImageList;
+            imlUsed.Images.Add(imageName, selectedImage);
+
+            // second: add to ListView
+            ListViewItem lvi = lvUsed.Items.Add(imageName + ".", imlUsed.Images.Count - 1);
+
+            // not to forget, increments the counter !
+            counterUsed.Increment();
+
+            // scroll down in list (and select the last itemn, too)
+            lvi.Selected = true;
+            lvi.EnsureVisible();
         }
 
 
@@ -257,22 +333,85 @@ namespace Clustered_NN.Forms
                             fileName = path + "\\" + imageKeys[i].ToString() + ".jpg";
                         }
 
-
-                        ImageHandling.SaveJpeg(
-                           fileName,
-                           new Bitmap(images[i]),
-                           0);
+                        // finally saves the image in best quality
+                        ImageHandling.SaveJpeg(fileName, new Bitmap(images[i]), 100L);
                     }
                 }
 
             } else {
 
-                MessageBox.Show("Please select an image file first!",
+                MessageBox.Show("Please select an image first!",
                                 "No Selection",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
             }
-               
+        }
+
+
+        /// <summary>
+        /// Deletes the selected images.
+        /// </summary>
+        /// <param name="lvUsed">The used ListView</param>
+        private void DeleteSelectedImages(ListView lvUsed)
+        {
+
+            List<string> imageKeys = GetSelectedItemImageKeys(lvUsed);
+
+            // TODO: testing !!           
+            if (imageKeys.Count > 0)
+            {
+
+                #region imageKeysConnected
+                string imageKeysConnected = "";
+                foreach (string imageKey in imageKeys)
+                {
+                    imageKeysConnected += " '" + imageKey + "'";
+                }
+                imageKeysConnected = imageKeysConnected.Trim();
+                #endregion
+
+                if (MessageBox.Show(
+                    "Do you really want to delete the following images from the list?" + System.Environment.NewLine + imageKeysConnected,
+                    "Confirm Deleting",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+
+                    ImageList imlUsed = lvUsed.SmallImageList;
+
+
+                    // first: removes the stored images in the ImageList
+                    foreach (string imageKey in imageKeys)
+                    {
+                        imlUsed.Images.RemoveByKey(imageKey);
+                    }
+
+                    // second: rebuilds list view (not nice but working!)
+                    lvUsed.Items.Clear();
+                    ListViewItem lvi = new ListViewItem();
+                    int max = imlUsed.Images.Count;
+
+                    for (int i = 0; i < max; i++)
+                    {
+                        lvi = lvUsed.Items.Add(imlUsed.Images.Keys[i] + ".", i);
+                    }
+
+
+                    // scroll down in list (and select the last itemn, too)
+                    lvi.Selected = true;
+                    lvi.EnsureVisible();
+
+                }
+
+            }
+            else
+            {
+
+                MessageBox.Show("Please select an image first!",
+                                "No Selection",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
         }
 
 
@@ -322,10 +461,6 @@ namespace Clustered_NN.Forms
            
 
         #endregion
-
-
-
-
 
     }
 }
