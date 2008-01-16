@@ -41,9 +41,6 @@
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.chkMatching = new System.Windows.Forms.CheckBox();
             this.chkNotMatching = new System.Windows.Forms.CheckBox();
-            this.gbImageProvider = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.pnlDeviceControl = new System.Windows.Forms.FlowLayoutPanel();
             this.toolStripMatching = new System.Windows.Forms.ToolStrip();
             this.openToolStripButton_Matching = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton_Matching = new System.Windows.Forms.ToolStripButton();
@@ -52,16 +49,20 @@
             this.openToolStripButton_NotMatching = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton_NotMatching = new System.Windows.Forms.ToolStripButton();
             this.deleteToolStripButton_NotMatching = new System.Windows.Forms.ToolStripButton();
+            this.gbImageProvider = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlDeviceControl = new System.Windows.Forms.FlowLayoutPanel();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox = new Clustered_NN.Classes.ImageSelectingPictureBox();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.pnlContentHolder.SuspendLayout();
             this.tblContent.SuspendLayout();
             this.gbTrainingQueue.SuspendLayout();
             this.tblTrainingQueue.SuspendLayout();
-            this.gbImageProvider.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.toolStripMatching.SuspendLayout();
             this.toolStripNotMatching.SuspendLayout();
+            this.gbImageProvider.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -214,44 +215,6 @@
             this.chkNotMatching.UseVisualStyleBackColor = false;
             this.chkNotMatching.CheckedChanged += new System.EventHandler(this.chkNotMatching_CheckedChanged);
             // 
-            // gbImageProvider
-            // 
-            this.gbImageProvider.Controls.Add(this.tableLayoutPanel3);
-            this.gbImageProvider.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbImageProvider.Location = new System.Drawing.Point(3, 3);
-            this.gbImageProvider.Name = "gbImageProvider";
-            this.gbImageProvider.Size = new System.Drawing.Size(658, 319);
-            this.gbImageProvider.TabIndex = 9;
-            this.gbImageProvider.TabStop = false;
-            this.gbImageProvider.Text = "Image Provider";
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.38461F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.61539F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Controls.Add(this.pictureBox, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.pnlDeviceControl, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(652, 300);
-            this.tableLayoutPanel3.TabIndex = 5;
-            // 
-            // pnlDeviceControl
-            // 
-            this.pnlDeviceControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDeviceControl.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.pnlDeviceControl.Location = new System.Drawing.Point(3, 3);
-            this.pnlDeviceControl.Name = "pnlDeviceControl";
-            this.pnlDeviceControl.Size = new System.Drawing.Size(159, 294);
-            this.pnlDeviceControl.TabIndex = 6;
-            // 
             // toolStripMatching
             // 
             this.toolStripMatching.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -283,6 +246,7 @@
             this.saveToolStripButton_Matching.Name = "saveToolStripButton_Matching";
             this.saveToolStripButton_Matching.Size = new System.Drawing.Size(23, 22);
             this.saveToolStripButton_Matching.Text = "&Save Selected File";
+            this.saveToolStripButton_Matching.Click += new System.EventHandler(this.saveToolStripButton_Matching_Click);
             // 
             // deleteToolStripButton_Matching
             // 
@@ -333,9 +297,47 @@
             this.deleteToolStripButton_NotMatching.Size = new System.Drawing.Size(23, 22);
             this.deleteToolStripButton_NotMatching.Text = "&Delete Selected File";
             // 
+            // gbImageProvider
+            // 
+            this.gbImageProvider.Controls.Add(this.tableLayoutPanel3);
+            this.gbImageProvider.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbImageProvider.Location = new System.Drawing.Point(3, 3);
+            this.gbImageProvider.Name = "gbImageProvider";
+            this.gbImageProvider.Size = new System.Drawing.Size(658, 319);
+            this.gbImageProvider.TabIndex = 9;
+            this.gbImageProvider.TabStop = false;
+            this.gbImageProvider.Text = "Image Provider";
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.38461F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.61539F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Controls.Add(this.pictureBox, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.pnlDeviceControl, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(652, 300);
+            this.tableLayoutPanel3.TabIndex = 5;
+            // 
+            // pnlDeviceControl
+            // 
+            this.pnlDeviceControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDeviceControl.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
+            this.pnlDeviceControl.Location = new System.Drawing.Point(3, 3);
+            this.pnlDeviceControl.Name = "pnlDeviceControl";
+            this.pnlDeviceControl.Size = new System.Drawing.Size(159, 294);
+            this.pnlDeviceControl.TabIndex = 6;
+            // 
             // openFileDialog
             // 
-            this.openFileDialog.DefaultExt = "png";
+            this.openFileDialog.DefaultExt = "jpg";
             this.openFileDialog.FileName = "*.jpg";
             this.openFileDialog.Filter = "JPEG files|*.jpg";
             this.openFileDialog.Multiselect = true;
@@ -349,6 +351,13 @@
             this.pictureBox.Size = new System.Drawing.Size(352, 288);
             this.pictureBox.TabIndex = 5;
             this.pictureBox.TabStop = false;
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.DefaultExt = "jpg";
+            this.saveFileDialog.FileName = "*.jpg";
+            this.saveFileDialog.Filter = "JPEG files|*.jpg";
+            this.saveFileDialog.Title = "Save Files(s)";
             // 
             // CollectForm
             // 
@@ -368,12 +377,12 @@
             this.gbTrainingQueue.ResumeLayout(false);
             this.tblTrainingQueue.ResumeLayout(false);
             this.tblTrainingQueue.PerformLayout();
-            this.gbImageProvider.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
             this.toolStripMatching.ResumeLayout(false);
             this.toolStripMatching.PerformLayout();
             this.toolStripNotMatching.ResumeLayout(false);
             this.toolStripNotMatching.PerformLayout();
+            this.gbImageProvider.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -407,6 +416,7 @@
         private System.Windows.Forms.ToolStripButton saveToolStripButton_NotMatching;
         private System.Windows.Forms.ToolStripButton deleteToolStripButton_NotMatching;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
 
     }
 }
