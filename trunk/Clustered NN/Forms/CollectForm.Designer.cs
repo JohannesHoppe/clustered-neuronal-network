@@ -51,10 +51,12 @@
             this.deleteToolStripButton_NotMatching = new System.Windows.Forms.ToolStripButton();
             this.gbImageProvider = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox = new Clustered_NN.Classes.ImageSelectingPictureBox();
             this.pnlDeviceControl = new System.Windows.Forms.FlowLayoutPanel();
+            this.tblNavigation = new System.Windows.Forms.TableLayoutPanel();
+            this.btnNext = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.pictureBox = new Clustered_NN.Classes.ImageSelectingPictureBox();
             this.pnlContentHolder.SuspendLayout();
             this.tblContent.SuspendLayout();
             this.gbTrainingQueue.SuspendLayout();
@@ -63,6 +65,7 @@
             this.toolStripNotMatching.SuspendLayout();
             this.gbImageProvider.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tblNavigation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,7 +86,7 @@
             this.pnlContentHolder.Controls.Add(this.tblContent);
             this.pnlContentHolder.Location = new System.Drawing.Point(13, 73);
             this.pnlContentHolder.Name = "pnlContentHolder";
-            this.pnlContentHolder.Size = new System.Drawing.Size(666, 588);
+            this.pnlContentHolder.Size = new System.Drawing.Size(666, 628);
             this.pnlContentHolder.TabIndex = 2;
             // 
             // tblContent
@@ -92,13 +95,15 @@
             this.tblContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblContent.Controls.Add(this.gbTrainingQueue, 0, 1);
             this.tblContent.Controls.Add(this.gbImageProvider, 0, 0);
+            this.tblContent.Controls.Add(this.tblNavigation, 0, 2);
             this.tblContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblContent.Location = new System.Drawing.Point(0, 0);
             this.tblContent.Name = "tblContent";
-            this.tblContent.RowCount = 2;
+            this.tblContent.RowCount = 3;
             this.tblContent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 325F));
             this.tblContent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblContent.Size = new System.Drawing.Size(664, 586);
+            this.tblContent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tblContent.Size = new System.Drawing.Size(664, 626);
             this.tblContent.TabIndex = 0;
             // 
             // gbTrainingQueue
@@ -115,7 +120,7 @@
             // tblTrainingQueue
             // 
             this.tblTrainingQueue.ColumnCount = 3;
-            this.tblTrainingQueue.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.99999F));
+            this.tblTrainingQueue.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblTrainingQueue.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tblTrainingQueue.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblTrainingQueue.Controls.Add(this.lvMatching, 0, 2);
@@ -129,10 +134,11 @@
             this.tblTrainingQueue.Location = new System.Drawing.Point(3, 16);
             this.tblTrainingQueue.Name = "tblTrainingQueue";
             this.tblTrainingQueue.RowCount = 4;
-            this.tblTrainingQueue.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.43575F));
-            this.tblTrainingQueue.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.54305F));
-            this.tblTrainingQueue.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.91391F));
-            this.tblTrainingQueue.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tblTrainingQueue.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tblTrainingQueue.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tblTrainingQueue.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblTrainingQueue.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tblTrainingQueue.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblTrainingQueue.Size = new System.Drawing.Size(652, 236);
             this.tblTrainingQueue.TabIndex = 7;
             // 
@@ -141,9 +147,9 @@
             this.lvMatching.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
             this.lvMatching.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvMatching.Location = new System.Drawing.Point(3, 76);
+            this.lvMatching.Location = new System.Drawing.Point(3, 63);
             this.lvMatching.Name = "lvMatching";
-            this.lvMatching.Size = new System.Drawing.Size(305, 119);
+            this.lvMatching.Size = new System.Drawing.Size(306, 140);
             this.lvMatching.TabIndex = 4;
             this.lvMatching.UseCompatibleStateImageBehavior = false;
             this.lvMatching.View = System.Windows.Forms.View.List;
@@ -157,9 +163,9 @@
             this.btnCapture.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCapture.BackColor = System.Drawing.Color.LightGray;
             this.tblTrainingQueue.SetColumnSpan(this.btnCapture, 3);
-            this.btnCapture.Location = new System.Drawing.Point(289, 5);
+            this.btnCapture.Location = new System.Drawing.Point(289, 3);
             this.btnCapture.Name = "btnCapture";
-            this.btnCapture.Size = new System.Drawing.Size(73, 25);
+            this.btnCapture.Size = new System.Drawing.Size(73, 24);
             this.btnCapture.TabIndex = 0;
             this.btnCapture.Text = "Capture!";
             this.btnCapture.UseVisualStyleBackColor = false;
@@ -170,9 +176,9 @@
             this.lvNotMatching.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader2});
             this.lvNotMatching.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvNotMatching.Location = new System.Drawing.Point(342, 76);
+            this.lvNotMatching.Location = new System.Drawing.Point(343, 63);
             this.lvNotMatching.Name = "lvNotMatching";
-            this.lvNotMatching.Size = new System.Drawing.Size(307, 119);
+            this.lvNotMatching.Size = new System.Drawing.Size(306, 140);
             this.lvNotMatching.TabIndex = 3;
             this.lvNotMatching.UseCompatibleStateImageBehavior = false;
             this.lvNotMatching.View = System.Windows.Forms.View.List;
@@ -191,7 +197,7 @@
             this.chkMatching.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMatching.Image = ((System.Drawing.Image)(resources.GetObject("chkMatching.Image")));
             this.chkMatching.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkMatching.Location = new System.Drawing.Point(117, 43);
+            this.chkMatching.Location = new System.Drawing.Point(118, 33);
             this.chkMatching.Name = "chkMatching";
             this.chkMatching.Size = new System.Drawing.Size(76, 23);
             this.chkMatching.TabIndex = 10;
@@ -207,7 +213,7 @@
             this.chkNotMatching.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chkNotMatching.Image = ((System.Drawing.Image)(resources.GetObject("chkNotMatching.Image")));
             this.chkNotMatching.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkNotMatching.Location = new System.Drawing.Point(447, 43);
+            this.chkNotMatching.Location = new System.Drawing.Point(448, 33);
             this.chkNotMatching.Name = "chkNotMatching";
             this.chkNotMatching.Size = new System.Drawing.Size(96, 23);
             this.chkNotMatching.TabIndex = 11;
@@ -221,10 +227,10 @@
             this.openToolStripButton_Matching,
             this.saveToolStripButton_Matching,
             this.deleteToolStripButton_Matching});
-            this.toolStripMatching.Location = new System.Drawing.Point(3, 201);
+            this.toolStripMatching.Location = new System.Drawing.Point(3, 209);
             this.toolStripMatching.Margin = new System.Windows.Forms.Padding(3);
             this.toolStripMatching.Name = "toolStripMatching";
-            this.toolStripMatching.Size = new System.Drawing.Size(305, 25);
+            this.toolStripMatching.Size = new System.Drawing.Size(306, 24);
             this.toolStripMatching.TabIndex = 12;
             this.toolStripMatching.Text = "toolStripMatching";
             // 
@@ -234,7 +240,7 @@
             this.openToolStripButton_Matching.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton_Matching.Image")));
             this.openToolStripButton_Matching.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripButton_Matching.Name = "openToolStripButton_Matching";
-            this.openToolStripButton_Matching.Size = new System.Drawing.Size(23, 22);
+            this.openToolStripButton_Matching.Size = new System.Drawing.Size(23, 21);
             this.openToolStripButton_Matching.Text = "&Open and Include Matching File";
             this.openToolStripButton_Matching.Click += new System.EventHandler(this.openToolStripButton_Matching_Click);
             // 
@@ -244,7 +250,7 @@
             this.saveToolStripButton_Matching.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton_Matching.Image")));
             this.saveToolStripButton_Matching.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripButton_Matching.Name = "saveToolStripButton_Matching";
-            this.saveToolStripButton_Matching.Size = new System.Drawing.Size(23, 22);
+            this.saveToolStripButton_Matching.Size = new System.Drawing.Size(23, 21);
             this.saveToolStripButton_Matching.Text = "&Save Selected File";
             this.saveToolStripButton_Matching.Click += new System.EventHandler(this.saveToolStripButton_Matching_Click);
             // 
@@ -254,7 +260,7 @@
             this.deleteToolStripButton_Matching.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripButton_Matching.Image")));
             this.deleteToolStripButton_Matching.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.deleteToolStripButton_Matching.Name = "deleteToolStripButton_Matching";
-            this.deleteToolStripButton_Matching.Size = new System.Drawing.Size(23, 22);
+            this.deleteToolStripButton_Matching.Size = new System.Drawing.Size(23, 21);
             this.deleteToolStripButton_Matching.Text = "&Delete Selected File";
             this.deleteToolStripButton_Matching.Click += new System.EventHandler(this.deleteToolStripButton_Matching_Click);
             // 
@@ -264,10 +270,10 @@
             this.openToolStripButton_NotMatching,
             this.saveToolStripButton_NotMatching,
             this.deleteToolStripButton_NotMatching});
-            this.toolStripNotMatching.Location = new System.Drawing.Point(342, 201);
+            this.toolStripNotMatching.Location = new System.Drawing.Point(343, 209);
             this.toolStripNotMatching.Margin = new System.Windows.Forms.Padding(3);
             this.toolStripNotMatching.Name = "toolStripNotMatching";
-            this.toolStripNotMatching.Size = new System.Drawing.Size(307, 25);
+            this.toolStripNotMatching.Size = new System.Drawing.Size(306, 24);
             this.toolStripNotMatching.TabIndex = 13;
             this.toolStripNotMatching.Text = "toolStripNotMatching";
             // 
@@ -277,7 +283,7 @@
             this.openToolStripButton_NotMatching.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton_NotMatching.Image")));
             this.openToolStripButton_NotMatching.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripButton_NotMatching.Name = "openToolStripButton_NotMatching";
-            this.openToolStripButton_NotMatching.Size = new System.Drawing.Size(23, 22);
+            this.openToolStripButton_NotMatching.Size = new System.Drawing.Size(23, 21);
             this.openToolStripButton_NotMatching.Text = "&Open and Include Not Matching File";
             this.openToolStripButton_NotMatching.Click += new System.EventHandler(this.openToolStripButton_NotMatching_Click);
             // 
@@ -287,7 +293,7 @@
             this.saveToolStripButton_NotMatching.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton_NotMatching.Image")));
             this.saveToolStripButton_NotMatching.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripButton_NotMatching.Name = "saveToolStripButton_NotMatching";
-            this.saveToolStripButton_NotMatching.Size = new System.Drawing.Size(23, 22);
+            this.saveToolStripButton_NotMatching.Size = new System.Drawing.Size(23, 21);
             this.saveToolStripButton_NotMatching.Text = "&Save Selected File";
             this.saveToolStripButton_NotMatching.Click += new System.EventHandler(this.saveToolStripButton_NotMatching_Click);
             // 
@@ -297,7 +303,7 @@
             this.deleteToolStripButton_NotMatching.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripButton_NotMatching.Image")));
             this.deleteToolStripButton_NotMatching.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.deleteToolStripButton_NotMatching.Name = "deleteToolStripButton_NotMatching";
-            this.deleteToolStripButton_NotMatching.Size = new System.Drawing.Size(23, 22);
+            this.deleteToolStripButton_NotMatching.Size = new System.Drawing.Size(23, 21);
             this.deleteToolStripButton_NotMatching.Text = "&Delete Selected File";
             this.deleteToolStripButton_NotMatching.Click += new System.EventHandler(this.deleteToolStripButton_NotMatching_Click);
             // 
@@ -330,15 +336,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(652, 300);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
-            // pictureBox
-            // 
-            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox.Location = new System.Drawing.Point(168, 3);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(352, 288);
-            this.pictureBox.TabIndex = 5;
-            this.pictureBox.TabStop = false;
-            // 
             // pnlDeviceControl
             // 
             this.pnlDeviceControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -347,6 +344,36 @@
             this.pnlDeviceControl.Name = "pnlDeviceControl";
             this.pnlDeviceControl.Size = new System.Drawing.Size(159, 294);
             this.pnlDeviceControl.TabIndex = 6;
+            // 
+            // tblNavigation
+            // 
+            this.tblNavigation.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tblNavigation.ColumnCount = 2;
+            this.tblNavigation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblNavigation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblNavigation.Controls.Add(this.btnNext, 1, 0);
+            this.tblNavigation.Location = new System.Drawing.Point(213, 589);
+            this.tblNavigation.Name = "tblNavigation";
+            this.tblNavigation.RowCount = 1;
+            this.tblNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tblNavigation.Size = new System.Drawing.Size(238, 34);
+            this.tblNavigation.TabIndex = 11;
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnNext.BackColor = System.Drawing.Color.LightGray;
+            this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
+            this.btnNext.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNext.Location = new System.Drawing.Point(128, 5);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.btnNext.Size = new System.Drawing.Size(100, 23);
+            this.btnNext.TabIndex = 0;
+            this.btnNext.Text = "Next Step";
+            this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // openFileDialog
             // 
@@ -363,12 +390,21 @@
             this.saveFileDialog.Filter = "JPEG files|*.jpg";
             this.saveFileDialog.Title = "Save Files(s)";
             // 
+            // pictureBox
+            // 
+            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox.Location = new System.Drawing.Point(168, 3);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(352, 288);
+            this.pictureBox.TabIndex = 5;
+            this.pictureBox.TabStop = false;
+            // 
             // CollectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(692, 723);
+            this.ClientSize = new System.Drawing.Size(692, 743);
             this.Controls.Add(this.lblTooltip);
             this.Controls.Add(this.pnlContentHolder);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -387,6 +423,7 @@
             this.toolStripNotMatching.PerformLayout();
             this.gbImageProvider.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.tblNavigation.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -421,6 +458,8 @@
         private System.Windows.Forms.ToolStripButton deleteToolStripButton_NotMatching;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.TableLayoutPanel tblNavigation;
+        private System.Windows.Forms.Button btnNext;
 
     }
 }

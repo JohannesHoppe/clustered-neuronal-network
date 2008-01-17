@@ -1,6 +1,6 @@
 ﻿namespace Clustered_NN.Forms
 {
-    partial class MainForm
+    partial class WelcomeForm
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WelcomeForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lbl_3 = new System.Windows.Forms.Label();
             this.lbl_2 = new System.Windows.Forms.Label();
@@ -232,9 +232,8 @@
             // timerClickOnStart
             // 
             this.timerClickOnStart.Enabled = true;
-            this.timerClickOnStart.Tick += new System.EventHandler(this.timerClickOnStart_Tick);
             // 
-            // MainForm
+            // WelcomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -244,7 +243,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "MainForm";
+            this.Name = "WelcomeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Clustered Neuronal Network - Start";
             this.tableLayoutPanel1.ResumeLayout(false);

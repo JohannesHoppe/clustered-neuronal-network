@@ -1,6 +1,6 @@
 ﻿namespace Clustered_NN.Forms
 {
-    partial class MasterFormContents
+    partial class MasterForm
     {
 
         /// <summary>
@@ -25,7 +25,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterFormContents));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterForm));
             this.tblMain = new System.Windows.Forms.TableLayoutPanel();
             this.tblHeading = new System.Windows.Forms.TableLayoutPanel();
             this.pbxIcon = new System.Windows.Forms.PictureBox();

@@ -9,17 +9,20 @@ using Clustered_NN.Classes;
 
 namespace Clustered_NN.Forms
 {
-
-    public partial class MasterFormExample : Form
+    public partial class TrainForm : Form
     {
-        public WelcomeForm _parentForm;
-        public CNNProject _cnnProject;
+
+        private CNNProject _cnnProject;
+        private CollectForm _parentForm;
 
         private ToolStripContainer _toolStripContainer = new ToolStripContainer();
 
 
-        public MasterFormExample()
+        public TrainForm(CNNProject cnnProject, CollectForm parentForm)
         {
+            this._cnnProject = cnnProject;
+            this._parentForm = parentForm;
+            
             InitializeComponent();
 
             MasterForm.InitializeContent(
@@ -29,16 +32,9 @@ namespace Clustered_NN.Forms
                  this.pnlContentHolder);
         }
 
-
-        public MasterFormExample(WelcomeForm parentForm, CNNProject cnnProject) : this()
+        private void TrainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this._parentForm = parentForm;
-            this._cnnProject = cnnProject;
+            _parentForm.Close();
         }
-
-
-
-
-
     }
 }
