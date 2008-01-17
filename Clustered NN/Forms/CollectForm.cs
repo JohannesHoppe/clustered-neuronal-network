@@ -17,35 +17,30 @@ namespace Clustered_NN.Forms
         /// </summary>
         private ToolStripContainer _toolStripContainer = new ToolStripContainer();
 
-        private MainForm _parentForm;
         private CNNProject _cnnProject;
         private ImageProvider _imageProvider;
 
+        private TrainForm _trainForm;
+
 
         /// <summary>
-        /// Not to be used directly!
+        /// Initializes a new instance of the <see cref="CollectForm"/> class.
         /// </summary>
         public CollectForm()
         {
+
+            //WelcomeForm welcomeForm = new WelcomeForm();
+            //welcomeForm.ShowDialog();
+
             InitializeComponent();
 
-            MasterFormContents.InitializeContent(
+            MasterForm.InitializeContent(
                  this,
                  this.lblTooltip,
                  this._toolStripContainer,
                  this.pnlContentHolder);
-        }
 
-
-        /// <summary>
-        /// This constructor should be used!
-        /// </summary>
-        /// <param name="parentForm">The parent form.</param>
-        /// <param name="cnnProject">The CNN project.</param>
-        public CollectForm(MainForm parentForm, CNNProject cnnProject) : this()
-        {
-            this._parentForm = parentForm;
-            this._cnnProject = cnnProject;
+            this._cnnProject = new CNNProject();
             this._imageProvider = new MultithreadedVFWImageProvider(
 
                 this.pictureBox,
@@ -187,8 +182,6 @@ namespace Clustered_NN.Forms
             {
                 _imageProvider.StopPresentation();
             }
-
-            _parentForm.Close();
         }
 
 
@@ -461,6 +454,22 @@ namespace Clustered_NN.Forms
            
 
         #endregion
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            _imageProvider.StopPresentation();
+            this.Hide();
+
+            if (_trainForm == null || _trainForm.IsDisposed)
+            {
+                _trainForm = new TrainForm(_cnnProject, this);
+            }
+            
+            _trainForm.Show();
+            _trainForm.Focus();
+
+
+        }
 
     }
 }

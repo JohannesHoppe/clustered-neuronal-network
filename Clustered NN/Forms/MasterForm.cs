@@ -8,12 +8,12 @@ using System.Windows.Forms;
 
 namespace Clustered_NN.Forms
 {
-    public partial class MasterFormContents : Form
+    public partial class MasterForm : Form
     {
         private string _showPermanentText;
         private bool _showPermanentEntered;
 
-        public MasterFormContents()
+        public MasterForm()
         {
             InitializeComponent();
         }
@@ -104,7 +104,7 @@ namespace Clustered_NN.Forms
                                              ToolStripContainer toolStripContainer,
                                              Panel pnlContentHolder)
         {
-            MasterFormContents masterFormContents = new MasterFormContents();
+            MasterForm masterFormContents = new MasterForm();
 
             // import
             toolStripContainer = masterFormContents.toolStripContainer1;
