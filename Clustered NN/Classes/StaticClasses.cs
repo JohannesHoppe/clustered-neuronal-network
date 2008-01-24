@@ -7,7 +7,19 @@ namespace Clustered_NN.Classes
 {
     static class StaticClasses
     {
-        
+
+
+        private static string _nl = System.Environment.NewLine;
+
+        /// <summary>
+        /// just our System.Environment.NewLine
+        /// </summary>
+        public static string NL
+        {
+            get { return _nl; }
+        }
+
+
         /// <summary>
         /// Shows an exception in the ErrorBox
         /// </summary>
@@ -23,6 +35,8 @@ namespace Clustered_NN.Classes
             errorBox.txtMessage.Text = message;
             errorBox.lblheadline.Text = "Exception";
             errorBox.ShowDialog();
+
+            
         }
 
 

@@ -42,6 +42,8 @@
     <Compile Include="Classes\BalloonToolTip.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Classes\Counter.cs" />
+    <Compile Include="Classes\ImageDetectionNeuralNetwork.cs" />
     <Compile Include="Classes\ImageHandling.cs" />
     <Compile Include="Classes\ImageSelectingPictureBox.cs">
       <SubType>Component</SubType>
@@ -136,6 +138,10 @@
     <Content Include="wi0063-64.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NeuralFramework\NeuralFramework.vbproj">
+      <Project>{60788E18-4370-40B6-A230-686D79BFD029}</Project>
+      <Name>NeuralFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebCamera\WebCamera.csproj">
       <Project>{BA9083CA-0BDE-43E0-A2FC-B659A10454C6}</Project>
       <Name>WebCamera</Name>

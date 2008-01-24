@@ -76,7 +76,7 @@ namespace Clustered_NN.Forms
         {
 
             ListView lvUsed = (chkMatching.Checked) ? lvMatching : lvNotMatching;
-            CNNProject.Counter counterUsed = (chkMatching.Checked) ? this._cnnProject.MatchingCounter : this._cnnProject.NotMatchingCounter;
+            Counter counterUsed = (chkMatching.Checked) ? this._cnnProject.MatchingCounter : this._cnnProject.NotMatchingCounter;
 
             CaptureNewImage(lvUsed, counterUsed);
         }
@@ -197,7 +197,7 @@ namespace Clustered_NN.Forms
         /// </summary>
         /// <param name="lvUsed">one of the both ListViews</param>
         /// <param name="counterUsed">one of the both Counters</param>
-        private void CaptureNewImage(ListView lvUsed, CNNProject.Counter counterUsed)
+        private void CaptureNewImage(ListView lvUsed, Counter counterUsed)
         {
 
             try
@@ -234,7 +234,7 @@ namespace Clustered_NN.Forms
         /// </summary>
         /// <param name="lvUsed">The lv used.</param>
         /// <param name="counterUsed">The counter used.</param>
-        private void OpenImages(ListView lvUsed, CNNProject.Counter counterUsed)
+        private void OpenImages(ListView lvUsed, Counter counterUsed)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -269,7 +269,7 @@ namespace Clustered_NN.Forms
         /// <param name="selectedImage">The selected image.</param>
         /// <param name="imageName">Name of the image.</param>
         /// <param name="counterUsed">One of the both counters</param>
-        private void AddImageToList(ListView lvUsed, Image selectedImage, string imageName, CNNProject.Counter counterUsed)
+        private void AddImageToList(ListView lvUsed, Image selectedImage, string imageName, Counter counterUsed)
         {
 
             // first: add to ImageList
@@ -350,7 +350,6 @@ namespace Clustered_NN.Forms
 
             List<string> imageKeys = GetSelectedItemImageKeys(lvUsed);
 
-            // TODO: testing !!           
             if (imageKeys.Count > 0)
             {
 
@@ -364,7 +363,7 @@ namespace Clustered_NN.Forms
                 #endregion
 
                 if (MessageBox.Show(
-                    "Do you really want to delete the following images from the list?" + System.Environment.NewLine + imageKeysConnected,
+                    "Do you really want to delete the following images from the list?" + StaticClasses.NL + imageKeysConnected,
                     "Confirm Deleting",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question) == DialogResult.Yes)

@@ -533,7 +533,7 @@ namespace Clustered_NN.Classes
         {
             get
             {
-                return "There is currently no image loaded!"  + System.Environment.NewLine
+                return "There is currently no image loaded!"  + StaticClasses.NL
                      + "Is the device connected properly?";
             }
         }
