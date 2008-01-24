@@ -469,7 +469,7 @@ namespace Clustered_NN.Classes
         {
             get
             {
-                return "It is not possible to crop the image." + System.Environment.NewLine
+                return "It is not possible to crop the image." + StaticClasses.NL
                      + "Take care that the rectanlge stays within coordinatesof the image!";
             }
         }

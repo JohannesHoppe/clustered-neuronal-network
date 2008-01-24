@@ -22,7 +22,9 @@ Public Class NeuralFrameworkException
         MyBase.New(Message)
 
         ''Log the details if required'''
-        Debug.Write(vbCrLf & "----------" & vbCrLf & "Error: " & Message & vbCrLf & "----------" & vbCrLf & e.StackTrace)
+
+        '' Joe was here:
+        'Debug.Write(vbCrLf & "----------" & vbCrLf & "Error: " & Message & vbCrLf & "----------" & vbCrLf & e.StackTrace)
     End Sub
 
 

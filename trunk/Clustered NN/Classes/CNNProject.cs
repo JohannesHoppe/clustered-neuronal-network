@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
+using Clustered_NN.Classes;
 
 namespace Clustered_NN.Classes
 {
@@ -20,6 +21,8 @@ namespace Clustered_NN.Classes
         
         private Counter _matchingCounter;
         private Counter _notMatchingCounter;
+
+        private ImageDetectionNeuralNetwork _imgDetectionNN;
 
 
         /// <summary>
@@ -40,6 +43,9 @@ namespace Clustered_NN.Classes
 
             this._matchingCounter = new Counter();
             this._notMatchingCounter = new Counter();
+
+            this._imgDetectionNN = new ImageDetectionNeuralNetwork();
+            this._imgDetectionNN.InitNetwork(this._imagePatternSize);
         }
 
 
@@ -99,89 +105,14 @@ namespace Clustered_NN.Classes
 
 
         /// <summary>
-        /// Counter that is used to create unique numbers
-        /// 
-        /// Only increment operations are allowed for the counter
-        /// (to avoid number collisions)
+        /// Stores the Neuronal Network
         /// </summary>
-        public class Counter
-        {
-            private int _i;
+        /// <value>The img detection NN.</value>
+        public ImageDetectionNeuralNetwork ImgDetectionNN {
 
-            /// <summary>
-            /// Initializes a new instance of the <see cref="Counter"/> class.
-            /// </summary>
-            public Counter() {
-                _i = 0;
-            }
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="Counter"/> class.
-            /// sets the current count
-            /// </summary>
-            /// <param name="startValue">The start value.</param>
-            public Counter(int startValue) {
-                _i = startValue;
-            } 
-
-            /// <summary>
-            /// Gets the current count
-            /// </summary>
-            /// <value>The value.</value>
-            public int Value
-            {
-                get { return _i; }
-            }
-
-            /// <summary>
-            /// Increments this count and returns the new value
-            /// </summary>
-            /// <returns></returns>
-            public int Increment() {
-                
-                return ++_i;
-            }
-
-            /// <summary>
-            /// value = 0
-            /// </summary>
-            public void Reset() {
-                _i = 0;
-            }
-
-
-            /// <summary>
-            ///returns the Value
-            /// </summary>
-            /// <returns>just the Value</returns>
-            public override string ToString()
-            {
-                return _i.ToString();
-            }
+            get { return _imgDetectionNN; }
+            set { _imgDetectionNN = value; }
         }
 
-
-    }
-}
-
-
-
-
-class CounterOnlyAllowsIncrementsException : Exception
-{
-
-    /// <summary>
-    /// Gets a message that describes the current exception.
-    /// Thrown by CNNProject.MatchingCounter and CNNProject.NotMatchingCounter
-    /// </summary>
-    /// <value></value>
-    /// <returns>The error message that explains the reason for the exception</returns>
-    public override string Message
-    {
-        get
-        {
-            return "Only increment operations are allowed for the counter." + System.Environment.NewLine
-                 + "(to avoid number collisions)";
-        }
     }
 }
