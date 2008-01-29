@@ -32,24 +32,31 @@
             this.lblTooltip = new System.Windows.Forms.Label();
             this.pnlContentHolder = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.pnlControl = new System.Windows.Forms.Panel();
-            this.Label2 = new System.Windows.Forms.Label();
-            this.cmdTrain = new System.Windows.Forms.Button();
-            this.txtTrainTimes = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTrainStart = new System.Windows.Forms.Label();
             this.lblTrainInfo = new System.Windows.Forms.Label();
             this.pbTrain = new System.Windows.Forms.ProgressBar();
+            this.pnlControl = new System.Windows.Forms.Panel();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.cmdTrain = new System.Windows.Forms.Button();
+            this.txtTrainTimes = new System.Windows.Forms.TextBox();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.tblNavigation = new System.Windows.Forms.TableLayoutPanel();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.gbNetworkStatus = new System.Windows.Forms.GroupBox();
+            this.lblNetworkStatus = new System.Windows.Forms.Label();
             this.pnlContentHolder.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.pnlControl.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.pnlControl.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.tblNavigation.SuspendLayout();
+            this.gbNetworkStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTooltip
@@ -79,69 +86,34 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.Controls.Add(this.pnlControl, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.toolStrip1, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.pbTrain, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.cmdCancel, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.pbTrain, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.pnlControl, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.cmdCancel, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.toolStrip1, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tblNavigation, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.gbNetworkStatus, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.76712F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.87671F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.67123F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.78819F));
+            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.19178F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.05479F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.98901F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.109589F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.68493F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(574, 407);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // pnlControl
-            // 
-            this.pnlControl.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.pnlControl.Controls.Add(this.Label2);
-            this.pnlControl.Controls.Add(this.cmdTrain);
-            this.pnlControl.Controls.Add(this.txtTrainTimes);
-            this.pnlControl.Location = new System.Drawing.Point(174, 143);
-            this.pnlControl.Name = "pnlControl";
-            this.pnlControl.Size = new System.Drawing.Size(225, 32);
-            this.pnlControl.TabIndex = 16;
-            // 
-            // Label2
-            // 
-            this.Label2.Location = new System.Drawing.Point(176, 9);
-            this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(41, 18);
-            this.Label2.TabIndex = 15;
-            this.Label2.Text = "Times";
-            // 
-            // cmdTrain
-            // 
-            this.cmdTrain.BackColor = System.Drawing.Color.LightGray;
-            this.cmdTrain.Location = new System.Drawing.Point(14, 3);
-            this.cmdTrain.Name = "cmdTrain";
-            this.cmdTrain.Size = new System.Drawing.Size(100, 24);
-            this.cmdTrain.TabIndex = 13;
-            this.cmdTrain.Text = "Start Training";
-            this.cmdTrain.UseVisualStyleBackColor = false;
-            this.cmdTrain.Click += new System.EventHandler(this.cmdTrain_Click);
-            // 
-            // txtTrainTimes
-            // 
-            this.txtTrainTimes.Location = new System.Drawing.Point(119, 6);
-            this.txtTrainTimes.Name = "txtTrainTimes";
-            this.txtTrainTimes.Size = new System.Drawing.Size(51, 20);
-            this.txtTrainTimes.TabIndex = 14;
-            this.txtTrainTimes.Text = "1000";
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.lblTrainStart);
             this.panel1.Controls.Add(this.lblTrainInfo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(89, 228);
+            this.panel1.Location = new System.Drawing.Point(89, 256);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(395, 95);
+            this.panel1.Size = new System.Drawing.Size(395, 106);
             this.panel1.TabIndex = 19;
             // 
             // lblTrainStart
@@ -160,22 +132,61 @@
             this.lblTrainInfo.Size = new System.Drawing.Size(252, 13);
             this.lblTrainInfo.TabIndex = 1;
             this.lblTrainInfo.Text = "Please click on \"Start Training\" to train the network!";
+            this.lblTrainInfo.TextChanged += new System.EventHandler(this.lblTrainInfo_TextChanged);
             // 
             // pbTrain
             // 
             this.pbTrain.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pbTrain.BackColor = System.Drawing.Color.LightGray;
-            this.pbTrain.Location = new System.Drawing.Point(89, 190);
+            this.pbTrain.Location = new System.Drawing.Point(89, 207);
             this.pbTrain.Name = "pbTrain";
-            this.pbTrain.Size = new System.Drawing.Size(395, 23);
+            this.pbTrain.Size = new System.Drawing.Size(395, 21);
             this.pbTrain.TabIndex = 0;
+            // 
+            // pnlControl
+            // 
+            this.pnlControl.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.pnlControl.Controls.Add(this.Label2);
+            this.pnlControl.Controls.Add(this.cmdTrain);
+            this.pnlControl.Controls.Add(this.txtTrainTimes);
+            this.pnlControl.Location = new System.Drawing.Point(159, 163);
+            this.pnlControl.Name = "pnlControl";
+            this.pnlControl.Size = new System.Drawing.Size(254, 32);
+            this.pnlControl.TabIndex = 16;
+            // 
+            // Label2
+            // 
+            this.Label2.Location = new System.Drawing.Point(205, 9);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(41, 18);
+            this.Label2.TabIndex = 15;
+            this.Label2.Text = "Times";
+            // 
+            // cmdTrain
+            // 
+            this.cmdTrain.BackColor = System.Drawing.Color.LightGray;
+            this.cmdTrain.Location = new System.Drawing.Point(42, 3);
+            this.cmdTrain.Name = "cmdTrain";
+            this.cmdTrain.Size = new System.Drawing.Size(100, 24);
+            this.cmdTrain.TabIndex = 13;
+            this.cmdTrain.Text = "Start Training";
+            this.cmdTrain.UseVisualStyleBackColor = false;
+            this.cmdTrain.Click += new System.EventHandler(this.cmdTrain_Click);
+            // 
+            // txtTrainTimes
+            // 
+            this.txtTrainTimes.Location = new System.Drawing.Point(148, 6);
+            this.txtTrainTimes.Name = "txtTrainTimes";
+            this.txtTrainTimes.Size = new System.Drawing.Size(51, 20);
+            this.txtTrainTimes.TabIndex = 14;
+            this.txtTrainTimes.Text = "1000";
             // 
             // cmdCancel
             // 
             this.cmdCancel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cmdCancel.BackColor = System.Drawing.Color.LightGray;
             this.cmdCancel.Enabled = false;
-            this.cmdCancel.Location = new System.Drawing.Point(490, 189);
+            this.cmdCancel.Location = new System.Drawing.Point(490, 206);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(51, 24);
             this.cmdCancel.TabIndex = 17;
@@ -191,7 +202,7 @@
             this.newToolStripButton,
             this.openToolStripButton,
             this.saveToolStripButton});
-            this.toolStrip1.Location = new System.Drawing.Point(490, 150);
+            this.toolStrip1.Location = new System.Drawing.Point(490, 170);
             this.toolStrip1.Margin = new System.Windows.Forms.Padding(3);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(79, 25);
@@ -207,6 +218,7 @@
             this.newToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.newToolStripButton.Text = "&Neu";
             this.newToolStripButton.ToolTipText = "Reset Network";
+            this.newToolStripButton.Click += new System.EventHandler(this.newToolStripButton_Click);
             // 
             // openToolStripButton
             // 
@@ -230,6 +242,75 @@
             this.saveToolStripButton.ToolTipText = "Save Network to File";
             this.saveToolStripButton.Click += new System.EventHandler(this.saveToolStripButton_Click);
             // 
+            // tblNavigation
+            // 
+            this.tblNavigation.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tblNavigation.ColumnCount = 2;
+            this.tblNavigation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblNavigation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblNavigation.Controls.Add(this.btnNext, 1, 0);
+            this.tblNavigation.Controls.Add(this.btnPrev, 0, 0);
+            this.tblNavigation.Location = new System.Drawing.Point(167, 369);
+            this.tblNavigation.Name = "tblNavigation";
+            this.tblNavigation.RowCount = 1;
+            this.tblNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tblNavigation.Size = new System.Drawing.Size(238, 34);
+            this.tblNavigation.TabIndex = 21;
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnNext.BackColor = System.Drawing.Color.LightGray;
+            this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
+            this.btnNext.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNext.Location = new System.Drawing.Point(128, 5);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.btnNext.Size = new System.Drawing.Size(100, 24);
+            this.btnNext.TabIndex = 0;
+            this.btnNext.Text = "Next Step";
+            this.btnNext.UseVisualStyleBackColor = false;
+            // 
+            // btnPrev
+            // 
+            this.btnPrev.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnPrev.BackColor = System.Drawing.Color.LightGray;
+            this.btnPrev.Image = ((System.Drawing.Image)(resources.GetObject("btnPrev.Image")));
+            this.btnPrev.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrev.Location = new System.Drawing.Point(9, 5);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnPrev.Size = new System.Drawing.Size(100, 24);
+            this.btnPrev.TabIndex = 1;
+            this.btnPrev.Text = "Prev Step";
+            this.btnPrev.UseVisualStyleBackColor = false;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            // 
+            // gbNetworkStatus
+            // 
+            this.gbNetworkStatus.AutoSize = true;
+            this.gbNetworkStatus.Controls.Add(this.lblNetworkStatus);
+            this.gbNetworkStatus.ForeColor = System.Drawing.Color.DarkGray;
+            this.gbNetworkStatus.Location = new System.Drawing.Point(98, 3);
+            this.gbNetworkStatus.Margin = new System.Windows.Forms.Padding(12, 3, 3, 3);
+            this.gbNetworkStatus.Name = "gbNetworkStatus";
+            this.gbNetworkStatus.Padding = new System.Windows.Forms.Padding(3, 7, 3, 0);
+            this.gbNetworkStatus.Size = new System.Drawing.Size(113, 46);
+            this.gbNetworkStatus.TabIndex = 23;
+            this.gbNetworkStatus.TabStop = false;
+            this.gbNetworkStatus.Text = "Network Status";
+            // 
+            // lblNetworkStatus
+            // 
+            this.lblNetworkStatus.AutoSize = true;
+            this.lblNetworkStatus.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblNetworkStatus.Location = new System.Drawing.Point(6, 20);
+            this.lblNetworkStatus.Name = "lblNetworkStatus";
+            this.lblNetworkStatus.Size = new System.Drawing.Size(101, 13);
+            this.lblNetworkStatus.TabIndex = 1;
+            this.lblNetworkStatus.Text = "... NetworkStatus ...";
+            // 
             // TrainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,12 +327,15 @@
             this.pnlContentHolder.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.pnlControl.ResumeLayout(false);
-            this.pnlControl.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.pnlControl.ResumeLayout(false);
+            this.pnlControl.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.tblNavigation.ResumeLayout(false);
+            this.gbNetworkStatus.ResumeLayout(false);
+            this.gbNetworkStatus.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,6 +359,11 @@
         private System.Windows.Forms.ToolStripButton newToolStripButton;
         private System.Windows.Forms.ToolStripButton saveToolStripButton;
         private System.Windows.Forms.ToolStripButton openToolStripButton;
+        private System.Windows.Forms.TableLayoutPanel tblNavigation;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Label lblNetworkStatus;
+        private System.Windows.Forms.GroupBox gbNetworkStatus;
 
     }
 }

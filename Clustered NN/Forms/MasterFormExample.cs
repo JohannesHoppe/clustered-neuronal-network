@@ -12,33 +12,25 @@ namespace Clustered_NN.Forms
 
     public partial class MasterFormExample : Form
     {
-        public WelcomeForm _parentForm;
-        public CNNProject _cnnProject;
 
+        public CNNProjectHolder _cnnProjectHolder;
         private ToolStripContainer _toolStripContainer = new ToolStripContainer();
 
 
         public MasterFormExample()
         {
+                        
             InitializeComponent();
+
+            this._cnnProjectHolder = new CNNProjectHolder();
+
 
             MasterForm.InitializeContent(
                  this,
                  this.lblTooltip,
                  this._toolStripContainer,
-                 this.pnlContentHolder);
+                 this.pnlContentHolder,
+                 this._cnnProjectHolder);
         }
-
-
-        public MasterFormExample(WelcomeForm parentForm, CNNProject cnnProject) : this()
-        {
-            this._parentForm = parentForm;
-            this._cnnProject = cnnProject;
-        }
-
-
-
-
-
     }
 }

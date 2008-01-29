@@ -7,21 +7,26 @@ using Clustered_NN.Classes;
 
 namespace Clustered_NN.Classes
 {
+    [Serializable()]
     /// <summary>
     /// holds all configuration as well as usage data of a complete project
     /// </summary>
     public class CNNProject
     {
         // config
-        public Size _imagePatternSize = new Size(20, 20);
+        private Size _imagePatternSize = new Size(20, 20);
+        private bool _expertMode = true;
         // config
-        
+
+        [NonSerialized]
         private ImageList _imlMatching;
+        [NonSerialized]
         private ImageList _imlNotMatching;
         
         private Counter _matchingCounter;
         private Counter _notMatchingCounter;
 
+        [NonSerialized]
         private ImageDetectionNeuralNetwork _imgDetectionNN;
 
 
@@ -112,6 +117,17 @@ namespace Clustered_NN.Classes
 
             get { return _imgDetectionNN; }
             set { _imgDetectionNN = value; }
+        }
+        
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the helps should be displayed
+        /// </summary>
+        /// <value><c>true</c> = Expert Mode; otherwise, <c>false</c>.</value>
+        public bool ExpertMode
+        {
+            get { return _expertMode; }
+            set { _expertMode = value; }
         }
 
     }

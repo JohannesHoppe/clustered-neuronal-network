@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Clustered_NN.Classes;
 
 namespace Clustered_NN.Forms
 {
@@ -13,9 +14,24 @@ namespace Clustered_NN.Forms
         private string _showPermanentText;
         private bool _showPermanentEntered;
 
+
+        private Form _parentForm;
+        private CNNProjectHolder _cnnProjectHolder;
+
+
+
         public MasterForm()
         {
+            throw new Exception("Please provide the parentForm and the cnnProject!");
+        }
+
+
+        public MasterForm(Form parentForm, CNNProjectHolder cnnProjectHolder)
+        {
             InitializeComponent();
+
+            _parentForm = parentForm;
+            _cnnProjectHolder = cnnProjectHolder;
         }
 
 
@@ -97,14 +113,15 @@ namespace Clustered_NN.Forms
 
         /// <summary>
         /// Imports the toolstripContainer with all his nice controls into the given form
-        /// also adds the controls from this.pnlContentHolder to masterFormContents.pnlContentHolder to 
+        /// also adds the controls from this.pnlContentHolder to masterFormContents.pnlContentHolder
         /// </summary>
         public static void InitializeContent(Form newForm,
                                              Label lblTooltip,
                                              ToolStripContainer toolStripContainer,
-                                             Panel pnlContentHolder)
+                                             Panel pnlContentHolder,
+                                             CNNProjectHolder cnnProjectHolder)
         {
-            MasterForm masterFormContents = new MasterForm();
+            MasterForm masterFormContents = new MasterForm(newForm, cnnProjectHolder);
 
             // import
             toolStripContainer = masterFormContents.toolStripContainer1;
@@ -120,11 +137,23 @@ namespace Clustered_NN.Forms
                 masterFormContents.pnlContentHolder.Controls.Add(control);
             }
 
-            masterFormContents.ShowPictureBoxBallon(lblTooltip.Text, 5000, newForm, true);
+            int time = (cnnProjectHolder.CNNProject.ExpertMode) ? 1 : 5000;
+
+            masterFormContents.ShowPictureBoxBallon(lblTooltip.Text, time, newForm, true);
             masterFormContents.lblHeading.Text = newForm.Text;
 
-            //newForm.Icon = (System.Drawing.Icon) masterFormContents.Icon.Clone();
+        }
 
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _parentForm.Close();
+        }
+
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _cnnProjectHolder.SaveAndSerialize();
         }
 
     }

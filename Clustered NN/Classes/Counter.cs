@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Clustered_NN.Classes
 {
+    [Serializable]
     /// <summary>
     /// Counter that is used to create unique numbers
     /// 

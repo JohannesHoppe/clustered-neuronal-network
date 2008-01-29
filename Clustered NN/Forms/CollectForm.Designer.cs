@@ -51,12 +51,12 @@
             this.deleteToolStripButton_NotMatching = new System.Windows.Forms.ToolStripButton();
             this.gbImageProvider = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox = new Clustered_NN.Classes.ImageSelectingPictureBox();
             this.pnlDeviceControl = new System.Windows.Forms.FlowLayoutPanel();
             this.tblNavigation = new System.Windows.Forms.TableLayoutPanel();
             this.btnNext = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.pictureBox = new Clustered_NN.Classes.ImageSelectingPictureBox();
             this.pnlContentHolder.SuspendLayout();
             this.tblContent.SuspendLayout();
             this.gbTrainingQueue.SuspendLayout();
@@ -65,8 +65,8 @@
             this.toolStripNotMatching.SuspendLayout();
             this.gbImageProvider.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tblNavigation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.tblNavigation.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTooltip
@@ -190,16 +190,15 @@
             // chkMatching
             // 
             this.chkMatching.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.chkMatching.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkMatching.AutoSize = true;
             this.chkMatching.BackColor = System.Drawing.Color.LightGray;
             this.chkMatching.Checked = true;
             this.chkMatching.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMatching.Image = ((System.Drawing.Image)(resources.GetObject("chkMatching.Image")));
             this.chkMatching.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkMatching.Location = new System.Drawing.Point(118, 33);
+            this.chkMatching.Location = new System.Drawing.Point(113, 36);
             this.chkMatching.Name = "chkMatching";
-            this.chkMatching.Size = new System.Drawing.Size(76, 23);
+            this.chkMatching.Size = new System.Drawing.Size(85, 17);
             this.chkMatching.TabIndex = 10;
             this.chkMatching.Text = "Matching     ";
             this.chkMatching.UseVisualStyleBackColor = false;
@@ -208,14 +207,13 @@
             // chkNotMatching
             // 
             this.chkNotMatching.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.chkNotMatching.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkNotMatching.AutoSize = true;
             this.chkNotMatching.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chkNotMatching.Image = ((System.Drawing.Image)(resources.GetObject("chkNotMatching.Image")));
             this.chkNotMatching.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkNotMatching.Location = new System.Drawing.Point(448, 33);
+            this.chkNotMatching.Location = new System.Drawing.Point(443, 36);
             this.chkNotMatching.Name = "chkNotMatching";
-            this.chkNotMatching.Size = new System.Drawing.Size(96, 23);
+            this.chkNotMatching.Size = new System.Drawing.Size(105, 17);
             this.chkNotMatching.TabIndex = 11;
             this.chkNotMatching.Text = "Not Matching     ";
             this.chkNotMatching.UseVisualStyleBackColor = false;
@@ -336,6 +334,15 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(652, 300);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
+            // pictureBox
+            // 
+            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox.Location = new System.Drawing.Point(168, 3);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(352, 288);
+            this.pictureBox.TabIndex = 5;
+            this.pictureBox.TabStop = false;
+            // 
             // pnlDeviceControl
             // 
             this.pnlDeviceControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -369,7 +376,7 @@
             this.btnNext.Location = new System.Drawing.Point(128, 5);
             this.btnNext.Name = "btnNext";
             this.btnNext.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.btnNext.Size = new System.Drawing.Size(100, 23);
+            this.btnNext.Size = new System.Drawing.Size(100, 24);
             this.btnNext.TabIndex = 0;
             this.btnNext.Text = "Next Step";
             this.btnNext.UseVisualStyleBackColor = false;
@@ -389,15 +396,6 @@
             this.saveFileDialog.FileName = "*.jpg";
             this.saveFileDialog.Filter = "JPEG files|*.jpg";
             this.saveFileDialog.Title = "Save Files(s)";
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox.Location = new System.Drawing.Point(168, 3);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(352, 288);
-            this.pictureBox.TabIndex = 5;
-            this.pictureBox.TabStop = false;
             // 
             // CollectForm
             // 
@@ -423,8 +421,8 @@
             this.toolStripNotMatching.PerformLayout();
             this.gbImageProvider.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.tblNavigation.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.tblNavigation.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
