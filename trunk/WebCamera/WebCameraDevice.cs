@@ -147,12 +147,12 @@ namespace WebCamera
                frameThread.Start(); // Only then put thread to the queue
             }
             else
-               throw new Exception("Cannot connect to device");
+               throw new Exception("Cannot connect to VFW device");
          }
          catch (Exception e)
          {
             Stop();
-            MessageBox.Show("Error: " + e.Message);
+            MessageBox.Show("Error: " + e.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
          }
       }
 

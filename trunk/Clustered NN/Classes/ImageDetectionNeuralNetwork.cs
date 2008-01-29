@@ -19,6 +19,7 @@ namespace Clustered_NN.Classes
         private ProgressBar _pbTrain;
         private Label _lblTrainInfo;
         private DateTime _trainStart;
+        private DateTime _networkInitialized;
 
         public Counter TotalTrainingRounds;
 
@@ -80,6 +81,9 @@ namespace Clustered_NN.Classes
 
             // provide the arraylist as the parameter, to create a network
             _network = factory.CreateNetwork(layers);
+
+
+            _networkInitialized = DateTime.Now;
 
         }
 
@@ -164,8 +168,15 @@ namespace Clustered_NN.Classes
         ///</summary>
         public void ShowProgress(long CurrentRound, long MaxRound, ref bool cancel)
         {
-            this._pbTrain.Maximum = Convert.ToInt32(MaxRound);
-            this._pbTrain.Value = Convert.ToInt32(CurrentRound);
+
+            if (_pbTrain == null || _lblTrainInfo == null)
+            {
+                throw new Exception("Please use SetVars() to set _pbTrain and _lblTrainInfo!"); 
+            }
+
+            
+            _pbTrain.Maximum = Convert.ToInt32(MaxRound);
+            _pbTrain.Value = Convert.ToInt32(CurrentRound);
 
             
             TotalTrainingRounds.Increment();
@@ -177,7 +188,7 @@ namespace Clustered_NN.Classes
             TimeSpan remaining = new TimeSpan(0, 0, allRoundsNeed);
 
 
-            _lblTrainInfo.Text = CurrentRound + " / " + MaxRound + " finished" + StaticClasses.NL
+            _lblTrainInfo.Text = CurrentRound + " / " + MaxRound + " rounds finished" + StaticClasses.NL
                                 + "Completed: " + completed.Hours + " hours : " + completed.Minutes + " minutes : " + completed.Seconds + " seconds" + StaticClasses.NL
                                 + "Remaining: " + remaining.Hours + " hours : " + remaining.Minutes + " minutes : " + remaining.Seconds + " seconds" + StaticClasses.NL;
 
@@ -212,8 +223,11 @@ namespace Clustered_NN.Classes
             NetworkSerializer serializer = new NetworkSerializer();
 
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "XML Files|*.xml";
-            dialog.DefaultExt = "xml";
+            dialog.SupportMultiDottedExtensions = true;
+            dialog.Filter = "Clustered NN XML Files|*.cnn.xml";
+            dialog.DefaultExt = "cnn.xml";
+            dialog.FileName = "*.cnn.xml";
+
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -242,7 +256,9 @@ namespace Clustered_NN.Classes
             NetworkSerializer serializer = new NetworkSerializer();
 
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "XML Files|*.xml";
+            dialog.SupportMultiDottedExtensions = true;
+            dialog.Filter = "Clustered NN XML Files|*.cnn.xml";
+
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -259,6 +275,17 @@ namespace Clustered_NN.Classes
                     StaticClasses.ShowError("Error: Invalid File? " + ex.Message);
                 }
             }
+        }
+
+
+
+        /// <summary>
+        /// Gets the time when the network was initialized.
+        /// </summary>
+        /// <value>Initialization time</value>
+        public DateTime NetworkInitialized
+        {
+            get { return _networkInitialized;  }
         }
     }
 }

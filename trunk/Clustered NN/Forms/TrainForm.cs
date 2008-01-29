@@ -12,44 +12,59 @@ namespace Clustered_NN.Forms
     public partial class TrainForm : Form
     {
 
-        private CNNProject _cnnProject;
+        private CNNProjectHolder _cnnProjectHolder;
         private CollectForm _parentForm;
 
         private ToolStripContainer _toolStripContainer = new ToolStripContainer();
 
 
-        public TrainForm(CNNProject cnnProject, CollectForm parentForm)
+        public TrainForm(CNNProjectHolder cnnProjectHolder, CollectForm parentForm)
         {
-            this._cnnProject = cnnProject;
-            this._parentForm = parentForm;
-            
+       
             InitializeComponent();
+
+            this._cnnProjectHolder = cnnProjectHolder;
+            this._parentForm = parentForm;
+
 
             MasterForm.InitializeContent(
                  this,
                  this.lblTooltip,
                  this._toolStripContainer,
-                 this.pnlContentHolder);
+                 this.pnlContentHolder,
+                 this._cnnProjectHolder);
         }
-
-
-        /// <summary>
-        /// Stops the training and closes the parentForm
-        /// </summary>
-        private void TrainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            _cnnProject.ImgDetectionNN.StopTraining = true; // important!
-            _parentForm.Close();
-        }
-
 
         /// <summary>
         /// Sets needed form vars for the NN
         /// </summary>
         private void TrainForm_Load(object sender, EventArgs e)
         {
-            _cnnProject.ImgDetectionNN.SetVars(this.pbTrain, this.lblTrainInfo);
+            _cnnProjectHolder.CNNProject.ImgDetectionNN.SetVars(this.pbTrain, this.lblTrainInfo);
+            UpdateNetworkStatus();
         }
+
+        /// <summary>
+        /// Stops the training and closes the parentForm
+        /// </summary>
+        private void TrainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _cnnProjectHolder.CNNProject.ImgDetectionNN.StopTraining = true; // important!
+            _parentForm.Close();
+        }
+
+        
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            _cnnProjectHolder.CNNProject.ImgDetectionNN.StopTraining = true; // important!
+            this.Hide();
+
+            _parentForm.Show();
+            _parentForm.ImageProviderStartPresentation();
+        }
+
+
+
 
 
         /// <summary>
@@ -67,9 +82,8 @@ namespace Clustered_NN.Forms
             try
             {
                 // this will hold on the execution:
-                _cnnProject.ImgDetectionNN.TrainPattern(_cnnProject, Convert.ToInt32(this.txtTrainTimes.Text));
-
-                _cnnProject.ImgDetectionNN.StopTraining = true; //TODO: necessary?!
+                _cnnProjectHolder.CNNProject.ImgDetectionNN.TrainPattern(_cnnProjectHolder.CNNProject, Convert.ToInt32(this.txtTrainTimes.Text));
+                _cnnProjectHolder.CNNProject.ImgDetectionNN.StopTraining = true; //TODO: necessary?!
 
                 MessageBox.Show("Training of the neuronal network completed at " + DateTime.Now,
                                 "Training Completed",
@@ -96,7 +110,7 @@ namespace Clustered_NN.Forms
         /// </summary>
         private void cmdCancel_Click(object sender, EventArgs e)
         {
-            _cnnProject.ImgDetectionNN.StopTraining = true;
+            _cnnProjectHolder.CNNProject.ImgDetectionNN.StopTraining = true;
         }
 
 
@@ -105,7 +119,8 @@ namespace Clustered_NN.Forms
         /// </summary>
         private void openToolStripButton_Click(object sender, EventArgs e)
         {
-            _cnnProject.ImgDetectionNN.LoadFromFile();
+            _cnnProjectHolder.CNNProject.ImgDetectionNN.LoadFromFile();
+            UpdateNetworkStatus();
         }
 
 
@@ -114,8 +129,44 @@ namespace Clustered_NN.Forms
         /// </summary>
         private void saveToolStripButton_Click(object sender, EventArgs e)
         {
-            _cnnProject.ImgDetectionNN.SaveToFile();
+            _cnnProjectHolder.CNNProject.ImgDetectionNN.SaveToFile();
         }
+
+
+        /// <summary>
+        /// Resets the network with default data after confirmation
+        /// </summary>
+        private void newToolStripButton_Click(object sender, EventArgs e)
+        {
+
+            if (MessageBox.Show("Do you really want to reset the network?",
+                    "Confirmation",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Hand) == DialogResult.Yes) {
+
+                        _cnnProjectHolder.CNNProject.ImgDetectionNN.InitNetwork(_cnnProjectHolder.CNNProject.ImagePatternSize);
+            }
+
+        }
+
+
+        public void UpdateNetworkStatus()
+        {
+            this.lblNetworkStatus.Text =
+                "Network Initialized: " + _cnnProjectHolder.CNNProject.ImgDetectionNN.NetworkInitialized + StaticClasses.NL +
+                "Total training rounds: " + _cnnProjectHolder.CNNProject.ImgDetectionNN.TotalTrainingRounds;
+        }
+
+
+
+        /// <summary>
+        /// Handles the TextChanged event of the lblTrainInfo control.
+        /// </summary>
+        private void lblTrainInfo_TextChanged(object sender, EventArgs e)
+        {
+            UpdateNetworkStatus();
+        }
+
 
     }
 }

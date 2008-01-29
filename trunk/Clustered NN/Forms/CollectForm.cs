@@ -17,7 +17,7 @@ namespace Clustered_NN.Forms
         /// </summary>
         private ToolStripContainer _toolStripContainer = new ToolStripContainer();
 
-        private CNNProject _cnnProject;
+        private CNNProjectHolder _cnnProjectHolder;
         private ImageProvider _imageProvider;
 
         private TrainForm _trainForm;
@@ -29,8 +29,14 @@ namespace Clustered_NN.Forms
         public CollectForm()
         {
 
-            //WelcomeForm welcomeForm = new WelcomeForm();
-            //welcomeForm.ShowDialog();
+            this._cnnProjectHolder = new CNNProjectHolder();
+
+            if (_cnnProjectHolder.CNNProject.ExpertMode == false)
+            {
+                WelcomeForm welcomeForm = new WelcomeForm();
+                welcomeForm.ShowDialog();
+            }
+
 
             InitializeComponent();
 
@@ -38,9 +44,9 @@ namespace Clustered_NN.Forms
                  this,
                  this.lblTooltip,
                  this._toolStripContainer,
-                 this.pnlContentHolder);
+                 this.pnlContentHolder,
+                 this._cnnProjectHolder);
 
-            this._cnnProject = new CNNProject();
             this._imageProvider = new MultithreadedVFWImageProvider(
 
                 this.pictureBox,
@@ -53,14 +59,14 @@ namespace Clustered_NN.Forms
             this._imageProvider.StartPresentation();
 
 
-            this.lvMatching.SmallImageList = this._cnnProject.Matching;
-            this.lvNotMatching.SmallImageList = this._cnnProject.NotMatching;
+            this.lvMatching.SmallImageList = this._cnnProjectHolder.CNNProject.Matching;
+            this.lvNotMatching.SmallImageList = this._cnnProjectHolder.CNNProject.NotMatching;
 
             // formats column with to the exact needed space
             try
             {
-                lvMatching.Columns[0].Width = this._cnnProject.ImagePatternSize.Width + 40;
-                lvNotMatching.Columns[0].Width = this._cnnProject.ImagePatternSize.Width + 40;
+                lvMatching.Columns[0].Width = this._cnnProjectHolder.CNNProject.ImagePatternSize.Width + 40;
+                lvNotMatching.Columns[0].Width = this._cnnProjectHolder.CNNProject.ImagePatternSize.Width + 40;
             }
             catch (Exception) { }
 
@@ -76,7 +82,7 @@ namespace Clustered_NN.Forms
         {
 
             ListView lvUsed = (chkMatching.Checked) ? lvMatching : lvNotMatching;
-            Counter counterUsed = (chkMatching.Checked) ? this._cnnProject.MatchingCounter : this._cnnProject.NotMatchingCounter;
+            Counter counterUsed = (chkMatching.Checked) ? this._cnnProjectHolder.CNNProject.MatchingCounter : this._cnnProjectHolder.CNNProject.NotMatchingCounter;
 
             CaptureNewImage(lvUsed, counterUsed);
         }
@@ -87,14 +93,16 @@ namespace Clustered_NN.Forms
         /// </summary>
         private void openToolStripButton_Matching_Click(object sender, EventArgs e)
         {
-            OpenImages(lvMatching, this._cnnProject.MatchingCounter);
+            OpenImages(lvMatching, this._cnnProjectHolder.CNNProject.MatchingCounter);
         }
+
+
         /// <summary>
         /// Open and includes a image for lvNotMatching
         /// </summary>
         private void openToolStripButton_NotMatching_Click(object sender, EventArgs e)
         {
-            OpenImages(lvNotMatching, this._cnnProject.NotMatchingCounter);
+            OpenImages(lvNotMatching, this._cnnProjectHolder.CNNProject.NotMatchingCounter);
         }
 
 
@@ -105,6 +113,8 @@ namespace Clustered_NN.Forms
         {
             SaveSelectedImages(lvMatching);
         }
+
+
         /// <summary>
         /// Saves the selected images from lvNotMatching
         /// </summary>
@@ -121,6 +131,8 @@ namespace Clustered_NN.Forms
         {
             DeleteSelectedImages(lvMatching);
         }
+
+
         /// <summary>
         /// Deletes the selected images from lvNotMatching
         /// </summary>
@@ -185,6 +197,23 @@ namespace Clustered_NN.Forms
         }
 
 
+        /// <summary>
+        /// Handles the Click event of the btnNext control.
+        /// </summary>
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            _imageProvider.StopPresentation();
+            this.Hide();
+
+            if (_trainForm == null || _trainForm.IsDisposed)
+            {
+                _trainForm = new TrainForm(_cnnProjectHolder, this);
+            }
+
+            _trainForm.Show();
+            _trainForm.Focus();
+        }
+
 
         #endregion
 
@@ -202,7 +231,7 @@ namespace Clustered_NN.Forms
 
             try
             {
-                Image selectedImage = pictureBox.GetResizedSelectedArea(_cnnProject.ImagePatternSize);
+                Image selectedImage = pictureBox.GetResizedSelectedArea(_cnnProjectHolder.CNNProject.ImagePatternSize);
 
                 // makes the image easier identifiable
                 selectedImage = ImageHandling.GeneralizeImage(selectedImage);
@@ -454,20 +483,17 @@ namespace Clustered_NN.Forms
 
         #endregion
 
-        private void btnNext_Click(object sender, EventArgs e)
+
+
+        /// <summary>
+        /// Used by TrainForm to reactivate the presentation after a prev-click
+        /// </summary>
+        public void ImageProviderStartPresentation()
         {
-            _imageProvider.StopPresentation();
-            this.Hide();
-
-            if (_trainForm == null || _trainForm.IsDisposed)
+            if (_imageProvider != null)
             {
-                _trainForm = new TrainForm(_cnnProject, this);
+                _imageProvider.StartPresentation();
             }
-            
-            _trainForm.Show();
-            _trainForm.Focus();
-
-
         }
 
     }

@@ -1,0 +1,5 @@
+bin\Debug\Yaowi.Common.XmlSerializer.dll
+bin\Debug\Yaowi.Common.XmlSerializer.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\Yaowi.Common.XmlSerializer.dll
+obj\Debug\Yaowi.Common.XmlSerializer.pdb
