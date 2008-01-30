@@ -19,3 +19,7 @@ Downloaden Sie die Broschüre und das Poster des Wettbewerbs als PDF oder die wi
 http://download.microsoft.com/download/3/c/b/3cb1068c-1bd3-4847-bb4b-f34953c2ebec/HPC_Flyer_online.pdf
 http://download.microsoft.com/download/3/c/b/3cb1068c-1bd3-4847-bb4b-f34953c2ebec/HPC_Poster_online.pdf
 http://download.microsoft.com/download/3/c/b/3cb1068c-1bd3-4847-bb4b-f34953c2ebec/HPC_Intro_Academic-master.pps
+
+
+Teilnahmebedingungen:
+http://wwwppe/germany/windowsserver2003/editionen/ccs/academic-program/teilnahmebedingungen.mspx
