@@ -9,15 +9,21 @@ using System.Diagnostics;
 
 namespace Clustered_NN.Classes
 {
+    [Serializable]
     public class ImageDetectionNeuralNetwork
     {
         
         //A private variable to hold our network.
+        [NonSerialized]
         private INeuralNetwork _network;
 
+        [NonSerialized]
         private bool _stopTraining;
+        [NonSerialized]
         private ProgressBar _pbTrain;
+        [NonSerialized]
         private Label _lblTrainInfo;
+        
         private DateTime _trainStart;
         private DateTime _networkInitialized;
 
@@ -226,7 +232,7 @@ namespace Clustered_NN.Classes
             dialog.SupportMultiDottedExtensions = true;
             dialog.Filter = "Clustered NN XML Files|*.cnn.xml";
             dialog.DefaultExt = "cnn.xml";
-            dialog.FileName = "*.cnn.xml";
+            dialog.FileName = "network.cnn.xml";
 
 
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -286,6 +292,17 @@ namespace Clustered_NN.Classes
         public DateTime NetworkInitialized
         {
             get { return _networkInitialized;  }
+        }
+
+
+        /// <summary>
+        /// Gets the network.
+        /// </summary>
+        /// <value>The network.</value>
+        public INeuralNetwork Network
+        {
+            get { return _network; }
+
         }
     }
 }

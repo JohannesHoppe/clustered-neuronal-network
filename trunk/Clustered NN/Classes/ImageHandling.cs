@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
+using System.IO;
 
 namespace Clustered_NN.Classes
 {
@@ -66,6 +67,31 @@ namespace Clustered_NN.Classes
             bmp.Save(path, jpegCodec, encoderParams);
         }
 
+
+        /// <summary>
+        /// Converts an image to a byte array
+        /// </summary>
+        /// <param name="img">The image</param>
+        /// <param name="imgFormat">The Image Format</param>
+        /// <returns></returns>
+        public static byte[] ConvertImageToByteArray(Image img, ImageFormat imgFormat)
+        {
+            byte[] buffer;
+
+            try
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    img.Save(ms, imgFormat);
+                    buffer = ms.ToArray();
+                }
+            }
+            catch (Exception) { throw; }
+
+            return buffer;
+        } 
+
+
         /// <summary>
         /// Returns the encoder info for the given mimeType
         /// </summary>
@@ -91,7 +117,7 @@ namespace Clustered_NN.Classes
         /// <param name="img">The img.</param>
         /// <param name="cropArea">The crop area.</param>
         /// <returns></returns>
-        public static Image cropImage(Image img, Rectangle cropArea)
+        public static Image CropImage(Image img, Rectangle cropArea)
         {
             try
             {
@@ -114,7 +140,7 @@ namespace Clustered_NN.Classes
         /// <param name="imgToResize">The img to resize.</param>
         /// <param name="size">The size.</param>
         /// <returns></returns>
-        public static Image resizeImage(Image imgToResize, Size size)
+        public static Image ResizeImage(Image imgToResize, Size size)
         {
             int sourceWidth = imgToResize.Width;
             int sourceHeight = imgToResize.Height;

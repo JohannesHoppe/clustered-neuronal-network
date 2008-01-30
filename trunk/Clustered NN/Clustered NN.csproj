@@ -144,13 +144,13 @@
       <Project>{60788E18-4370-40B6-A230-686D79BFD029}</Project>
       <Name>NeuralFramework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SharpZipLib\ICSharpCode.SharpZLib.csproj">
+      <Project>{0E7413FF-EB9E-4714-ACF2-BE3A6A7B2FFD}</Project>
+      <Name>ICSharpCode.SharpZLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebCamera\WebCamera.csproj">
       <Project>{BA9083CA-0BDE-43E0-A2FC-B659A10454C6}</Project>
       <Name>WebCamera</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XmlSerializer\XmlSerializer.csproj">
-      <Project>{82241DD2-4BB8-4B12-AE28-B34EA9F911E2}</Project>
-      <Name>XmlSerializer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

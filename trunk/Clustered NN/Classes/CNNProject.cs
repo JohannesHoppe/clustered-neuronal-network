@@ -7,7 +7,7 @@ using Clustered_NN.Classes;
 
 namespace Clustered_NN.Classes
 {
-    [Serializable()]
+    [Serializable]
     /// <summary>
     /// holds all configuration as well as usage data of a complete project
     /// </summary>
@@ -26,7 +26,6 @@ namespace Clustered_NN.Classes
         private Counter _matchingCounter;
         private Counter _notMatchingCounter;
 
-        [NonSerialized]
         private ImageDetectionNeuralNetwork _imgDetectionNN;
 
 
