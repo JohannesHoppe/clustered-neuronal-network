@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCamera", "WebCamera\WebC
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NeuralFramework", "NeuralFramework\NeuralFramework.vbproj", "{60788E18-4370-40B6-A230-686D79BFD029}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlSerializer", "XmlSerializer\XmlSerializer.csproj", "{82241DD2-4BB8-4B12-AE28-B34EA9F911E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICSharpCode.SharpZLib", "SharpZipLib\ICSharpCode.SharpZLib.csproj", "{0E7413FF-EB9E-4714-ACF2-BE3A6A7B2FFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +27,10 @@ Global
 		{60788E18-4370-40B6-A230-686D79BFD029}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60788E18-4370-40B6-A230-686D79BFD029}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60788E18-4370-40B6-A230-686D79BFD029}.Release|Any CPU.Build.0 = Release|Any CPU
-		{82241DD2-4BB8-4B12-AE28-B34EA9F911E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{82241DD2-4BB8-4B12-AE28-B34EA9F911E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{82241DD2-4BB8-4B12-AE28-B34EA9F911E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{82241DD2-4BB8-4B12-AE28-B34EA9F911E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E7413FF-EB9E-4714-ACF2-BE3A6A7B2FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E7413FF-EB9E-4714-ACF2-BE3A6A7B2FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E7413FF-EB9E-4714-ACF2-BE3A6A7B2FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E7413FF-EB9E-4714-ACF2-BE3A6A7B2FFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

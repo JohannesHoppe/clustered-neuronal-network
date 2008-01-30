@@ -501,7 +501,7 @@ namespace Clustered_NN.Classes
                     throw new ImageNotInitializedException();
                 }
 
-                return ImageHandling.cropImage(this.Image, this._rectangleFinalShape);
+                return ImageHandling.CropImage(this.Image, this._rectangleFinalShape);
             }
         }
         
@@ -513,7 +513,7 @@ namespace Clustered_NN.Classes
         /// <returns></returns>
         public Image GetResizedSelectedArea(Size size)
         {
-            return ImageHandling.resizeImage(SelectedArea, size);
+            return ImageHandling.ResizeImage(SelectedArea, size);
         }
 
 

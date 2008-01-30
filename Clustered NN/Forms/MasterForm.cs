@@ -153,7 +153,7 @@ namespace Clustered_NN.Forms
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _cnnProjectHolder.SaveAndSerialize();
+            _cnnProjectHolder.Save();
         }
 
     }
