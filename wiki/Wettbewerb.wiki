@@ -1,2 +1,6 @@
 #summary Todo: Infos zum Wettbewerb
 #labels Wettbewerb
+
+
+
+www.microsoft.com/hpc/css-academic-program
