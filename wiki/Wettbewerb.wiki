@@ -14,7 +14,7 @@ Aus allen eingereichten Projekten werden zehn Studenten durch Los ermittelt, die
 » Jetzt anmelden!
 http://www.microsoft.com/germany/windowsserver2003/editionen/ccs/academic-program/anmeldung.mspx
 
-Downloaden Sie die Broschüre und das Poster des Wettbewerbs als PDF oder die wichtigsten Fakten als PowerPoint-Präsentation und gewinnen Sie weitere Mitstreiter. #summary Todo: Infos zum Wettbewerb
+Downloaden Sie die Broschüre und das Poster des Wettbewerbs als PDF oder die wichtigsten Fakten als PowerPoint- Präsentation und gewinnen Sie weitere Mitstreiter.
 
 http://download.microsoft.com/download/3/c/b/3cb1068c-1bd3-4847-bb4b-f34953c2ebec/HPC_Flyer_online.pdf
 http://download.microsoft.com/download/3/c/b/3cb1068c-1bd3-4847-bb4b-f34953c2ebec/HPC_Poster_online.pdf
