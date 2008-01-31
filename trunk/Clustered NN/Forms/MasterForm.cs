@@ -156,5 +156,10 @@ namespace Clustered_NN.Forms
             _cnnProjectHolder.Save();
         }
 
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _cnnProjectHolder.Open();
+        }
+
     }
 }

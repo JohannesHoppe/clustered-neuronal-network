@@ -163,6 +163,173 @@ namespace Clustered_NN.Classes
         }
 
         #endregion
-    
+
+
+        /// <summary>
+        /// Opens a project from file
+        /// </summary>
+        public void Open()
+        {
+            try
+            {
+
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.SupportMultiDottedExtensions = true;
+                dialog.Filter = "Project Zip Files|*.proj.zip";
+                dialog.DefaultExt = "proj.zip";
+                dialog.FileName = "*.proj.zip";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    Stream fileStream = File.OpenRead(dialog.FileName);
+                    ZipInputStream zip = new ZipInputStream(fileStream);
+
+                    ImageList imlMatching = new ImageList();
+                    ImageList imlNotMatching = new ImageList();
+
+                    ZipEntry entry;
+                    while ((entry = zip.GetNextEntry()) != null)
+                    {
+                        ZipFileEntry zipFileEntry = new ZipFileEntry(zip, entry);
+
+                        if (zipFileEntry.IsImage)
+                        {
+
+                            Image img = zipFileEntry.GetImage();
+                            
+                            if (zipFileEntry.Path == "Matching")
+                            {
+                                imlMatching.Images.Add(zipFileEntry.FileNameWithoutExtension, img);
+                            }
+                            else
+                            {
+                                imlNotMatching.Images.Add(zipFileEntry.FileNameWithoutExtension, img);
+                            }
+                        }
+
+
+                    }
+
+                    zip.Close();
+                    fileStream.Close();
+                }
+            }
+            catch (NotImplementedException ex)
+            {
+                StaticClasses.ShowException(ex);
+            }
+
+        }
+
+
     }
+}
+
+
+public class ZipFileEntry {
+
+
+    private byte[] _buffer;
+    private string _path;
+
+
+    public ZipFileEntry(ZipInputStream zip, ZipEntry entry)
+    {
+        _path = entry.Name;
+
+        _buffer = new byte[zip.Length];
+        zip.Read(_buffer, 0, _buffer.Length);
+
+    }
+
+
+	public byte[] Buffer
+	{
+		get { return _buffer;}
+		set { _buffer = value;}
+	}
+
+
+    public string Path
+    {
+        get { return _path; }
+    }
+
+
+    public string DirectoryName
+    {
+        get
+        {
+            return System.IO.Path.GetDirectoryName(_path);
+        }
+    }
+
+
+    public string FileName
+    {
+        get
+        {
+            return System.IO.Path.GetFileName(_path);
+        }
+    }
+
+
+    public string FileNameWithoutExtension
+    {
+        get
+        {
+            return System.IO.Path.GetFileNameWithoutExtension(_path);
+        }
+    }
+
+
+    public string FileExtension
+    {
+        get
+        {
+            return System.IO.Path.GetExtension(_path);
+        }
+    }
+
+
+
+    /// <summary>
+    /// Gets a value indicating whether this instance is an image.
+    /// </summary>
+    /// <value><c>true</c> if this instance is an image; otherwise, <c>false</c>.</value>
+    public bool IsImage
+    {
+        get
+        {
+            return (FileExtension == ".png") ? true : false;
+        }
+    }
+
+
+    /// <summary>
+    /// Returns an Image or null if the entry does not continue the PNG file extension
+    /// </summary>
+    /// <returns></returns>
+    public Image GetImage()
+    {
+        if (!IsImage) { return null; }
+
+        MemoryStream memstream = new MemoryStream(_buffer);
+        Image img = Image.FromStream(memstream);
+        return img;
+    }
+
+
+    /// <summary>
+    /// Gets a value indicating whether this instance is a XML file
+    /// </summary>
+    /// <value><c>true</c> if this instance is a XML file; otherwise, <c>false</c>.</value>
+    public bool IsXML
+    {
+        get
+        {
+            return (FileExtension == ".xml") ? true : false;
+        }
+    }
+
 }
