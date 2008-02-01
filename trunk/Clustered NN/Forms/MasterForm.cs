@@ -145,20 +145,65 @@ namespace Clustered_NN.Forms
         }
 
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _parentForm.Close();
+
+        }
+
+
+        private void newToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _cnnProjectHolder.Open();
+        }
+
+
+        private void openToolStripButton_Click(object sender, EventArgs e)
+        {
+            _cnnProjectHolder.Open();
         }
 
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _cnnProjectHolder.Save();
+            if (_cnnProjectHolder.ProjectFileName != null)
+            {
+                _cnnProjectHolder.SaveFile(_cnnProjectHolder.ProjectFileName);
+            }
+            else
+            {
+                _cnnProjectHolder.SaveFileAs();
+            }
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void saveToolStripButton_Click(object sender, EventArgs e)
         {
-            _cnnProjectHolder.Open();
+            if (_cnnProjectHolder.ProjectFileName != null)
+            {
+                _cnnProjectHolder.SaveFile(_cnnProjectHolder.ProjectFileName);
+            }
+            else
+            {
+                _cnnProjectHolder.SaveFileAs();
+            }
+        }
+
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _cnnProjectHolder.SaveFileAs();
+        }
+
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _parentForm.Close();
         }
 
     }

@@ -35,6 +35,21 @@ namespace Clustered_NN.Classes
         public CNNProject()
         {
 
+            ResetNonSerializableAttributes();
+
+            this._matchingCounter = new Counter();
+            this._notMatchingCounter = new Counter();
+
+            this._imgDetectionNN = new ImageDetectionNeuralNetwork();
+            this._imgDetectionNN.InitNetwork(this._imagePatternSize);
+        }
+
+
+        /// <summary>
+        /// Resets both ImageList
+        /// </summary>
+        public void ResetNonSerializableAttributes()
+        {
             this._imlMatching = new ImageList();
             this._imlMatching.ColorDepth = ColorDepth.Depth8Bit;
             this._imlMatching.ImageSize = this._imagePatternSize;
@@ -44,12 +59,6 @@ namespace Clustered_NN.Classes
             this._imlNotMatching.ColorDepth = ColorDepth.Depth8Bit;
             this._imlNotMatching.ImageSize = this._imagePatternSize;
             this._imlNotMatching.TransparentColor = Color.Transparent;
-
-            this._matchingCounter = new Counter();
-            this._notMatchingCounter = new Counter();
-
-            this._imgDetectionNN = new ImageDetectionNeuralNetwork();
-            this._imgDetectionNN.InitNetwork(this._imagePatternSize);
         }
 
 

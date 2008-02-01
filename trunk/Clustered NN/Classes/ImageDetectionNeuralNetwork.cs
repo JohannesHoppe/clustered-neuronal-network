@@ -20,6 +20,8 @@ namespace Clustered_NN.Classes
         [NonSerialized]
         private bool _stopTraining;
         [NonSerialized]
+        private bool _stopTrainingSilently;
+        [NonSerialized]
         private ProgressBar _pbTrain;
         [NonSerialized]
         private Label _lblTrainInfo;
@@ -153,6 +155,8 @@ namespace Clustered_NN.Classes
             //Step 2 - Train the network using the helper
 
             StopTraining = false;
+            StopTrainingSilently = false;
+
             _trainStart = DateTime.Now;
 
             // ShowProgress delegate
@@ -166,6 +170,14 @@ namespace Clustered_NN.Classes
             helper.TrainingProgress -= new NetworkHelper.TrainingProgressEventHandler(ShowProgress);
 
 
+            if (StopTrainingSilently == false)
+            {
+
+                MessageBox.Show("Training of the neuronal network completed at " + DateTime.Now,
+                                "Training Completed",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
         }
 
 
@@ -220,19 +232,31 @@ namespace Clustered_NN.Classes
         }
 
 
+        /// <summary>
+        /// Should be set to true when the training should stop without a message
+        /// (if we reload the project while training)
+        /// </summary>
+        /// <value><c>true</c> if true stop training; otherwise leave it false</value>
+        public bool StopTrainingSilently
+        {
+            get { return _stopTrainingSilently; }
+            set { _stopTrainingSilently = value; }
+        }
+
+
 
         /// <summary>
         /// Save the network data to a file 
         /// </summary>
-        public void SaveToFile()
+        public void SaveToFile(string fileFilter, string fileExt, string fileName)
         {
             NetworkSerializer serializer = new NetworkSerializer();
 
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.SupportMultiDottedExtensions = true;
-            dialog.Filter = "Clustered NN XML Files|*.cnn.xml";
-            dialog.DefaultExt = "cnn.xml";
-            dialog.FileName = "network.cnn.xml";
+            dialog.Filter = fileFilter;
+            dialog.DefaultExt = fileExt;
+            dialog.FileName = fileName;
 
 
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -256,14 +280,14 @@ namespace Clustered_NN.Classes
         /// <summary>
         /// Loads the network data from file.
         /// </summary>
-        public void LoadFromFile()
+        public void LoadFromFile(string fileFilter)
         {
            
             NetworkSerializer serializer = new NetworkSerializer();
 
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.SupportMultiDottedExtensions = true;
-            dialog.Filter = "Clustered NN XML Files|*.cnn.xml";
+            dialog.Filter = fileFilter;
 
 
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -296,13 +320,15 @@ namespace Clustered_NN.Classes
 
 
         /// <summary>
-        /// Gets the network.
+        /// Gets or sets the network.
         /// </summary>
         /// <value>The network.</value>
         public INeuralNetwork Network
         {
             get { return _network; }
+            set { _network = value; }
 
         }
+
     }
 }
