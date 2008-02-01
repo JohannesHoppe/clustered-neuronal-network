@@ -55,6 +55,7 @@
     <Compile Include="Classes\StaticClasses.cs" />
     <Compile Include="Classes\MultithreadedVFWImageProvider.cs">
     </Compile>
+    <Compile Include="Classes\ZipFileEntry.cs" />
     <Compile Include="Forms\ErrorBox.cs">
       <SubType>Form</SubType>
     </Compile>

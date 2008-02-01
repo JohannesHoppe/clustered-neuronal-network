@@ -123,7 +123,14 @@ namespace Clustered_NN.Classes
             //e.Frame;
             _pictureBox.Image = e.Frame;
 
-            this.lblDeviceInfo.Text = "FPS: " + (1000 / (Environment.TickCount - _time)).ToString();
+            try
+            {
+                this.lblDeviceInfo.Text = "FPS: " + (1000 / (Environment.TickCount - _time)).ToString();
+            }
+            catch (DivideByZeroException)
+            { 
+                // this only happens when changing the device
+            }
             _time = Environment.TickCount;
 
 

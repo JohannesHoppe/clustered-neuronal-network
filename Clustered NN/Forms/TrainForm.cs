@@ -33,6 +33,9 @@ namespace Clustered_NN.Forms
                  this._toolStripContainer,
                  this.pnlContentHolder,
                  this._cnnProjectHolder);
+
+            this._cnnProjectHolder.ProjectChanged += new CNNProjectHolder.ProjectChangedDelegate(CnnProjectHolder_ProjectChanged);
+
         }
 
         /// <summary>
@@ -63,7 +66,18 @@ namespace Clustered_NN.Forms
             _parentForm.ImageProviderStartPresentation();
         }
 
-
+        /// <summary>
+        /// The project has changed, we have to rereference and rebuild some things
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void CnnProjectHolder_ProjectChanged(object sender, EventArgs e)
+        {
+            _cnnProjectHolder.CNNProject.ImgDetectionNN.SetVars(pbTrain, lblTrainInfo);
+            UpdateNetworkStatus();
+            lblTrainStart.Text = "";
+            lblTrainInfo.Text = "";
+        }
 
 
 
@@ -83,12 +97,6 @@ namespace Clustered_NN.Forms
             {
                 // this will hold on the execution:
                 _cnnProjectHolder.CNNProject.ImgDetectionNN.TrainPattern(_cnnProjectHolder.CNNProject, Convert.ToInt32(this.txtTrainTimes.Text));
-                _cnnProjectHolder.CNNProject.ImgDetectionNN.StopTraining = true; //TODO: necessary?!
-
-                MessageBox.Show("Training of the neuronal network completed at " + DateTime.Now,
-                                "Training Completed",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -119,7 +127,7 @@ namespace Clustered_NN.Forms
         /// </summary>
         private void openToolStripButton_Click(object sender, EventArgs e)
         {
-            _cnnProjectHolder.CNNProject.ImgDetectionNN.LoadFromFile();
+            _cnnProjectHolder.CNNProject.ImgDetectionNN.LoadFromFile(_cnnProjectHolder.DefaultNetworkFileFilter);
             UpdateNetworkStatus();
         }
 
@@ -129,7 +137,10 @@ namespace Clustered_NN.Forms
         /// </summary>
         private void saveToolStripButton_Click(object sender, EventArgs e)
         {
-            _cnnProjectHolder.CNNProject.ImgDetectionNN.SaveToFile();
+            _cnnProjectHolder.CNNProject.ImgDetectionNN.SaveToFile(
+                _cnnProjectHolder.DefaultNetworkFileFilter,
+                _cnnProjectHolder.DefaultNetworkFileExt,
+                _cnnProjectHolder.DefaultNetworkFileName);
         }
 
 

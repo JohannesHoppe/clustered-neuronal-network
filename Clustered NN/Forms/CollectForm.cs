@@ -59,6 +59,9 @@ namespace Clustered_NN.Forms
             this._imageProvider.StartPresentation();
 
 
+            this._cnnProjectHolder.ProjectChanged += new CNNProjectHolder.ProjectChangedDelegate(CnnProjectHolder_ProjectChanged);
+
+
             this.lvMatching.SmallImageList = this._cnnProjectHolder.CNNProject.Matching;
             this.lvNotMatching.SmallImageList = this._cnnProjectHolder.CNNProject.NotMatching;
 
@@ -179,9 +182,24 @@ namespace Clustered_NN.Forms
         /// <summary>
         /// At the moment I don't know for what I need this Event :-)
         /// </summary>
-        private void ImageProvider_OnFrame(object sender, EventArgs e)
+        private void ImageProvider_OnFrame(object sender, OnFrameEventArgs e)
         {
             //throw new Exception("The method or operation is not implemented.");
+        }
+
+
+        /// <summary>
+        /// The project has changed, we have to rereference and rebuild some things
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void CnnProjectHolder_ProjectChanged(object sender, EventArgs e)
+        {
+            this.lvMatching.SmallImageList = this._cnnProjectHolder.CNNProject.Matching;
+            this.lvNotMatching.SmallImageList = this._cnnProjectHolder.CNNProject.NotMatching;
+
+            RebuildListView(lvMatching);
+            RebuildListView(lvNotMatching);
         }
 
 
@@ -236,7 +254,7 @@ namespace Clustered_NN.Forms
                 // makes the image easier identifiable
                 selectedImage = ImageHandling.GeneralizeImage(selectedImage);
 
-                string imageName = (counterUsed.Value + 1).ToString().PadLeft(3, '0');
+                string imageName = (counterUsed.Value + 1).ToString().PadLeft(4, '0');
 
                 // !
                 AddImageToList(lvUsed, selectedImage, imageName, counterUsed);
@@ -272,7 +290,7 @@ namespace Clustered_NN.Forms
                     try
                     {
                         // uses the next free number
-                        string imageName = (counterUsed.Value + 1).ToString().PadLeft(3, '0');
+                        string imageName = (counterUsed.Value + 1).ToString().PadLeft(4, '0');
 
                         Image selectedImage = Image.FromFile(fileName);
 
@@ -408,19 +426,7 @@ namespace Clustered_NN.Forms
                     }
 
                     // second: rebuilds list view (not nice but working!)
-                    lvUsed.Items.Clear();
-                    ListViewItem lvi = new ListViewItem();
-                    int max = imlUsed.Images.Count;
-
-                    for (int i = 0; i < max; i++)
-                    {
-                        lvi = lvUsed.Items.Add(imlUsed.Images.Keys[i] + ".", i);
-                    }
-
-
-                    // scroll down in list (and select the last itemn, too)
-                    lvi.Selected = true;
-                    lvi.EnsureVisible();
+                    RebuildListView(lvUsed);
 
                 }
 
@@ -434,6 +440,32 @@ namespace Clustered_NN.Forms
                                 MessageBoxIcon.Information);
             }
         }
+
+
+        /// <summary>
+        /// rebuilds list view
+        /// </summary>
+        private void RebuildListView(ListView lvUsed)
+        {
+
+            ImageList imlUsed = lvUsed.SmallImageList;
+
+            lvUsed.Items.Clear();
+            ListViewItem lvi = new ListViewItem();
+            int max = imlUsed.Images.Count;
+
+            for (int i = 0; i < max; i++)
+            {
+                lvi = lvUsed.Items.Add(imlUsed.Images.Keys[i] + ".", i);
+            }
+
+
+            // scroll down in list (and select the last itemn, too)
+            lvi.Selected = true;
+            lvi.EnsureVisible();
+
+        }
+
 
 
         /// <summary>
