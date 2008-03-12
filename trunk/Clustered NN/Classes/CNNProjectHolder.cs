@@ -30,12 +30,14 @@ namespace Clustered_NN.Classes
         private string _defaultNetworkFileFilter = "Clustered NN XML Files|*.cnn.xml";
 
         private string _internZipProjectFileName = "project.xml";
+
         // config        
 
 
         private string _projectFileName = null;
-        private bool _projectIsSaved = false;
         
+        private bool _projectIsSaved = false;
+        // not used at the moment
         private CNNProject _cnnProject;
 
         

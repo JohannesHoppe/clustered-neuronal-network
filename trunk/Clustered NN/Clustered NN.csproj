@@ -55,7 +55,13 @@
     <Compile Include="Classes\StaticClasses.cs" />
     <Compile Include="Classes\MultithreadedVFWImageProvider.cs">
     </Compile>
-    <Compile Include="Classes\ZipFileEntry.cs" />
+    <Compile Include="Forms\ZipFileEntry.cs" />
+    <Compile Include="Forms\DetectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DetectForm.Designer.cs">
+      <DependentUpon>DetectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ErrorBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\DetectForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DetectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ErrorBox.resx">
       <DependentUpon>ErrorBox.cs</DependentUpon>
       <SubType>Designer</SubType>

@@ -59,6 +59,7 @@
             this.hilfeToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.timerToolTip = new System.Windows.Forms.Timer(this.components);
             this.balloonToolTipInfo = new Clustered_NN.Classes.BalloonToolTip();
+            this.timerBackgroundImageEnabler = new System.Windows.Forms.Timer(this.components);
             this.tblMain.SuspendLayout();
             this.tblHeading.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxIcon)).BeginInit();
@@ -183,6 +184,7 @@
             this.balloonToolTipInfo.SetBalloonText(this.toolStripContainer1.ContentPanel, null);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tblMain);
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(683, 356);
+            this.toolStripContainer1.ContentPanel.Resize += new System.EventHandler(this.toolStripContainer1_ContentPanel_Resize);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             // 
             // toolStripContainer1.LeftToolStripPanel
@@ -359,7 +361,7 @@
             this.hilfeToolStripButton});
             this.toolStripProject.Location = new System.Drawing.Point(3, 24);
             this.toolStripProject.Name = "toolStripProject";
-            this.toolStripProject.Size = new System.Drawing.Size(139, 25);
+            this.toolStripProject.Size = new System.Drawing.Size(108, 25);
             this.toolStripProject.TabIndex = 1;
             // 
             // newToolStripButton
@@ -416,6 +418,11 @@
             this.balloonToolTipInfo.ForeColor = System.Drawing.SystemColors.InfoText;
             this.balloonToolTipInfo.MaximumWidth = 450;
             this.balloonToolTipInfo.Title = "";
+            // 
+            // timerBackgroundImageEnabler
+            // 
+            this.timerBackgroundImageEnabler.Interval = 1000;
+            this.timerBackgroundImageEnabler.Tick += new System.EventHandler(this.timerBackgroundImageEnabler_Tick);
             // 
             // MasterForm
             // 
@@ -490,5 +497,6 @@
         internal System.Windows.Forms.ToolStripButton saveToolStripButton;
         internal System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         internal System.Windows.Forms.ToolStripButton hilfeToolStripButton;
+        private System.Windows.Forms.Timer timerBackgroundImageEnabler;
     }
 }
