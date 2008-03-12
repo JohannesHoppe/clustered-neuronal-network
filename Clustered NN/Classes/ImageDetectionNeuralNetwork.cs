@@ -93,6 +93,8 @@ namespace Clustered_NN.Classes
 
             _networkInitialized = DateTime.Now;
 
+            TotalTrainingRounds.Reset();
+
         }
 
 

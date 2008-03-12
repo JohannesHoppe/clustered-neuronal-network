@@ -18,6 +18,7 @@ namespace Clustered_NN.Forms
         private Form _parentForm;
         private CNNProjectHolder _cnnProjectHolder;
 
+        private Image _backgroundImageBackup;
 
 
         public MasterForm()
@@ -147,13 +148,13 @@ namespace Clustered_NN.Forms
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Not implemented at the moment!");
         }
 
 
         private void newToolStripButton_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Not implemented at the moment!");
         }
 
 
@@ -205,6 +206,42 @@ namespace Clustered_NN.Forms
         {
             _parentForm.Close();
         }
+
+        /// <summary>
+        /// Switches the background image off on resizing - for a miles better performance
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void toolStripContainer1_ContentPanel_Resize(object sender, EventArgs e)
+        {
+            if (_backgroundImageBackup == null)
+            {
+                _backgroundImageBackup = toolStripContainer1.ContentPanel.BackgroundImage;
+            }
+            else
+            {
+
+                if (toolStripContainer1.ContentPanel.BackgroundImage != null)
+                {
+                    toolStripContainer1.ContentPanel.BackgroundImage = null;
+
+                    timerBackgroundImageEnabler.Stop();
+                    timerBackgroundImageEnabler.Start();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Switches the background image on
+        /// </summary>
+        private void timerBackgroundImageEnabler_Tick(object sender, EventArgs e)
+        {
+            Timer timer = (Timer)sender;
+            timer.Stop();
+
+            toolStripContainer1.ContentPanel.BackgroundImage = _backgroundImageBackup;
+        }
+
 
     }
 }

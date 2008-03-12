@@ -20,7 +20,7 @@ namespace Clustered_NN.Forms
         private CNNProjectHolder _cnnProjectHolder;
         private ImageProvider _imageProvider;
 
-        private TrainForm _trainForm;
+        private TrainForm _nextForm;
 
 
         /// <summary>
@@ -223,13 +223,13 @@ namespace Clustered_NN.Forms
             _imageProvider.StopPresentation();
             this.Hide();
 
-            if (_trainForm == null || _trainForm.IsDisposed)
+            if (_nextForm == null || _nextForm.IsDisposed)
             {
-                _trainForm = new TrainForm(_cnnProjectHolder, this);
+                _nextForm = new TrainForm(_cnnProjectHolder, this);
             }
 
-            _trainForm.Show();
-            _trainForm.Focus();
+            _nextForm.Show();
+            _nextForm.Focus();
         }
 
 

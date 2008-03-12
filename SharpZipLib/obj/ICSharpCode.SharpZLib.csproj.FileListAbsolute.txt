@@ -1,0 +1,5 @@
+D:\projekte\Visual Studio 2005\Neuronal\Clustered NN\clustered-neuronal-network\SharpZipLib\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\projekte\Visual Studio 2005\Neuronal\Clustered NN\clustered-neuronal-network\SharpZipLib\bin\Debug\ICSharpCode.SharpZipLib.pdb
+D:\projekte\Visual Studio 2005\Neuronal\Clustered NN\clustered-neuronal-network\SharpZipLib\obj\Debug\ResolveAssemblyReference.cache
+D:\projekte\Visual Studio 2005\Neuronal\Clustered NN\clustered-neuronal-network\SharpZipLib\obj\Debug\ICSharpCode.SharpZipLib.dll
+D:\projekte\Visual Studio 2005\Neuronal\Clustered NN\clustered-neuronal-network\SharpZipLib\obj\Debug\ICSharpCode.SharpZipLib.pdb

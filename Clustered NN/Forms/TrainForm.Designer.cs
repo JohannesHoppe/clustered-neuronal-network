@@ -271,6 +271,7 @@
             this.btnNext.TabIndex = 0;
             this.btnNext.Text = "Next Step";
             this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPrev
             // 
@@ -319,11 +320,12 @@
             this.ClientSize = new System.Drawing.Size(602, 486);
             this.Controls.Add(this.pnlContentHolder);
             this.Controls.Add(this.lblTooltip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TrainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "2. Train the Neuronal Network";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TrainForm_FormClosed);
             this.Load += new System.EventHandler(this.TrainForm_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TrainForm_FormClosed);
             this.pnlContentHolder.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

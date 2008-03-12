@@ -11,11 +11,18 @@ namespace Clustered_NN.Forms
 {
     public partial class TrainForm : Form
     {
+        /// <summary>
+        /// holds the imported form elemets,
+        /// you also need following controls: lblTooltip + pnlContentHolder !
+        /// </summary>
+        private ToolStripContainer _toolStripContainer = new ToolStripContainer();
 
         private CNNProjectHolder _cnnProjectHolder;
+        
         private CollectForm _parentForm;
+        private DetectForm _nextForm;
 
-        private ToolStripContainer _toolStripContainer = new ToolStripContainer();
+
 
 
         public TrainForm(CNNProjectHolder cnnProjectHolder, CollectForm parentForm)
@@ -56,7 +63,11 @@ namespace Clustered_NN.Forms
             _parentForm.Close();
         }
 
-        
+
+        /// <summary>
+        /// Handles the Click event of the btnPrev control.
+        /// stops training, hides form, goes back to CollectForm
+        /// </summary>
         private void btnPrev_Click(object sender, EventArgs e)
         {
             _cnnProjectHolder.CNNProject.ImgDetectionNN.StopTraining = true; // important!
@@ -64,6 +75,23 @@ namespace Clustered_NN.Forms
 
             _parentForm.Show();
             _parentForm.ImageProviderStartPresentation();
+        }
+
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            _cnnProjectHolder.CNNProject.ImgDetectionNN.StopTraining = true; // important!
+            this.Hide();
+
+            if (_nextForm == null || _nextForm.IsDisposed)
+            {
+                _nextForm = new DetectForm(_cnnProjectHolder, this);
+            }
+
+            _nextForm.Show();
+            _nextForm.Focus();
+
+
         }
 
         /// <summary>
@@ -155,7 +183,10 @@ namespace Clustered_NN.Forms
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Hand) == DialogResult.Yes) {
 
-                        _cnnProjectHolder.CNNProject.ImgDetectionNN.InitNetwork(_cnnProjectHolder.CNNProject.ImagePatternSize);
+                _cnnProjectHolder.CNNProject.ImgDetectionNN.InitNetwork(_cnnProjectHolder.CNNProject.ImagePatternSize);
+
+                lblTrainStart.Text = "Training not started";
+                lblTrainInfo.Text = "Network initialized";
             }
 
         }
@@ -177,6 +208,8 @@ namespace Clustered_NN.Forms
         {
             UpdateNetworkStatus();
         }
+
+
 
 
     }
