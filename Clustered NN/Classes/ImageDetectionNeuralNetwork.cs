@@ -6,6 +6,7 @@ using BrainNet.NeuralFramework;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Clustered_NN.Classes
 {
@@ -25,11 +26,17 @@ namespace Clustered_NN.Classes
         private ProgressBar _pbTrain;
         [NonSerialized]
         private Label _lblTrainInfo;
+        [NonSerialized]
+        WaitCallback _callBack;
+        
         
         private DateTime _trainStart;
         private DateTime _networkInitialized;
 
         public Counter TotalTrainingRounds;
+
+
+
 
 
         /// <summary>
@@ -38,6 +45,8 @@ namespace Clustered_NN.Classes
         public ImageDetectionNeuralNetwork()
         {
             TotalTrainingRounds = new Counter();
+
+            _callBack = new WaitCallback(DetectPattern);
         }
 
 
@@ -97,6 +106,7 @@ namespace Clustered_NN.Classes
 
         }
 
+        #region network training
 
         /// <summary>
         /// Routine to train the network
@@ -245,7 +255,99 @@ namespace Clustered_NN.Classes
             set { _stopTrainingSilently = value; }
         }
 
+        #endregion
 
+
+        #region detect network - thread contest
+
+
+        public void StartDetectPattern(ScanSelectingPictureBox pictureBox, Size imagePatternSize)
+        {
+            try
+            {
+
+                Size currentOberserveSize = new Size(100, 100);
+                pictureBox.ResetScan(currentOberserveSize, 10);
+
+
+                //Image currentSelectedArea;
+                while (pictureBox.ScanNext())
+                {
+
+                    Image image = pictureBox.GetResizedSelectedArea(imagePatternSize);
+
+                    ThreadPool.QueueUserWorkItem(_callBack, image);
+
+                    /*
+                    _cnnProjectHolder.CNNProject.ImgDetectionNN.DetectPattern(
+                        pictureBox.GetResizedSelectedArea(
+                            _cnnProjectHolder.CNNProject.ImagePatternSize));
+                    */
+
+                }
+                MessageBox.Show("Fertig!");
+
+            }
+            catch (ImageNotInitializedException ex)
+            {
+                StaticClasses.ShowError(ex.Message);
+            }
+            // TODO: Do not handle errors by catching non-specific exceptions
+            catch (Exception ex)
+            {
+                StaticClasses.ShowException(ex);
+            }
+
+        }
+
+
+        /// <summary>
+        /// Routine to detect an image (right sized!)
+        /// </summary>
+        public void DetectPattern(object detectImageObject)
+        {
+            Image detectImage = (Image)detectImageObject;
+
+
+            long asciiValMatching = System.Convert.ToInt32('Y');
+            long asciiValNotMatching = System.Convert.ToInt32('N');
+
+
+            //Step 1 : Convert the image to detect to an arraylist
+            ImageProcessingHelper imgHelper = new ImageProcessingHelper();
+            ArrayList input = null;
+
+            input = imgHelper.ArrayListFromImage(detectImage);
+
+            //Step 2: Run the network and obtain the output
+            ArrayList output = null;
+            output = _network.RunNetwork(input);
+
+            //Step 3: Convert the output arraylist to long value
+            //so that we will get the ascii character code
+            PatternProcessingHelper patternHelper = new PatternProcessingHelper();
+            long asciiVal = patternHelper.NumberFromArraylist(output);
+
+
+            if (asciiVal == asciiValMatching)
+            {
+                //return true;
+            }
+            else if (asciiVal == asciiValNotMatching)
+            {
+                //return false;
+            }
+            else
+            {
+                // damn this should not happen
+                //return false;
+            }
+        }
+
+        #endregion
+
+
+        #region file IO
 
         /// <summary>
         /// Save the network data to a file 
@@ -309,6 +411,7 @@ namespace Clustered_NN.Classes
             }
         }
 
+        #endregion
 
 
         /// <summary>
@@ -331,6 +434,19 @@ namespace Clustered_NN.Classes
             set { _network = value; }
 
         }
+
+        /*
+        /// <summary>
+        /// Indicates the running state of this thread
+        /// </summary>
+        /// <returns></returns>
+        public bool ThreadIsRunning
+        {
+            get { return _threadIsRunning; }
+            set { _threadIsRunning = value; }
+
+        }
+        */
 
     }
 }

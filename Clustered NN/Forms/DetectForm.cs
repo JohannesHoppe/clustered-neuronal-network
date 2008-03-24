@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Clustered_NN.Classes;
+using System.Threading;
 
 namespace Clustered_NN.Forms
 {
@@ -18,11 +19,15 @@ namespace Clustered_NN.Forms
         private ToolStripContainer _toolStripContainer = new ToolStripContainer();
 
         private CNNProjectHolder _cnnProjectHolder;
+        private ImageProvider _imageProvider;
         
         private TrainForm _parentForm;
 
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DetectForm"/> class.
+        /// </summary>
         public DetectForm(CNNProjectHolder cnnProjectHolder, TrainForm parentForm)
         {
             InitializeComponent();
@@ -39,6 +44,18 @@ namespace Clustered_NN.Forms
                  this.pnlContentHolder,
                  this._cnnProjectHolder);
 
+            this._imageProvider = new MultithreadedVFWImageProvider(
+
+                this.pictureBox,
+                this.pnlDeviceControl,
+                this.Handle
+
+            );
+
+            this._imageProvider.OnFrame += new ImageProvider.OnFrameDelegate(ImageProvider_OnFrame);
+            this._imageProvider.StartPresentation();
+
+
             this._cnnProjectHolder.ProjectChanged += new CNNProjectHolder.ProjectChangedDelegate(CnnProjectHolder_ProjectChanged);
 
         }
@@ -49,8 +66,34 @@ namespace Clustered_NN.Forms
         /// </summary>
         private void DetectForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+
+            if (_imageProvider != null)
+            {
+                _imageProvider.StopPresentation();
+            }
+
             _parentForm.Close();
+
         }
+
+
+        /// <summary>
+        /// shows the parentForm
+        /// </summary>
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+
+            if (_imageProvider != null)
+            {
+                _imageProvider.StopPresentation();
+            }
+
+            this.Hide();
+
+            _parentForm.Show();
+
+        }
+
 
         /// <summary>
         /// The project has changed, we have to rereference and rebuild some things
@@ -61,6 +104,46 @@ namespace Clustered_NN.Forms
         {
             // nothing to do
         }
+
+
+        /// <summary>
+        /// ...
+        /// </summary>
+        private void ImageProvider_OnFrame(object sender, OnFrameEventArgs e)
+        {
+            //throw new Exception("The method or operation is not implemented.");
+        }
+
+
+        /// <summary>
+        /// Used by TrainForm to reactivate the presentation after a next-click
+        /// </summary>
+        public void ImageProviderStartPresentation()
+        {
+            if (_imageProvider != null)
+            {
+                _imageProvider.StartPresentation();
+            }
+        }
+
+
+        private void btnStartScan_Click(object sender, EventArgs e)
+        {
+
+            _cnnProjectHolder.CNNProject.ImgDetectionNN.StartDetectPattern(
+                pictureBox,
+                _cnnProjectHolder.CNNProject.ImagePatternSize);
+
+        }
+
+
+        private void ShowThreadPool()
+        {
+            //ThreadPool.
+
+
+        }
+
 
     }
 }

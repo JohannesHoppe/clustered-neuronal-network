@@ -320,6 +320,7 @@
             this.ClientSize = new System.Drawing.Size(602, 486);
             this.Controls.Add(this.pnlContentHolder);
             this.Controls.Add(this.lblTooltip);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TrainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

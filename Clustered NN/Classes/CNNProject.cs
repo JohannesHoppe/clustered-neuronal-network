@@ -4,6 +4,7 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 using Clustered_NN.Classes;
+using System.Threading;
 
 namespace Clustered_NN.Classes
 {
@@ -42,6 +43,7 @@ namespace Clustered_NN.Classes
 
             this._imgDetectionNN = new ImageDetectionNeuralNetwork();
             this._imgDetectionNN.InitNetwork(this._imagePatternSize);
+
         }
 
 

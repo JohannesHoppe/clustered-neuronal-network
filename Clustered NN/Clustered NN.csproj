@@ -9,7 +9,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Clustered_NN</RootNamespace>
     <AssemblyName>Clustered NN</AssemblyName>
-    <ApplicationIcon>wi0063-64.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,10 +48,16 @@
     <Compile Include="Classes\Counter.cs" />
     <Compile Include="Classes\ImageDetectionNeuralNetwork.cs" />
     <Compile Include="Classes\ImageHandling.cs" />
-    <Compile Include="Classes\ImageSelectingPictureBox.cs">
+    <Compile Include="Classes\PictureBox\ImageSelectingPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Classes\ImageProvider.cs">
+    </Compile>
+    <Compile Include="Classes\PictureBox\BaseSelectingPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\PictureBox\ScanSelectingPictureBox.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Classes\StaticClasses.cs" />
     <Compile Include="Classes\MultithreadedVFWImageProvider.cs">
@@ -146,9 +153,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="wi0063-64.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NeuralFramework\NeuralFramework.vbproj">
