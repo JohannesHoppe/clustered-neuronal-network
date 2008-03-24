@@ -405,8 +405,10 @@
             this.ClientSize = new System.Drawing.Size(692, 743);
             this.Controls.Add(this.lblTooltip);
             this.Controls.Add(this.pnlContentHolder);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CollectForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "1. Collecting Training Data";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CollectForm_FormClosed);

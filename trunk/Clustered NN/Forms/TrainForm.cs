@@ -23,8 +23,11 @@ namespace Clustered_NN.Forms
         private DetectForm _nextForm;
 
 
-
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TrainForm"/> class.
+        /// </summary>
+        /// <param name="cnnProjectHolder">The CNN project holder.</param>
+        /// <param name="parentForm">The parent form.</param>
         public TrainForm(CNNProjectHolder cnnProjectHolder, CollectForm parentForm)
         {
        
@@ -45,6 +48,7 @@ namespace Clustered_NN.Forms
 
         }
 
+
         /// <summary>
         /// Sets needed form vars for the NN
         /// </summary>
@@ -53,6 +57,7 @@ namespace Clustered_NN.Forms
             _cnnProjectHolder.CNNProject.ImgDetectionNN.SetVars(this.pbTrain, this.lblTrainInfo);
             UpdateNetworkStatus();
         }
+
 
         /// <summary>
         /// Stops the training and closes the parentForm
@@ -78,6 +83,10 @@ namespace Clustered_NN.Forms
         }
 
 
+        /// <summary>
+        /// Handles the Click event of the btnNext control.
+        /// stops training, hides form, goes to further to DetectForm
+        /// </summary>
         private void btnNext_Click(object sender, EventArgs e)
         {
             _cnnProjectHolder.CNNProject.ImgDetectionNN.StopTraining = true; // important!
@@ -91,8 +100,9 @@ namespace Clustered_NN.Forms
             _nextForm.Show();
             _nextForm.Focus();
 
-
+            _nextForm.ImageProviderStartPresentation();
         }
+
 
         /// <summary>
         /// The project has changed, we have to rereference and rebuild some things
@@ -106,7 +116,6 @@ namespace Clustered_NN.Forms
             lblTrainStart.Text = "";
             lblTrainInfo.Text = "";
         }
-
 
 
         /// <summary>
@@ -192,6 +201,9 @@ namespace Clustered_NN.Forms
         }
 
 
+        /// <summary>
+        /// Changes the text in lblNetworkStatus
+        /// </summary>
         public void UpdateNetworkStatus()
         {
             this.lblNetworkStatus.Text =
@@ -200,16 +212,14 @@ namespace Clustered_NN.Forms
         }
 
 
-
         /// <summary>
         /// Handles the TextChanged event of the lblTrainInfo control.
+        /// calls the UpdateNetworkStatus
         /// </summary>
         private void lblTrainInfo_TextChanged(object sender, EventArgs e)
         {
             UpdateNetworkStatus();
         }
-
-
 
 
     }
