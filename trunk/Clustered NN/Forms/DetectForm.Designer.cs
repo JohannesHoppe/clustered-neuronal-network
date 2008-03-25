@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetectForm));
             this.lblTooltip = new System.Windows.Forms.Label();
             this.pnlContentHolder = new System.Windows.Forms.Panel();
@@ -38,7 +39,11 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlDeviceControl = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.threadList = new System.Windows.Forms.ListView();
             this.btnStartScan = new System.Windows.Forms.Button();
+            this.threadListRefreshTimer = new System.Windows.Forms.Timer(this.components);
+            this.currentImage = new System.Windows.Forms.PictureBox();
+            this.currentImageSmall = new System.Windows.Forms.PictureBox();
             this.pictureBox = new Clustered_NN.Classes.ScanSelectingPictureBox();
             this.pnlContentHolder.SuspendLayout();
             this.tblContent.SuspendLayout();
@@ -46,6 +51,8 @@
             this.gbImageProvider.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.currentImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currentImageSmall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -156,6 +163,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.currentImageSmall);
+            this.panel1.Controls.Add(this.currentImage);
+            this.panel1.Controls.Add(this.threadList);
             this.panel1.Controls.Add(this.btnStartScan);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 328);
@@ -163,16 +173,45 @@
             this.panel1.Size = new System.Drawing.Size(658, 255);
             this.panel1.TabIndex = 23;
             // 
+            // threadList
+            // 
+            this.threadList.Location = new System.Drawing.Point(20, 17);
+            this.threadList.Name = "threadList";
+            this.threadList.Size = new System.Drawing.Size(188, 212);
+            this.threadList.TabIndex = 1;
+            this.threadList.UseCompatibleStateImageBehavior = false;
+            this.threadList.View = System.Windows.Forms.View.List;
+            // 
             // btnStartScan
             // 
             this.btnStartScan.BackColor = System.Drawing.Color.LightGray;
-            this.btnStartScan.Location = new System.Drawing.Point(311, 114);
+            this.btnStartScan.Location = new System.Drawing.Point(498, 106);
             this.btnStartScan.Name = "btnStartScan";
             this.btnStartScan.Size = new System.Drawing.Size(75, 23);
             this.btnStartScan.TabIndex = 0;
             this.btnStartScan.Text = "Start Scan";
             this.btnStartScan.UseVisualStyleBackColor = false;
             this.btnStartScan.Click += new System.EventHandler(this.btnStartScan_Click);
+            // 
+            // threadListRefreshTimer
+            // 
+            this.threadListRefreshTimer.Tick += new System.EventHandler(this.threadListRefreshTimer_Tick);
+            // 
+            // currentImage
+            // 
+            this.currentImage.Location = new System.Drawing.Point(219, 52);
+            this.currentImage.Name = "currentImage";
+            this.currentImage.Size = new System.Drawing.Size(20, 20);
+            this.currentImage.TabIndex = 2;
+            this.currentImage.TabStop = false;
+            // 
+            // currentImageSmall
+            // 
+            this.currentImageSmall.Location = new System.Drawing.Point(219, 17);
+            this.currentImageSmall.Name = "currentImageSmall";
+            this.currentImageSmall.Size = new System.Drawing.Size(20, 20);
+            this.currentImageSmall.TabIndex = 3;
+            this.currentImageSmall.TabStop = false;
             // 
             // pictureBox
             // 
@@ -204,6 +243,8 @@
             this.gbImageProvider.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.currentImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currentImageSmall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -223,5 +264,9 @@
         private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnStartScan;
+        private System.Windows.Forms.ListView threadList;
+        private System.Windows.Forms.Timer threadListRefreshTimer;
+        private System.Windows.Forms.PictureBox currentImage;
+        private System.Windows.Forms.PictureBox currentImageSmall;
     }
 }

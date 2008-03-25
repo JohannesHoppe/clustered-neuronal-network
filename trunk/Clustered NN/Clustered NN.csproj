@@ -47,6 +47,7 @@
     <Compile Include="Classes\CNNProjectHolder.cs" />
     <Compile Include="Classes\Counter.cs" />
     <Compile Include="Classes\ImageDetectionNeuralNetwork.cs" />
+    <Compile Include="Classes\ImageDetectionNeuralNetworkThreadWork.cs" />
     <Compile Include="Classes\ImageHandling.cs" />
     <Compile Include="Classes\PictureBox\ImageSelectingPictureBox.cs">
       <SubType>Component</SubType>

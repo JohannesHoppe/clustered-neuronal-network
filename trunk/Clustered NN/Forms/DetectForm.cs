@@ -127,22 +127,52 @@ namespace Clustered_NN.Forms
         }
 
 
+        /// <summary>
+        /// Handles the Click event of the btnStartScan control.
+        /// </summary>
         private void btnStartScan_Click(object sender, EventArgs e)
         {
 
             _cnnProjectHolder.CNNProject.ImgDetectionNN.StartDetectPattern(
                 pictureBox,
-                _cnnProjectHolder.CNNProject.ImagePatternSize);
+                _cnnProjectHolder.CNNProject.ImagePatternSize,
+                currentImage,
+                currentImageSmall);
+
+            threadListRefreshTimer.Start();
+
 
         }
 
 
-        private void ShowThreadPool()
+        /// <summary>
+        /// Rebuilds the threadList 
+        /// </summary>
+        public void RefreshThreadList()
         {
-            //ThreadPool.
+            threadList.Clear();
 
+            foreach (ImageDetectionNeuralNetworkThreadWork threadWork in _cnnProjectHolder.CNNProject.ImgDetectionNN.ThreadWorkList)
+            {
+                threadList.Items.Add(threadWork.Name + " (" + threadWork.CurrentLoop + "/" + threadWork.TotalLoops + ")"
+                    + (threadWork.Match ? "- MATCHED!" : "")
+                
+                );
+            }
 
+            threadList.Invalidate();
         }
+
+
+        /// <summary>
+        /// Handles the Tick event of the threadListRefreshTimer control.
+        /// Calls RefreshThreadList
+        /// </summary>
+       private void threadListRefreshTimer_Tick(object sender, EventArgs e)
+        {
+            RefreshThreadList();
+        }
+
 
 
     }
