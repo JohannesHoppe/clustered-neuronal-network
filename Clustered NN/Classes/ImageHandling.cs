@@ -121,14 +121,21 @@ namespace Clustered_NN.Classes
         {
             try
             {
-                Bitmap bmpImage = new Bitmap(img);
-                Bitmap bmpCrop = bmpImage.Clone(cropArea,
-                bmpImage.PixelFormat);
-                return (Image)(bmpCrop);
+                using (Bitmap bmpImage = new Bitmap(img))
+                {
+                    Bitmap bmpCrop = bmpImage.Clone(cropArea, bmpImage.PixelFormat);
+                    return (Image)(bmpCrop);
+                }
             }
             catch (OutOfMemoryException)
             {
                 throw new RectangleDoesNotFitToImageException();
+            }
+            // TODO: !!!!
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+                throw;
             }
 
         }

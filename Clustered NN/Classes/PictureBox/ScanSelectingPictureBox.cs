@@ -9,14 +9,32 @@ namespace Clustered_NN.Classes
 {
     /// <summary>
     /// a PictureBox that has a image selecting rectangle
+    /// used in the working threads, not for real displaying on forms
     /// </summary>
     public class ScanSelectingPictureBox : BaseSelectingPictureBox
     {
 
-        private Size _observeSize;
-        private int _stepSize;
+        Size _observeSize;
+        int _stepSize;
+
+        public ScanSelectingPictureBox()
+        {
+
+        }
 
 
+        public ScanSelectingPictureBox(Image image, Size oberserveSize, int stepSize)
+        {
+            this.Image = image;
+            this.Width = image.Width;
+            this.Height = image.Height;
+
+            _observeSize = oberserveSize;
+            _stepSize = stepSize;
+        }
+
+        #region not needed
+        /*
         /// <summary>
         /// Initializes a new instance of the <see cref="ExtendedPictureBox"/> class.
         /// </summary>
@@ -32,19 +50,16 @@ namespace Clustered_NN.Classes
         {
             DrawFinalRectangle(e.Graphics);
         }
+        */
+        #endregion
 
 
         /// <summary>
         /// Resets the used configurated vars
         /// </summary>
         /// <param name="observeSize">Size of the observed area</param>
-        /// <param name="outputSize">Size of the output.</param>
-        /// <param name="stepSize">Size of the step.</param>
-        public void ResetScan(Size observeSize, int stepSize)
+        public void ResetScan()
         {
-            _observeSize = observeSize;
-            _stepSize = stepSize;
-
             // area at point 0/0
             Point point1 = new Point(0, 0);
             Point point2 = new Point(_observeSize.Width, _observeSize.Height);
@@ -54,7 +69,7 @@ namespace Clustered_NN.Classes
 
 
         /// <summary>
-        /// Returns the next SelectedArea
+        /// Sets RectangleFinalShape to the next Area 
         /// </summary>
         /// <returns>false if we have reached end; otherwise true</returns>
         public bool ScanNext()

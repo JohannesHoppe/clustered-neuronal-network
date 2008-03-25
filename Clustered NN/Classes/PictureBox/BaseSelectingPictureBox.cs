@@ -294,6 +294,19 @@ namespace Clustered_NN.Classes
         }
 
 
+        /*
+        /// <summary>
+        /// Gets or sets the rectangle final shape.
+        /// </summary>
+        /// <value>The rectangle final shape.</value>
+        public Rectangle RectangleFinalShape
+        {
+            get { return _rectangleFinalShape; }
+            set { _rectangleFinalShape = value; }
+
+        }
+        */
+
     }
 
 

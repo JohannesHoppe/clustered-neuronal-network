@@ -27,9 +27,14 @@ namespace Clustered_NN.Classes
         [NonSerialized]
         private Label _lblTrainInfo;
         [NonSerialized]
-        WaitCallback _callBack;
+        private List<Size> _oberserveSizes;
         
+        [NonSerialized]
+        private List<ImageDetectionNeuralNetworkThreadWork> _threadWorkList;
         
+        [NonSerialized]
+        private List<Thread> _threadList;     
+   
         private DateTime _trainStart;
         private DateTime _networkInitialized;
 
@@ -46,7 +51,6 @@ namespace Clustered_NN.Classes
         {
             TotalTrainingRounds = new Counter();
 
-            _callBack = new WaitCallback(DetectPattern);
         }
 
 
@@ -67,6 +71,16 @@ namespace Clustered_NN.Classes
         {            
             this._pbTrain = pbTrain;
             this._lblTrainInfo = lblTrainInfo;
+
+            _oberserveSizes = new List<Size>();
+            //_oberserveSizes.Add(new Size(20, 20));
+            //_oberserveSizes.Add(new Size(40, 40));
+            //_oberserveSizes.Add(new Size(60, 60));
+            //_oberserveSizes.Add(new Size(80, 80));
+            //_oberserveSizes.Add(new Size(100, 100));
+            //_oberserveSizes.Add(new Size(120, 120));
+            _oberserveSizes.Add(new Size(200, 200));
+            //_oberserveSizes.Add(new Size(240, 240));
         }
 
 
@@ -261,39 +275,48 @@ namespace Clustered_NN.Classes
         #region detect network - thread contest
 
 
-        public void StartDetectPattern(ScanSelectingPictureBox pictureBox, Size imagePatternSize)
+        /// <summary>
+        /// Starts the pattern process
+        /// </summary>
+        /// <param name="pictureBox">The picture box.</param>
+        /// <param name="imagePatternSize">Working size of a detection pattern</param>
+        public void StartDetectPattern(ScanSelectingPictureBox pictureBox, Size imagePatternSize,
+                                       PictureBox currentImage, PictureBox currentImageSmall)
         {
             try
             {
 
-                Size currentOberserveSize = new Size(100, 100);
-                pictureBox.ResetScan(currentOberserveSize, 10);
+                DetectPatternDelegate detectPatternDelegate = new DetectPatternDelegate(DetectPattern);
 
 
-                //Image currentSelectedArea;
-                while (pictureBox.ScanNext())
+                _threadWorkList = new List<ImageDetectionNeuralNetworkThreadWork>();
+                _threadList = new List<Thread>();
+
+                int i = 0;
+                foreach (Size oberserveSize in _oberserveSizes)
                 {
+                    i++;
 
-                    Image image = pictureBox.GetResizedSelectedArea(imagePatternSize);
+                    ImageDetectionNeuralNetworkThreadWork threadWork =
+                        new ImageDetectionNeuralNetworkThreadWork(pictureBox.Image,
+                                                                  imagePatternSize,
+                                                                  oberserveSize,
+                                                                  10,
+                                                                  detectPatternDelegate,
+                                                                  currentImage,
+                                                                  currentImageSmall);
+                    threadWork.Name = "Thread " + i;
+                    _threadWorkList.Add(threadWork);
 
-                    ThreadPool.QueueUserWorkItem(_callBack, image);
+                    Thread thread = new Thread(new ThreadStart(threadWork.ThreadWork));
+                    thread.Start();
 
-                    /*
-                    _cnnProjectHolder.CNNProject.ImgDetectionNN.DetectPattern(
-                        pictureBox.GetResizedSelectedArea(
-                            _cnnProjectHolder.CNNProject.ImagePatternSize));
-                    */
-
+                    _threadList.Add(thread);
                 }
-                MessageBox.Show("Fertig!");
-
-            }
-            catch (ImageNotInitializedException ex)
-            {
-                StaticClasses.ShowError(ex.Message);
+          
             }
             // TODO: Do not handle errors by catching non-specific exceptions
-            catch (Exception ex)
+            catch (NotImplementedException ex)
             {
                 StaticClasses.ShowException(ex);
             }
@@ -301,13 +324,14 @@ namespace Clustered_NN.Classes
         }
 
 
+        public delegate bool DetectPatternDelegate(Image detectImage);
+
+
         /// <summary>
         /// Routine to detect an image (right sized!)
         /// </summary>
-        public void DetectPattern(object detectImageObject)
+        public bool DetectPattern(Image detectImage)
         {
-            Image detectImage = (Image)detectImageObject;
-
 
             long asciiValMatching = System.Convert.ToInt32('Y');
             long asciiValNotMatching = System.Convert.ToInt32('N');
@@ -331,16 +355,16 @@ namespace Clustered_NN.Classes
 
             if (asciiVal == asciiValMatching)
             {
-                //return true;
+                return true;
             }
             else if (asciiVal == asciiValNotMatching)
             {
-                //return false;
+                return false;
             }
             else
             {
                 // damn this should not happen
-                //return false;
+                return false;
             }
         }
 
@@ -435,18 +459,15 @@ namespace Clustered_NN.Classes
 
         }
 
-        /*
-        /// <summary>
-        /// Indicates the running state of this thread
-        /// </summary>
-        /// <returns></returns>
-        public bool ThreadIsRunning
-        {
-            get { return _threadIsRunning; }
-            set { _threadIsRunning = value; }
 
+        /// <summary>
+        /// Gets the thread work list.
+        /// </summary>
+        /// <value>The thread work list.</value>
+        public List<ImageDetectionNeuralNetworkThreadWork> ThreadWorkList
+        {
+            get { return _threadWorkList; }
         }
-        */
 
     }
 }
