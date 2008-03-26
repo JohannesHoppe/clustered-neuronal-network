@@ -25,6 +25,11 @@ namespace Clustered_NN.Classes
 
         public ScanSelectingPictureBox(Image image, Size oberserveSize, int stepSize)
         {
+            if (this.Image == null)
+            {
+                throw new ImageNotInitializedException();
+            }
+
             this.Image = image;
             this.Width = image.Width;
             this.Height = image.Height;

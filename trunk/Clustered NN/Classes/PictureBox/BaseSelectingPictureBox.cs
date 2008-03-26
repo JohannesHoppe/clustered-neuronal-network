@@ -311,7 +311,7 @@ namespace Clustered_NN.Classes
 
 
     /// <summary>
-    /// Thrown by Image.SelectedArea
+    /// Thrown by Image.SelectedArea and ScanSelectingPictureBox constructor
     /// </summary>
     class ImageNotInitializedException : Exception
     {

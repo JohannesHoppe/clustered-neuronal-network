@@ -315,12 +315,10 @@ namespace Clustered_NN.Classes
                 }
           
             }
-            // TODO: Do not handle errors by catching non-specific exceptions
-            catch (NotImplementedException ex)
+            catch (ImageNotInitializedException ex)
             {
-                StaticClasses.ShowException(ex);
+                StaticClasses.ShowError(ex.Message);
             }
-
         }
 
 
