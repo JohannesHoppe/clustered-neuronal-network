@@ -17,15 +17,24 @@ namespace Clustered_NN.Classes
         Size _observeSize;
         int _stepSize;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScanSelectingPictureBox"/> class.
+        /// </summary>
         public ScanSelectingPictureBox()
         {
 
         }
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScanSelectingPictureBox"/> class.
+        /// </summary>
+        /// <param name="image">The image.</param>
+        /// <param name="oberserveSize">Size of the oberserve.</param>
+        /// <param name="stepSize">Size of the step.</param>
         public ScanSelectingPictureBox(Image image, Size oberserveSize, int stepSize)
         {
-            if (this.Image == null)
+            if (image == null)
             {
                 throw new ImageNotInitializedException();
             }
@@ -70,6 +79,20 @@ namespace Clustered_NN.Classes
             Point point2 = new Point(_observeSize.Width, _observeSize.Height);
             _rectangleFinalShape = GetRectangle(point1, point2);
 
+
+            //TODO: debugging
+            CenterRectangle(ref _rectangleFinalShape);
+        }
+
+        /// <summary>
+        /// Centers the rectangle to the PictureBox
+        /// used for quicker debugging
+        /// </summary>
+        /// <param name="rect">The rect.</param>
+        protected void CenterRectangle(ref Rectangle rect)
+        {
+            rect.X = (this.Width / 2) - (rect.Width / 2);
+            rect.Y = (this.Height / 2) - (rect.Height / 2);
         }
 
 
