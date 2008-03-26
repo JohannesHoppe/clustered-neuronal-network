@@ -79,7 +79,7 @@ namespace Clustered_NN.Classes
             //_oberserveSizes.Add(new Size(80, 80));
             //_oberserveSizes.Add(new Size(100, 100));
             //_oberserveSizes.Add(new Size(120, 120));
-            _oberserveSizes.Add(new Size(200, 200));
+            _oberserveSizes.Add(new Size(150, 150));
             //_oberserveSizes.Add(new Size(240, 240));
         }
 
@@ -361,7 +361,7 @@ namespace Clustered_NN.Classes
             }
             else
             {
-                // damn this should not happen
+                //TODO: damn this should not happen :-(
                 return false;
             }
         }
