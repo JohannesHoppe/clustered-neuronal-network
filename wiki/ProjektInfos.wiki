@@ -1,5 +1,5 @@
 #summary Informationen zum Projekt
-#labels Kurzinfo,Abstract
+#labels Kurzinfo,Abstract,Featured
 
 = Clustered Neuronal Network =
 
@@ -8,6 +8,7 @@
   * Name: Clustered Neuronal Network
   * Website: http://code.google.com/p/clustered-neuronal-network/
   * Teilnehmer: Yves Oehlschläger, Johannes Hoppe, Johannes Hofmeister, Robert Gladewitz (Projektbetreuer)
+  * Screenshot: http://clustered-neuronal-network.googlecode.com/files/Screenshot.jpg
 
   * PPTX Präsentation: http://clustered-neuronal-network.googlecode.com/files/Pr%C3%A4sentation%20CNN.pptx
   * PPTX Präsentation inkl. Informationen zum Windows CSS 2003: http://clustered-neuronal-network.googlecode.com/files/Pr%C3%A4sentation%20CNN_%20incl%20HPC.pptx
