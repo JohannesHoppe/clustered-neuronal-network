@@ -16,8 +16,8 @@ Das Projekt wurde für den Microsoft "CCS-Projekt-Wettbewerb" eingereicht und ge
 
 Eine Urkunde sowie ein Scheck wurden den Teilnehmern Johannes und Yves beim *"1. Treffen der deutschen Windows High Performance Computing Nutzergruppe"* in Aachen von Wolfgagn Dreyer überreicht.
 
-Website des Treffens der 1. WinHPC Nutzergruppe: http://www.rz.rwth-aachen.de/ca/c/ryy/lang/de/ 
-Agenda der Veranstaltung: http://www.rz.rwth-aachen.de/global/show_document.asp?id=aaaaaaaaaabnawh
+  * Website des Treffens der 1. WinHPC Nutzergruppe: http://www.rz.rwth-aachen.de/ca/c/ryy/lang/de/ 
+  * Agenda der Veranstaltung: http://www.rz.rwth-aachen.de/global/show_document.asp?id=aaaaaaaaaabnawh
 
 
 == Abstract ==
