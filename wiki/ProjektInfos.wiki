@@ -6,7 +6,9 @@
 == Kurzinfo ==
 
 Name: Clustered Neuronal Network
+
 Website: http://code.google.com/p/clustered-neuronal-network/
+
 Teilnehmer: Yves Oehlschläger, Johannes Hoppe, Johannes Hofmeister, Robert Gladewitz (Projektbetreuer)
 
 == Microsoft CSS-Project ==
