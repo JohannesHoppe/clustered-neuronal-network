@@ -1,15 +1,14 @@
-#summary Informatione zum Projekt
+#summary Informationen zum Projekt
 #labels Kurzinfo,Abstract
 
 = Clustered Neuronal Network =
 
 == Kurzinfo ==
 
-Name: Clustered Neuronal Network
+  * Name: Clustered Neuronal Network
+  * Website: http://code.google.com/p/clustered-neuronal-network/
+  * Teilnehmer: Yves Oehlschläger, Johannes Hoppe, Johannes Hofmeister, Robert Gladewitz (Projektbetreuer)
 
-Website: http://code.google.com/p/clustered-neuronal-network/
-
-Teilnehmer: Yves Oehlschläger, Johannes Hoppe, Johannes Hofmeister, Robert Gladewitz (Projektbetreuer)
 
 == Microsoft CSS-Project ==
 
