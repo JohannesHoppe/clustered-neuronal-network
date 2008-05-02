@@ -14,7 +14,7 @@
   * PPTX Präsentation inkl. Informationen zum Windows CSS 2003: http://clustered-neuronal-network.googlecode.com/files/Pr%C3%A4sentation%20CNN_%20incl%20HPC.pptx
 
 
-== Microsoft CSS-Project ==
+== Microsoft CCS-Project ==
 
 Das Projekt wurde für den Microsoft "CCS-Projekt-Wettbewerb" eingereicht und gewann im Rahmen des "Akademischen Programs" einen Forschungszuschuss sowie eine Reise nach Redmond zu Microsoft.
 
