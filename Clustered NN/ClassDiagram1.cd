@@ -16,8 +16,8 @@
   <Comment CommentText="Info">
     <Position X="2.887" Y="3.542" Height="0.263" Width="0.7" />
   </Comment>
-  <Comment CommentText="This class is used to change the project">
-    <Position X="12.601" Y="1.883" Height="0.263" Width="2.584" />
+  <Comment CommentText="This class is used to load / save / change the project">
+    <Position X="12.601" Y="1.883" Height="0.263" Width="3.522" />
   </Comment>
   <Comment CommentText="holds all configuration as well as usage data of a complete project">
     <Position X="12.601" Y="2.851" Height="0.263" Width="3.765" />
@@ -143,7 +143,7 @@
     <Position X="6" Y="9.75" Width="2" />
     <TypeIdentifier>
       <FileName>Classes\PictureBox\ScanSelectingPictureBox.cs</FileName>
-      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAQAAAAAA=</HashCode>
+      <HashCode>ABAABAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAQAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="Clustered_NN.Classes.StaticClasses" Collapsed="true">

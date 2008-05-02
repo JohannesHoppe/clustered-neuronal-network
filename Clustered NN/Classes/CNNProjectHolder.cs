@@ -13,7 +13,7 @@ using BrainNet.NeuralFramework;
 namespace Clustered_NN.Classes
 {
     /// <summary>
-    /// This class is used to easily change the project
+    /// This class is used to load / save / change the project
     /// without struggling with wrong references
     /// </summary>
     public class CNNProjectHolder
