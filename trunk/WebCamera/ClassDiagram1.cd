@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Comment CommentText="Devices from avicap32.dll&#xD;&#xA;&#xD;&#xA;today usually just the&#xD;&#xA;'Microsoft WDM Image Capture' driver">
+    <Position X="3.469" Y="4" Height="0.75" Width="3.117" />
+  </Comment>
+  <Comment CommentText="Provides an interface to the OLD&#xD;&#xA;VFW (Video for Windows)&#xD;&#xA;&#xD;&#xA;user32 &amp; avicap32.dll">
+    <Position X="3.438" Y="0.75" Height="0.812" Width="2.69" />
+  </Comment>
+  <Comment CommentText="one frame; contains a Bitmap">
+    <Position X="3.448" Y="1.792" Height="0.417" Width="2.117" />
+  </Comment>
+  <Comment CommentText="delagate for the frames">
+    <Position X="3.458" Y="2.479" Height="0.365" Width="2.096" />
+  </Comment>
+  <Comment CommentText="most important: Flips the image and changes from &quot;BGR&quot; to RGB">
+    <Position X="8.562" Y="0.781" Height="0.604" Width="1.7" />
+  </Comment>
+  <Class Name="WebCamera.Filters" Collapsed="true">
+    <Position X="6.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Filters.cs</FileName>
+      <HashCode>AAAAAAgAAAAAAAQAAAAAAAEAAAAAAAQAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebCamera.WebCameraDevice" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>WebCameraDevice.cs</FileName>
+      <HashCode>AAIABCAIQmAAlBgAACCwAABAAD1ATQAgIAEIgAAAEAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WebCamera.WebCameraEventArgs" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <FileName>WebCameraDevice.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAE=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebCamera.Device" Collapsed="true">
+    <Position X="1.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>WebCameraDeviceManager.cs</FileName>
+      <HashCode>IAAAAAAAAAAAAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebCamera.WebCameraDeviceManager" Collapsed="true">
+    <Position X="0.75" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>WebCameraDeviceManager.cs</FileName>
+      <HashCode>AAAAAAAAAABAAgAAAAAAAAAAQAAAAEAAAEAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Delegate Name="WebCamera.WebCameraFrameDelegate" Collapsed="true">
+    <Position X="0.75" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <FileName>WebCameraDevice.cs</FileName>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+</ClassDiagram>

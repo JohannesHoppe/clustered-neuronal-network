@@ -10,6 +10,11 @@ using System.Threading;
 
 namespace Clustered_NN.Classes
 {
+    /// <summary>
+    /// Wrapper for the BrainNet Neural Framework, more networks are planned
+    /// 
+    /// TODO: intern network network serialization
+    /// </summary>
     [Serializable]
     public class ImageDetectionNeuralNetwork
     {
@@ -33,19 +38,20 @@ namespace Clustered_NN.Classes
         private List<ImageDetectionNeuralNetworkThreadWork> _threadWorkList;
         
         [NonSerialized]
-        private List<Thread> _threadList;     
-   
+        private List<Thread> _threadList;
+
+
         private DateTime _trainStart;
         private DateTime _networkInitialized;
 
+        /// <summary>
+        /// the total number of solved training rounds
+        /// </summary>
         public Counter TotalTrainingRounds;
 
 
-
-
-
         /// <summary>
-        /// Don't forget to set _pbTrain and _lblTrainInfo afterwards
+        /// Don't forget to set _pbTrain (ProgressBar) and _lblTrainInfo (Label) afterwards
         /// </summary>
         public ImageDetectionNeuralNetwork()
         {
@@ -66,6 +72,9 @@ namespace Clustered_NN.Classes
 
         /// <summary>
         /// Sets the vars.
+        /// all recognized sizes are defined here
+        /// 
+        /// TODO: for development (and because of a silly bug) only one size is active
         /// </summary>
         public void SetVars(ProgressBar pbTrain, Label lblTrainInfo)
         {            
@@ -93,9 +102,9 @@ namespace Clustered_NN.Classes
             // Example: We are analyzing a 20x20 pixel picture, so let us take the number
             // of total inputs as 20 x 20 = 400 neurons
 
-            // So let us initialize a 400-400-8 network. I.e, 400 neurons in
-            // input layer, 400 neurons in hidden layer and 8 neurons in the output
-            // layer to represent a ASCII character
+            // So let us initialize a 400-400-1 network. I.e, 400 neurons in
+            // input layer, 400 neurons in hidden layer and 1 neuron in the output
+            // layer to represent a boolean value
 
             // the factory creates a Backward Propagation Neural Network
             BackPropNetworkFactory factory = new BackPropNetworkFactory();
@@ -107,20 +116,116 @@ namespace Clustered_NN.Classes
             layers.Add(size.Width * size.Height);
             // 400 neurons in the second layer (the second layer is the first hidden layer)
             layers.Add(size.Width * size.Height);
-            // 8 neurons in the output layer
-            layers.Add(8); //TODO: temp!
+            // 1 neurons in the output layer
+            layers.Add(1);
 
             // provide the arraylist as the parameter, to create a network
             _network = factory.CreateNetwork(layers);
 
-
+            
             _networkInitialized = DateTime.Now;
-
             TotalTrainingRounds.Reset();
 
         }
 
         #region network training
+
+        /// <summary>
+        /// just used to store the training data temporarely
+        /// </summary>
+        private class TrainingItem
+        {
+            private Image _image;
+            
+            /// <summary>
+            /// Gets or sets the image.
+            /// </summary>
+            /// <value>The image.</value>
+            public Image Image
+            {
+                get { return _image; }
+                set { _image = value; }
+            }
+
+
+            private bool _matching;
+
+            /// <summary>
+            /// Gets or sets a value indicating whether the caontaining image is a matching one
+            /// </summary>
+            /// <value><c>true</c> if matchin; otherwise, <c>false</c>.</value>
+            public bool Matching
+            {
+                get { return _matching; }
+                set { _matching = value; }
+            }
+
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="TrainingItem"/> class.
+            /// Values are assigned
+            /// </summary>
+            /// <param name="image">The image.</param>
+            /// <param name="matching">if set to <c>true</c> [matching].</param>
+            public TrainingItem(Image image, bool matching)
+            {
+                _image = image;
+                _matching = matching;
+            }
+        }
+
+
+        /*
+        /// <summary>
+        /// Routine to train the network
+        /// </summary>
+        /// <param name="cnnProject">The CNN project.</param>
+        /// <param name="numberOfRounds">The number of training rounds.</param>
+        public void TrainPattern(CNNProject cnnProject, long numberOfTrainingRounds)
+        {
+            
+            List<TrainingItem> trainingItemList = new List<TrainingItem>();
+            ImageList imgList;
+            bool matching; 
+
+            // fills the list
+            for (int i = 0; i < 2; i++)
+            {
+
+                // at first we include the first the matching images
+                if (i == 0)
+                {
+                    imgList = cnnProject.Matching;
+                    matching = true;
+                }
+                // and then the not matching images
+                else
+                {
+                    imgList = cnnProject.Matching;
+                    matching = false;
+                }
+
+                foreach (Image img in imgList.Images)
+                {
+                    PatternProcessingHelper patHelper = new PatternProcessingHelper();
+                    ImageProcessingHelper imgHelper = new ImageProcessingHelper();
+
+
+                    Debug.WriteLine("Added : " + patHelper.PatternFromArraylist(imgHelper.ArrayListFromImage(img)));
+
+                }
+            }
+
+
+            // list get shuffled
+            trainingItemList.i
+
+            // Let's go!
+            _trainStart = DateTime.Now;
+
+        }
+        */
+
 
         /// <summary>
         /// Routine to train the network
@@ -205,6 +310,7 @@ namespace Clustered_NN.Classes
                                 MessageBoxIcon.Information);
             }
         }
+
 
 
         ///<summary>

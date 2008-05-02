@@ -16,7 +16,7 @@ namespace Clustered_NN.Classes
     {
         // config
         private Size _imagePatternSize = new Size(20, 20);
-        private bool _expertMode = true;
+        private bool _expertMode = false;
         // config
 
         [NonSerialized]
