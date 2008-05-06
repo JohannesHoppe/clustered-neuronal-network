@@ -190,7 +190,7 @@
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(51, 24);
             this.cmdCancel.TabIndex = 17;
-            this.cmdCancel.Text = "Cancel";
+            this.cmdCancel.Text = "Stop";
             this.cmdCancel.UseVisualStyleBackColor = false;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 

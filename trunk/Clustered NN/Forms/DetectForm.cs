@@ -152,7 +152,7 @@ namespace Clustered_NN.Forms
         {
             threadList.Clear();
 
-            foreach (ImageDetectionNeuralNetworkThreadWork threadWork in _cnnProjectHolder.CNNProject.ImgDetectionNN.ThreadWorkList)
+            foreach (ImageDetectionNeuralNetwork_DetectThreadWork threadWork in _cnnProjectHolder.CNNProject.ImgDetectionNN.ThreadWorkList)
             {
                 threadList.Items.Add(threadWork.Name + " (" + threadWork.CurrentLoop + "/" + threadWork.TotalLoops + ")"
                     + (threadWork.Match ? "- MATCHED!" : "")

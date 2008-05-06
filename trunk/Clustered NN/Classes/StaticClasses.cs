@@ -51,5 +51,47 @@ namespace Clustered_NN.Classes
             errorBox.lblheadline.Text = "Error";
             errorBox.ShowDialog();
         }
+
+
+
+        #region list shuffle
+
+        /// <summary>
+        /// used by Shuffle
+        /// </summary>
+        private static Random _rand = new Random();
+
+        /// <summary>
+        /// Shuffles the specified list.
+        /// </summary>
+        /// <typeparam name="T">items of the list</typeparam>
+        /// <param name="ilist">The list.</param>
+        /*
+        List<int> list = new List <int> ();
+
+        for (int i = 0; i < 10; ++i) {
+            list.Add (i);
+        }
+
+        Shuffle<int> (list);
+
+        foreach (int i in list) {
+            Console.WriteLine (i);
+        }
+        */
+        public static void Shuffle<T>(IList<T> shuffledList)
+        {
+            int iIndex;
+            T tTmp;
+            for (int i = 1; i < shuffledList.Count; ++i)
+            {
+                iIndex = _rand.Next(i + 1);
+                tTmp = shuffledList[i];
+                shuffledList[i] = shuffledList[iIndex];
+                shuffledList[iIndex] = tTmp;
+            }
+        }
+
+        #endregion
     }
 }

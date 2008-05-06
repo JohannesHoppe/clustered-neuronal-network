@@ -35,7 +35,7 @@ namespace Clustered_NN.Classes
         private List<Size> _oberserveSizes;
         
         [NonSerialized]
-        private List<ImageDetectionNeuralNetworkThreadWork> _threadWorkList;
+        private List<ImageDetectionNeuralNetwork_DetectThreadWork> _threadWorkList;
         
         [NonSerialized]
         private List<Thread> _threadList;
@@ -175,7 +175,7 @@ namespace Clustered_NN.Classes
         }
 
 
-        /*
+
         /// <summary>
         /// Routine to train the network
         /// </summary>
@@ -183,16 +183,19 @@ namespace Clustered_NN.Classes
         /// <param name="numberOfRounds">The number of training rounds.</param>
         public void TrainPattern(CNNProject cnnProject, long numberOfTrainingRounds)
         {
-            
-            List<TrainingItem> trainingItemList = new List<TrainingItem>();
-            ImageList imgList;
-            bool matching; 
 
-            // fills the list
+            // 1. preparation - both project's imageLists generalized images to the shuffled trainingItem-list 
+            #region 1. preparation
+            List<TrainingItem> trainingItemList = new List<TrainingItem>();
+
+            #region fills the trainingItemList
+            
+            ImageList imgList;
+            bool matching;
             for (int i = 0; i < 2; i++)
             {
 
-                // at first we include the first the matching images
+                // at first we include the matching images
                 if (i == 0)
                 {
                     imgList = cnnProject.Matching;
@@ -207,100 +210,85 @@ namespace Clustered_NN.Classes
 
                 foreach (Image img in imgList.Images)
                 {
-                    PatternProcessingHelper patHelper = new PatternProcessingHelper();
-                    ImageProcessingHelper imgHelper = new ImageProcessingHelper();
-
-
-                    Debug.WriteLine("Added : " + patHelper.PatternFromArraylist(imgHelper.ArrayListFromImage(img)));
-
+                    // generalizes the image
+                    Image generalizedImg = ImageHandling.GeneralizeImage(img);
+                    trainingItemList.Add(new TrainingItem(generalizedImg, matching));
                 }
             }
+            #endregion
+
+            // filled list gets shuffled
+            // (maybe this optimzes the result)
+            StaticClasses.Shuffle<TrainingItem>(trainingItemList);
+            #endregion
 
 
-            // list get shuffled
-            trainingItemList.i
+            // 2. build of training data items and add it to the helper
+            #region 2. trainingItem
+           
+            // used later on to create the training thread
+            NetworkHelper helper = new NetworkHelper(_network);
+            
+            foreach (TrainingItem trainingItem in trainingItemList)
+            {
+
+                Image img = trainingItem.Image;
+                ArrayList arryListInput;
+                #region fills arryListInput
+                // Converts an image of any size to a pattern that can be feeded to the network.
+                ImageProcessingHelper imgHelper = new ImageProcessingHelper();
+                //note: this is a (monochrome) collection of 0's and 1's !!
+                arryListInput = imgHelper.ArrayListFromImage(img);
+
+                if (img.Width * img.Height != _network.InputLayer.Count)
+                {
+                    throw new InvalidInputException("The number of pixels in the input image doesn't match the number of input layer neurons!", null);
+                }
+
+                #region Debugging
+                /*
+                // Convert an arraylist by rounding each value to a pattern of 0s and 1s 
+                PatternProcessingHelper patHelper = new PatternProcessingHelper();
+                String tmpPatern = patHelper.PatternFromArraylist(tmpImgList);
+                Debug.WriteLine("Added : " + tmpPatern);
+                */
+                #endregion
+                #endregion
+
+                ArrayList arryListOutput;
+                #region fills arryListOutput
+                arryListOutput = new ArrayList();
+                // true is going to be a single 1, false a single 0
+                arryListOutput.Add(trainingItem.Matching ? 1 : 0);
+                #endregion
+
+                // a training data item is used for a single training round
+                TrainingData trainingDataItem = new TrainingData(arryListInput, arryListOutput);
+
+                // this could be also used; one training round directly
+                //_network.TrainNetwork(trainingDataItem);
+
+                helper.AddTrainingData(trainingDataItem);
+            }
+            #endregion
 
             // Let's go!
             _trainStart = DateTime.Now;
 
-        }
-        */
-
-
-        /// <summary>
-        /// Routine to train the network
-        /// with a NetworkHelper object
-        /// </summary>
-        public void TrainPattern(CNNProject cnnProject, long numberOfRounds)
-        {
-
-            // Create a helper object
-            NetworkHelper helper = new NetworkHelper(_network);
-
-            // A helper object helps you to train the network more
-            // efficiently. First of all, you add each training data to the
-            // Training Queue using the helper. For this, you can use the
-            // AddTrainingData method of the helper
-
-            // Next, you can call the Train function of the helper to
-            // randomize entries to the training queue and train the network more
-            // efficiently
-
-            // Step 1 - Add the training data to the helper
-            for (int i = 0; i < 2; i++)
-            {
-                ImageList imgList;
-                long asciiVal;
-
-                // Matching => Yes
-                if (i == 0)
-                {
-                    imgList = cnnProject.Matching;
-                    asciiVal = System.Convert.ToInt32('Y');
-                }
-                // Not Matching => No
-                else
-                {
-                    imgList = cnnProject.Matching;
-                    asciiVal = System.Convert.ToInt32('N');
-                }
-
-
-
-                foreach (Image img in imgList.Images)
-                {
-
-                    //The AddTrainingData method of Network helper helps you to
-                    //add an image and its corresponding ASCII value directly
-
-                    PatternProcessingHelper patHelper = new PatternProcessingHelper();
-                    ImageProcessingHelper imgHelper = new ImageProcessingHelper();
-
-
-                    Debug.WriteLine("Added : " + patHelper.PatternFromArraylist(imgHelper.ArrayListFromImage(img)));
-
-                    helper.AddTrainingData(img, asciiVal);
-                }
-            }
-
-            //Step 2 - Train the network using the helper
-
-            StopTraining = false;
-            StopTrainingSilently = false;
-
-            _trainStart = DateTime.Now;
+            // 3. training
+            #region  3. training
 
             // ShowProgress delegate
             helper.TrainingProgress += new NetworkHelper.TrainingProgressEventHandler(ShowProgress);
-            
+
             // Start training
             // --- here we are going to wait --
-            helper.Train(numberOfRounds, true); // <-- 
+            helper.Train(numberOfTrainingRounds, true); // <-- 
 
             // releasing
             helper.TrainingProgress -= new NetworkHelper.TrainingProgressEventHandler(ShowProgress);
 
-
+            // show message box
             if (StopTrainingSilently == false)
             {
 
@@ -309,8 +297,11 @@ namespace Clustered_NN.Classes
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
             }
-        }
 
+            #endregion
+
+
+        }
 
 
         ///<summary>
@@ -382,10 +373,12 @@ namespace Clustered_NN.Classes
 
 
         /// <summary>
-        /// Starts the pattern process
+        /// Starts the (threaded) pattern detection process
         /// </summary>
         /// <param name="pictureBox">The picture box.</param>
-        /// <param name="imagePatternSize">Working size of a detection pattern</param>
+        /// <param name="imagePatternSize">Working size of a detection pattern (as defined in _cnnProjectHolder.CNNProject.ImagePatternSize)</param>
+        /// <param name="currentImage">Just for testing: pictureBox to display the current image (original size)</param>
+        /// <param name="currentImageSmall">Just for testing: PictureBox to display the current resized and generalized image - as it gets feeded to the network</param>
         public void StartDetectPattern(ScanSelectingPictureBox pictureBox, Size imagePatternSize,
                                        PictureBox currentImage, PictureBox currentImageSmall)
         {
@@ -395,7 +388,7 @@ namespace Clustered_NN.Classes
                 DetectPatternDelegate detectPatternDelegate = new DetectPatternDelegate(DetectPattern);
 
 
-                _threadWorkList = new List<ImageDetectionNeuralNetworkThreadWork>();
+                _threadWorkList = new List<ImageDetectionNeuralNetwork_DetectThreadWork>();
                 _threadList = new List<Thread>();
 
                 int i = 0;
@@ -403,8 +396,8 @@ namespace Clustered_NN.Classes
                 {
                     i++;
 
-                    ImageDetectionNeuralNetworkThreadWork threadWork =
-                        new ImageDetectionNeuralNetworkThreadWork(pictureBox.Image,
+                    ImageDetectionNeuralNetwork_DetectThreadWork threadWork =
+                        new ImageDetectionNeuralNetwork_DetectThreadWork(pictureBox.Image,
                                                                   imagePatternSize,
                                                                   oberserveSize,
                                                                   10,
@@ -434,41 +427,44 @@ namespace Clustered_NN.Classes
         /// <summary>
         /// Routine to detect an image (right sized!)
         /// </summary>
-        public bool DetectPattern(Image detectImage)
+        /// <param name="img">The resized and generalized image.</param>
+        /// <returns></returns>
+        public bool DetectPattern(Image img)
         {
 
-            long asciiValMatching = System.Convert.ToInt32('Y');
-            long asciiValNotMatching = System.Convert.ToInt32('N');
-
-
-            //Step 1 : Convert the image to detect to an arraylist
+            //Step 1 : Convert the image to an arraylist
+            ArrayList arryListInput;
+            #region fills arryListInput
+            // Converts an image of any size to a pattern that can be feeded to the network.
             ImageProcessingHelper imgHelper = new ImageProcessingHelper();
-            ArrayList input = null;
+            //note: this is a (monochrome) collection of 0's and 1's !!
+            arryListInput = imgHelper.ArrayListFromImage(img);
 
-            input = imgHelper.ArrayListFromImage(detectImage);
+            if (img.Width * img.Height != _network.InputLayer.Count)
+            {
+                throw new InvalidInputException("The number of pixels in the input image doesn't match the number of input layer neurons!", null);
+            }
+            #endregion
+
 
             //Step 2: Run the network and obtain the output
             ArrayList output = null;
-            output = _network.RunNetwork(input);
+            output = _network.RunNetwork(arryListInput);
 
-            //Step 3: Convert the output arraylist to long value
-            //so that we will get the ascii character code
-            PatternProcessingHelper patternHelper = new PatternProcessingHelper();
-            long asciiVal = patternHelper.NumberFromArraylist(output);
+            // finally: the result is in the first and only index 
+            float result = (float)output[0];
 
+            // displays rounded result (better readable)
+            Debug.WriteLine("Detection Result: " + Math.Round(result, 3) + " (" + result + ")");
 
-            if (asciiVal == asciiValMatching)
-            {
-                return true;
-            }
-            else if (asciiVal == asciiValNotMatching)
+            //TODO: what is the best value for this?
+            if (result <= 0.5)
             {
                 return false;
             }
             else
             {
-                //TODO: damn this should not happen :-(
-                return false;
+                return true;
             }
         }
 
@@ -568,7 +564,7 @@ namespace Clustered_NN.Classes
         /// Gets the thread work list.
         /// </summary>
         /// <value>The thread work list.</value>
-        public List<ImageDetectionNeuralNetworkThreadWork> ThreadWorkList
+        public List<ImageDetectionNeuralNetwork_DetectThreadWork> ThreadWorkList
         {
             get { return _threadWorkList; }
         }

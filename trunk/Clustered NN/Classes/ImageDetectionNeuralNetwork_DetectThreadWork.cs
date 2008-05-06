@@ -6,7 +6,11 @@ using System.Windows.Forms;
 
 namespace Clustered_NN.Classes
 {
-    public class ImageDetectionNeuralNetworkThreadWork
+    /// <summary>
+    /// Class that holds a function for threaded image detection
+    /// each thread (can or better: should) is working on one scaled version of the 
+    /// </summary>
+    public class ImageDetectionNeuralNetwork_DetectThreadWork
     {
 
         private ScanSelectingPictureBox _scanSelectingPictureBox;
@@ -22,7 +26,17 @@ namespace Clustered_NN.Classes
         private PictureBox _currentImageSmall;
 
 
-        public ImageDetectionNeuralNetworkThreadWork(Image image,
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImageDetectionNeuralNetworkDetectThreadWork"/> class.
+        /// </summary>
+        /// <param name="image">The complete image on which the pattern should be searched</param>
+        /// <param name="imagePatternSize">Working size of a detection pattern (as defined in _cnnProjectHolder.CNNProject.ImagePatternSize)</param>
+        /// <param name="oberserveSize">the 'scalation' - size of the rectangle that scans over the image</param>
+        /// <param name="stepSize">pixel-size of one step to move the rectangle to right and down</param>
+        /// <param name="detectPatternDelegate">The detect pattern delegate.</param>
+        /// <param name="currentImage">Just for testing: pictureBox to display the current image (original size)</param>
+        /// <param name="currentImageSmall">Just for testing: PictureBox to display the current resized and generalized image - as it gets feeded to the network</param>
+        public ImageDetectionNeuralNetwork_DetectThreadWork(Image image,
                                                      Size imagePatternSize,
                                                      Size oberserveSize,
                                                      int stepSize,
@@ -48,6 +62,7 @@ namespace Clustered_NN.Classes
         {
 
             // gets the max number of loops
+            #region max number
             _scanSelectingPictureBox.ResetScan();
             TotalLoops.Reset();
             while (_scanSelectingPictureBox.ScanNext())
@@ -55,8 +70,11 @@ namespace Clustered_NN.Classes
                 TotalLoops.Increment();
             }
 
+            // TODO: make this nicer
             UpdateCurrentImageBorder(_currentImage, Color.Red);
             UpdateCurrentImageBorder(_currentImageSmall, Color.Red);
+            #endregion
+
 
             // the real detection process
             _scanSelectingPictureBox.ResetScan();
@@ -65,7 +83,8 @@ namespace Clustered_NN.Classes
             {
                 CurrentLoop.Increment();
 
-                //Image image = _scanSelectingPictureBox.GetResizedSelectedArea(_imagePatternSize);
+                // also possible:
+                //Image smallImage = _scanSelectingPictureBox.GetResizedSelectedArea(_imagePatternSize);
 
                 Image bigImage = _scanSelectingPictureBox.SelectedArea;
                 Image smallImage = ImageHandling.GeneralizeImage(ImageHandling.ResizeImage(bigImage, _imagePatternSize));

@@ -12,6 +12,41 @@ namespace Clustered_NN.Classes
 
         /// <summary>
         /// +++ Makes an image easier identifiable +++
+        /// 2nd try
+        /// 
+        /// 1. Gaussian Blur filter - reduces noise
+        /// 2. Sharpen filter - reverts gaussian blur (but noise is gone) 
+        /// 3. Histogram Equalization - dynamic range of the histogram is increased (more intensity)
+        /// 4. Sobel filter - edge detection means better stuff for the network
+        /// 5. Grayscale filter - reduces colors (of course)
+        /// </summary>
+        /// <param name="img">The source image</param>
+        /// <returns>The new image</returns>
+        public static Image GeneralizeImage(Image img)
+        {
+
+            // 1. Gaussian
+            Bitmap bmp = new Bitmap(img);
+            GaussianBlur(bmp, 4);
+
+            // 2. Sharpen 
+            Sharpen(bmp, 11);
+
+            // 3. Histogram
+            EquilizeHistogram(bmp);
+
+            // 4. Sobel
+            Sobel(bmp);
+            
+            // 5. Grayscale
+            Image newImage = ToGrayScale((Image)bmp);
+
+            return newImage;
+        }
+
+
+        /// <summary>
+        /// +++ Makes an image easier identifiable +++
         /// 
         /// 1. Grayscale filter - reduces colors (of course)
         /// 2. Gaussian Blur filter - reduces noise
@@ -19,7 +54,7 @@ namespace Clustered_NN.Classes
         /// </summary>
         /// <param name="img">The source image</param>
         /// <returns>The new image</returns>
-        public static Image GeneralizeImage(Image img)
+        public static Image GeneralizeImage_Old(Image img)
         {
             // 1.
             Image newImage = ToGrayScale(img);
@@ -210,7 +245,8 @@ namespace Clustered_NN.Classes
         #endregion
 
 
-        #region Gaussian Blur Filter
+        #region Smooth Filter through ConvMatrix
+
         /// see: http://www.codeproject.com/KB/GDI-plus/csharpfilters.aspx
         /// for more filters...
         
@@ -232,6 +268,11 @@ namespace Clustered_NN.Classes
 
             return Conv3x3(b, m);
         }
+
+        #endregion
+
+
+        #region Gaussian Blur Filter through ConvMatrix
 
         /// <summary>
         /// Gaussian blur
@@ -261,8 +302,77 @@ namespace Clustered_NN.Classes
             return Conv3x3(b, m);
         }
 
+        #endregion
+
+
+        #region Sharpen Filter through ConvMatrix
 
         /// <summary>
+        /// sharpens an image
+        /// 
+        /// [  0  -2   0 ]
+        /// [ -2  11  -2 ]
+        /// [  0  -2   0 ] /3+0
+        /// 
+        /// It sharpens an image by enhancing the difference between pixels.
+        /// The greater the difference between the pixels that are given a negative
+        /// weight and the pixel being modified, the greater the change in the main
+        /// pixel value.  The degree of sharpening can be adjusted by changing the
+        /// centre weight. 
+        /// </summary>
+        /// <param name="b">The source bitmap</param>
+        /// <param name="nWeight">filter weight</param>
+        /// <returns>The sharpened image</returns>
+        public static bool Sharpen(Bitmap b, int nWeight /* default to 11*/ )
+        {
+            ConvMatrix m = new ConvMatrix();
+            m.SetAll(0);
+            m.Pixel = nWeight;
+            m.TopMid = m.MidLeft = m.MidRight = m.BottomMid = -2;
+            m.Factor = nWeight - 8;
+
+            return Conv3x3(b, m);
+        }
+
+        #endregion
+
+
+        #region Sobel Edge Detection Filter through ConvMatrix
+
+        /// see: http://www.codeproject.com/KB/GDI-plus/edge_detection.aspx
+
+        /// <summary>
+        /// Sobel Edge Detection
+        /// 
+        /// [  1   2   1 ]
+        /// [  0   0   0 ]
+        /// [ -1  -2  -1 ] /1+0
+        /// 
+        /// Edge detection filters work essentially by looking for contrast in an image.   
+        /// 
+        /// </summary>
+        /// <param name="b">The source bitmap</param>
+        public static bool Sobel(Bitmap b)
+        {
+            ConvMatrix m = new ConvMatrix();
+
+            m.SetAll(0);
+            m.TopLeft = m.TopRight = 1;
+            m.BottomLeft = m.BottomRight = -1;
+            m.TopMid = 2;
+            m.BottomMid = -2;
+            m.Offset = 0;
+
+            return Conv3x3(b, m);
+        }
+
+        #endregion
+
+
+        #region ConvMatrix
+
+        /// <summary>
+        /// used by Conv3x3
         /// convolution filters need a pixel matrix like this:
         /// [0 0 0]
         /// [0 1 0]
@@ -366,7 +476,6 @@ namespace Clustered_NN.Classes
 
             return true;
         }
-
 
         #endregion
 
