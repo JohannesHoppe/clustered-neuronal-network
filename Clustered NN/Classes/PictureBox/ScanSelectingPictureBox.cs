@@ -10,6 +10,7 @@ namespace Clustered_NN.Classes
     /// <summary>
     /// a PictureBox that has a image selecting rectangle
     /// used in the working threads, not for real displaying on forms
+    /// (note: this could have been made nicer!)
     /// </summary>
     public class ScanSelectingPictureBox : BaseSelectingPictureBox
     {
@@ -30,8 +31,8 @@ namespace Clustered_NN.Classes
         /// Initializes a new instance of the <see cref="ScanSelectingPictureBox"/> class.
         /// </summary>
         /// <param name="image">The image.</param>
-        /// <param name="oberserveSize">Size of the oberserve.</param>
-        /// <param name="stepSize">Size of the step.</param>
+        /// <param name="oberserveSize">Size of the oberserve area / rectangle</param>
+        /// <param name="stepSize">pixel-size of one step to move the rectangle to right and down</param>
         public ScanSelectingPictureBox(Image image, Size oberserveSize, int stepSize)
         {
             if (image == null)

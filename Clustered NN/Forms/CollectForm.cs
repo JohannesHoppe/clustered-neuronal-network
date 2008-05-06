@@ -251,9 +251,6 @@ namespace Clustered_NN.Forms
             {
                 Image selectedImage = pictureBox.GetResizedSelectedArea(_cnnProjectHolder.CNNProject.ImagePatternSize);
 
-                // makes the image easier identifiable
-                selectedImage = ImageHandling.GeneralizeImage(selectedImage);
-
                 string imageName = (counterUsed.Value + 1).ToString().PadLeft(4, '0');
 
                 // !
