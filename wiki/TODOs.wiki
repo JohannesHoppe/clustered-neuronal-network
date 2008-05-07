@@ -17,7 +17,7 @@ Top priority:
 Middle:
   * Video-Playback-Class that inherits from ImageProvider <- Jones
   * Saving the stream from ImageProvider to Video file <- Jones
-  * UserSettings for some hidden/hardcoded variables <- Jones
+  * ProjectSettings for some hidden/hardcoded variables <- Jones
 
 Low:
   * CHM help files
