@@ -1,0 +1,27 @@
+#summary Things to do.
+#labels TODO,Phase-Implementation
+
+= Introduction =
+
+Pick up a task and make Johannes happy.
+
+
+= Details =
+
+Top priority:
+  * Dokumentation until Friday!!! <- Yves
+  * give me a damn CSS 2003 login! <- Yves
+  * Provide a code-base to switch from Threads to Jobs/Tasks <- Yves
+  * Implementing a better neuronal network of your choice (I would like to have a nice learning curve)
+
+Middle:
+  * Video-Playback-Class that inherits from ImageProvider <- Jones
+  * Saving the stream from ImageProvider to Video file <- Jones
+  * UserSettings for some hidden/hardcoded variables <- Jones
+
+Low:
+  * CHM help files
+  * Code Review
+  * ImageSelectingPictureBox should not display rectangles out of the available image size
+  * Dragable Rectangle in ImageSelectingPictureBox 
+ 
