@@ -22,6 +22,7 @@ Middle:
 Low:
   * CHM help files
   * Code Review
+  * GUI Review
   * ImageSelectingPictureBox should not display rectangles out of the available image size
   * Resizable Rectangle in ImageSelectingPictureBox 
  
