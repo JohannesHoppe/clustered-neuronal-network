@@ -23,5 +23,5 @@ Low:
   * CHM help files
   * Code Review
   * ImageSelectingPictureBox should not display rectangles out of the available image size
-  * Dragable Rectangle in ImageSelectingPictureBox 
+  * Resizable Rectangle in ImageSelectingPictureBox 
  
