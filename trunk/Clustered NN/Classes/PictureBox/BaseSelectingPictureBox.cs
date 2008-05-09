@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace Clustered_NN.Classes
+namespace Clustered_NN.Classes.SelectingPictureBox
 {
     /// <summary>
     /// basic functions for ImageSelectingPictureBox 

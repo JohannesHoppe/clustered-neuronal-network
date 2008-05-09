@@ -4,7 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace Clustered_NN.Classes
+namespace Clustered_NN.Classes.ImageProvider
 {
     abstract class ImageProvider
     {
@@ -22,7 +22,20 @@ namespace Clustered_NN.Classes
 
         public delegate void OnFrameDelegate(object sender, OnFrameEventArgs e);
         abstract public event OnFrameDelegate OnFrame;
+
+
+        /// <summary>
+        /// Gets the available providers, hardcoded
+        /// </summary>
+        /// <returns></returns>
+        public static string[] GetAvailableProviders () {
+
+            return new string[] {
+                "Multithreaded VFW",
+                "DirectShow Video"
+            };
         
+        }
     }
 
 

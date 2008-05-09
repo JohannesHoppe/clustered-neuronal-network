@@ -38,22 +38,23 @@
             this.gbImageProvider = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlDeviceControl = new System.Windows.Forms.FlowLayoutPanel();
+            this.pictureBox = new Clustered_NN.Classes.SelectingPictureBox.ScanSelectingPictureBox();
+            this.cmbImageProvider = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.currentImageSmall = new System.Windows.Forms.PictureBox();
+            this.currentImage = new System.Windows.Forms.PictureBox();
             this.threadList = new System.Windows.Forms.ListView();
             this.btnStartScan = new System.Windows.Forms.Button();
             this.threadListRefreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.currentImage = new System.Windows.Forms.PictureBox();
-            this.currentImageSmall = new System.Windows.Forms.PictureBox();
-            this.pictureBox = new Clustered_NN.Classes.ScanSelectingPictureBox();
             this.pnlContentHolder.SuspendLayout();
             this.tblContent.SuspendLayout();
             this.tblNavigation.SuspendLayout();
             this.gbImageProvider.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.currentImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.currentImageSmall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.currentImageSmall)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currentImage)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTooltip
@@ -73,7 +74,7 @@
             this.pnlContentHolder.Controls.Add(this.tblContent);
             this.pnlContentHolder.Location = new System.Drawing.Point(12, 40);
             this.pnlContentHolder.Name = "pnlContentHolder";
-            this.pnlContentHolder.Size = new System.Drawing.Size(666, 628);
+            this.pnlContentHolder.Size = new System.Drawing.Size(664, 666);
             this.pnlContentHolder.TabIndex = 6;
             // 
             // tblContent
@@ -87,10 +88,10 @@
             this.tblContent.Location = new System.Drawing.Point(0, 0);
             this.tblContent.Name = "tblContent";
             this.tblContent.RowCount = 3;
-            this.tblContent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 325F));
+            this.tblContent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 330F));
             this.tblContent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblContent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tblContent.Size = new System.Drawing.Size(664, 626);
+            this.tblContent.Size = new System.Drawing.Size(662, 664);
             this.tblContent.TabIndex = 0;
             // 
             // tblNavigation
@@ -100,7 +101,7 @@
             this.tblNavigation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblNavigation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblNavigation.Controls.Add(this.btnPrev, 0, 0);
-            this.tblNavigation.Location = new System.Drawing.Point(213, 589);
+            this.tblNavigation.Location = new System.Drawing.Point(212, 627);
             this.tblNavigation.Name = "tblNavigation";
             this.tblNavigation.RowCount = 1;
             this.tblNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -129,7 +130,7 @@
             this.gbImageProvider.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbImageProvider.Location = new System.Drawing.Point(3, 3);
             this.gbImageProvider.Name = "gbImageProvider";
-            this.gbImageProvider.Size = new System.Drawing.Size(658, 319);
+            this.gbImageProvider.Size = new System.Drawing.Size(656, 324);
             this.gbImageProvider.TabIndex = 9;
             this.gbImageProvider.TabStop = false;
             this.gbImageProvider.Text = "Image Provider";
@@ -139,27 +140,47 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.38461F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.61539F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Controls.Add(this.pnlDeviceControl, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.pictureBox, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.pnlDeviceControl, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.cmbImageProvider, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(652, 300);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(650, 305);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
             // pnlDeviceControl
             // 
             this.pnlDeviceControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDeviceControl.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.pnlDeviceControl.Location = new System.Drawing.Point(3, 3);
+            this.pnlDeviceControl.Location = new System.Drawing.Point(3, 28);
             this.pnlDeviceControl.Name = "pnlDeviceControl";
-            this.pnlDeviceControl.Size = new System.Drawing.Size(159, 294);
+            this.pnlDeviceControl.Size = new System.Drawing.Size(158, 274);
             this.pnlDeviceControl.TabIndex = 6;
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox.Location = new System.Drawing.Point(167, 3);
+            this.pictureBox.Name = "pictureBox";
+            this.tableLayoutPanel3.SetRowSpan(this.pictureBox, 2);
+            this.pictureBox.Size = new System.Drawing.Size(352, 288);
+            this.pictureBox.TabIndex = 5;
+            this.pictureBox.TabStop = false;
+            // 
+            // cmbImageProvider
+            // 
+            this.cmbImageProvider.FormattingEnabled = true;
+            this.cmbImageProvider.Location = new System.Drawing.Point(3, 3);
+            this.cmbImageProvider.Name = "cmbImageProvider";
+            this.cmbImageProvider.Size = new System.Drawing.Size(120, 21);
+            this.cmbImageProvider.TabIndex = 7;
+            this.cmbImageProvider.SelectedIndexChanged += new System.EventHandler(this.cmbImageProvider_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -168,10 +189,26 @@
             this.panel1.Controls.Add(this.threadList);
             this.panel1.Controls.Add(this.btnStartScan);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 328);
+            this.panel1.Location = new System.Drawing.Point(3, 333);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(658, 255);
+            this.panel1.Size = new System.Drawing.Size(656, 288);
             this.panel1.TabIndex = 23;
+            // 
+            // currentImageSmall
+            // 
+            this.currentImageSmall.Location = new System.Drawing.Point(219, 17);
+            this.currentImageSmall.Name = "currentImageSmall";
+            this.currentImageSmall.Size = new System.Drawing.Size(20, 20);
+            this.currentImageSmall.TabIndex = 3;
+            this.currentImageSmall.TabStop = false;
+            // 
+            // currentImage
+            // 
+            this.currentImage.Location = new System.Drawing.Point(219, 52);
+            this.currentImage.Name = "currentImage";
+            this.currentImage.Size = new System.Drawing.Size(20, 20);
+            this.currentImage.TabIndex = 2;
+            this.currentImage.TabStop = false;
             // 
             // threadList
             // 
@@ -197,37 +234,12 @@
             // 
             this.threadListRefreshTimer.Tick += new System.EventHandler(this.threadListRefreshTimer_Tick);
             // 
-            // currentImage
-            // 
-            this.currentImage.Location = new System.Drawing.Point(219, 52);
-            this.currentImage.Name = "currentImage";
-            this.currentImage.Size = new System.Drawing.Size(20, 20);
-            this.currentImage.TabIndex = 2;
-            this.currentImage.TabStop = false;
-            // 
-            // currentImageSmall
-            // 
-            this.currentImageSmall.Location = new System.Drawing.Point(219, 17);
-            this.currentImageSmall.Name = "currentImageSmall";
-            this.currentImageSmall.Size = new System.Drawing.Size(20, 20);
-            this.currentImageSmall.TabIndex = 3;
-            this.currentImageSmall.TabStop = false;
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox.Location = new System.Drawing.Point(168, 3);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(352, 288);
-            this.pictureBox.TabIndex = 5;
-            this.pictureBox.TabStop = false;
-            // 
             // DetectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(692, 743);
+            this.ClientSize = new System.Drawing.Size(692, 765);
             this.Controls.Add(this.pnlContentHolder);
             this.Controls.Add(this.lblTooltip);
             this.DoubleBuffered = true;
@@ -242,10 +254,10 @@
             this.tblNavigation.ResumeLayout(false);
             this.gbImageProvider.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.currentImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.currentImageSmall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.currentImageSmall)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currentImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,7 +270,7 @@
         private System.Windows.Forms.TableLayoutPanel tblContent;
         private System.Windows.Forms.GroupBox gbImageProvider;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private Clustered_NN.Classes.ScanSelectingPictureBox pictureBox;
+        private Clustered_NN.Classes.SelectingPictureBox.ScanSelectingPictureBox pictureBox;
         private System.Windows.Forms.FlowLayoutPanel pnlDeviceControl;
         private System.Windows.Forms.TableLayoutPanel tblNavigation;
         private System.Windows.Forms.Button btnPrev;
@@ -268,5 +280,6 @@
         private System.Windows.Forms.Timer threadListRefreshTimer;
         private System.Windows.Forms.PictureBox currentImage;
         private System.Windows.Forms.PictureBox currentImageSmall;
+        private System.Windows.Forms.ComboBox cmbImageProvider;
     }
 }
