@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using System.Threading;
 
 
-namespace Clustered_NN.Classes
+namespace Clustered_NN.Classes.ImageProvider
 {
     /// <summary>
     /// Provides an interface to VFW (Video for Windows)
@@ -30,12 +30,12 @@ namespace Clustered_NN.Classes
         private PictureBox _pictureBox;
         private FlowLayoutPanel _pnlDeviceControl;
         private IntPtr _controlHandle;
-
+        
         //public delegate void OnFrameDelegate(object sender, WebCameraEventArgs e);
         override public event OnFrameDelegate OnFrame;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebCamImageProvider"/> class.
+        /// Initializes a new instance of the <see cref="MultithreadedVFWImageProvider"/> class.
         /// </summary>
         /// <param name="pictureBox">image that is used to display the video</param>
         /// <param name="pnlDeviceControl">a panel that will hold all device specific controls</param>
@@ -53,6 +53,7 @@ namespace Clustered_NN.Classes
 
             this._pictureBox.Width = this.FrameWidth;
             this._pictureBox.Height = this.FrameHeight;
+            this._pictureBox.Image = null;
             
             WebCameraDeviceManager camManager = new WebCameraDeviceManager();
             cmbDevices.Items.AddRange(camManager.Devices);

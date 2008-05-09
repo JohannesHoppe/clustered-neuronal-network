@@ -51,12 +51,13 @@
             this.deleteToolStripButton_NotMatching = new System.Windows.Forms.ToolStripButton();
             this.gbImageProvider = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox = new Clustered_NN.Classes.ImageSelectingPictureBox();
             this.pnlDeviceControl = new System.Windows.Forms.FlowLayoutPanel();
+            this.cmbImageProvider = new System.Windows.Forms.ComboBox();
             this.tblNavigation = new System.Windows.Forms.TableLayoutPanel();
             this.btnNext = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.pictureBox = new Clustered_NN.Classes.SelectingPictureBox.ImageSelectingPictureBox();
             this.pnlContentHolder.SuspendLayout();
             this.tblContent.SuspendLayout();
             this.gbTrainingQueue.SuspendLayout();
@@ -65,8 +66,8 @@
             this.toolStripNotMatching.SuspendLayout();
             this.gbImageProvider.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.tblNavigation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTooltip
@@ -86,7 +87,7 @@
             this.pnlContentHolder.Controls.Add(this.tblContent);
             this.pnlContentHolder.Location = new System.Drawing.Point(13, 73);
             this.pnlContentHolder.Name = "pnlContentHolder";
-            this.pnlContentHolder.Size = new System.Drawing.Size(666, 628);
+            this.pnlContentHolder.Size = new System.Drawing.Size(666, 668);
             this.pnlContentHolder.TabIndex = 2;
             // 
             // tblContent
@@ -100,19 +101,19 @@
             this.tblContent.Location = new System.Drawing.Point(0, 0);
             this.tblContent.Name = "tblContent";
             this.tblContent.RowCount = 3;
-            this.tblContent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 325F));
+            this.tblContent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 330F));
             this.tblContent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblContent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tblContent.Size = new System.Drawing.Size(664, 626);
+            this.tblContent.Size = new System.Drawing.Size(664, 666);
             this.tblContent.TabIndex = 0;
             // 
             // gbTrainingQueue
             // 
             this.gbTrainingQueue.Controls.Add(this.tblTrainingQueue);
             this.gbTrainingQueue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbTrainingQueue.Location = new System.Drawing.Point(3, 328);
+            this.gbTrainingQueue.Location = new System.Drawing.Point(3, 333);
             this.gbTrainingQueue.Name = "gbTrainingQueue";
-            this.gbTrainingQueue.Size = new System.Drawing.Size(658, 255);
+            this.gbTrainingQueue.Size = new System.Drawing.Size(658, 290);
             this.gbTrainingQueue.TabIndex = 10;
             this.gbTrainingQueue.TabStop = false;
             this.gbTrainingQueue.Text = "Training Queue";
@@ -139,7 +140,7 @@
             this.tblTrainingQueue.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblTrainingQueue.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tblTrainingQueue.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblTrainingQueue.Size = new System.Drawing.Size(652, 236);
+            this.tblTrainingQueue.Size = new System.Drawing.Size(652, 271);
             this.tblTrainingQueue.TabIndex = 7;
             // 
             // lvMatching
@@ -149,7 +150,7 @@
             this.lvMatching.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvMatching.Location = new System.Drawing.Point(3, 63);
             this.lvMatching.Name = "lvMatching";
-            this.lvMatching.Size = new System.Drawing.Size(306, 140);
+            this.lvMatching.Size = new System.Drawing.Size(306, 175);
             this.lvMatching.TabIndex = 4;
             this.lvMatching.UseCompatibleStateImageBehavior = false;
             this.lvMatching.View = System.Windows.Forms.View.List;
@@ -178,7 +179,7 @@
             this.lvNotMatching.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvNotMatching.Location = new System.Drawing.Point(343, 63);
             this.lvNotMatching.Name = "lvNotMatching";
-            this.lvNotMatching.Size = new System.Drawing.Size(306, 140);
+            this.lvNotMatching.Size = new System.Drawing.Size(306, 175);
             this.lvNotMatching.TabIndex = 3;
             this.lvNotMatching.UseCompatibleStateImageBehavior = false;
             this.lvNotMatching.View = System.Windows.Forms.View.List;
@@ -225,7 +226,7 @@
             this.openToolStripButton_Matching,
             this.saveToolStripButton_Matching,
             this.deleteToolStripButton_Matching});
-            this.toolStripMatching.Location = new System.Drawing.Point(3, 209);
+            this.toolStripMatching.Location = new System.Drawing.Point(3, 244);
             this.toolStripMatching.Margin = new System.Windows.Forms.Padding(3);
             this.toolStripMatching.Name = "toolStripMatching";
             this.toolStripMatching.Size = new System.Drawing.Size(306, 24);
@@ -268,7 +269,7 @@
             this.openToolStripButton_NotMatching,
             this.saveToolStripButton_NotMatching,
             this.deleteToolStripButton_NotMatching});
-            this.toolStripNotMatching.Location = new System.Drawing.Point(343, 209);
+            this.toolStripNotMatching.Location = new System.Drawing.Point(343, 244);
             this.toolStripNotMatching.Margin = new System.Windows.Forms.Padding(3);
             this.toolStripNotMatching.Name = "toolStripNotMatching";
             this.toolStripNotMatching.Size = new System.Drawing.Size(306, 24);
@@ -311,7 +312,7 @@
             this.gbImageProvider.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbImageProvider.Location = new System.Drawing.Point(3, 3);
             this.gbImageProvider.Name = "gbImageProvider";
-            this.gbImageProvider.Size = new System.Drawing.Size(658, 319);
+            this.gbImageProvider.Size = new System.Drawing.Size(658, 324);
             this.gbImageProvider.TabIndex = 9;
             this.gbImageProvider.TabStop = false;
             this.gbImageProvider.Text = "Image Provider";
@@ -321,36 +322,36 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.38461F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.61539F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Controls.Add(this.pnlDeviceControl, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.cmbImageProvider, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.pictureBox, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.pnlDeviceControl, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(652, 300);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(652, 305);
             this.tableLayoutPanel3.TabIndex = 5;
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox.Location = new System.Drawing.Point(168, 3);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(352, 288);
-            this.pictureBox.TabIndex = 5;
-            this.pictureBox.TabStop = false;
             // 
             // pnlDeviceControl
             // 
             this.pnlDeviceControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDeviceControl.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.pnlDeviceControl.Location = new System.Drawing.Point(3, 3);
+            this.pnlDeviceControl.Location = new System.Drawing.Point(3, 28);
             this.pnlDeviceControl.Name = "pnlDeviceControl";
-            this.pnlDeviceControl.Size = new System.Drawing.Size(159, 294);
+            this.pnlDeviceControl.Size = new System.Drawing.Size(159, 274);
             this.pnlDeviceControl.TabIndex = 6;
+            // 
+            // cmbImageProvider
+            // 
+            this.cmbImageProvider.FormattingEnabled = true;
+            this.cmbImageProvider.Location = new System.Drawing.Point(3, 3);
+            this.cmbImageProvider.Name = "cmbImageProvider";
+            this.cmbImageProvider.Size = new System.Drawing.Size(120, 21);
+            this.cmbImageProvider.TabIndex = 7;
+            this.cmbImageProvider.SelectedIndexChanged += new System.EventHandler(this.cmbImageProvider_SelectedIndexChanged);
             // 
             // tblNavigation
             // 
@@ -359,7 +360,7 @@
             this.tblNavigation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblNavigation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblNavigation.Controls.Add(this.btnNext, 1, 0);
-            this.tblNavigation.Location = new System.Drawing.Point(213, 589);
+            this.tblNavigation.Location = new System.Drawing.Point(213, 629);
             this.tblNavigation.Name = "tblNavigation";
             this.tblNavigation.RowCount = 1;
             this.tblNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -397,12 +398,22 @@
             this.saveFileDialog.Filter = "JPEG files|*.jpg";
             this.saveFileDialog.Title = "Save Files(s)";
             // 
+            // pictureBox
+            // 
+            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox.Location = new System.Drawing.Point(168, 3);
+            this.pictureBox.Name = "pictureBox";
+            this.tableLayoutPanel3.SetRowSpan(this.pictureBox, 2);
+            this.pictureBox.Size = new System.Drawing.Size(352, 288);
+            this.pictureBox.TabIndex = 5;
+            this.pictureBox.TabStop = false;
+            // 
             // CollectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(692, 743);
+            this.ClientSize = new System.Drawing.Size(692, 765);
             this.Controls.Add(this.lblTooltip);
             this.Controls.Add(this.pnlContentHolder);
             this.DoubleBuffered = true;
@@ -423,8 +434,8 @@
             this.toolStripNotMatching.PerformLayout();
             this.gbImageProvider.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.tblNavigation.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -437,7 +448,7 @@
         private System.Windows.Forms.TableLayoutPanel tblContent;
         private System.Windows.Forms.GroupBox gbImageProvider;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private Clustered_NN.Classes.ImageSelectingPictureBox pictureBox;
+        private Clustered_NN.Classes.SelectingPictureBox.ImageSelectingPictureBox pictureBox;
         private System.Windows.Forms.FlowLayoutPanel pnlDeviceControl;
         private System.Windows.Forms.GroupBox gbTrainingQueue;
         private System.Windows.Forms.TableLayoutPanel tblTrainingQueue;
@@ -460,6 +471,7 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.TableLayoutPanel tblNavigation;
         private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.ComboBox cmbImageProvider;
 
     }
 }

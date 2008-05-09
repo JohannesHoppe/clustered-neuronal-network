@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Clustered_NN.Classes;
+using Clustered_NN.Classes.SelectingPictureBox;
+using Clustered_NN.Classes.ImageProvider;
 
 namespace Clustered_NN.Forms
 {
@@ -47,16 +49,8 @@ namespace Clustered_NN.Forms
                  this.pnlContentHolder,
                  this._cnnProjectHolder);
 
-            this._imageProvider = new MultithreadedVFWImageProvider(
-
-                this.pictureBox,
-                this.pnlDeviceControl,
-                this.Handle
-                
-            );
-
-            this._imageProvider.OnFrame += new ImageProvider.OnFrameDelegate(ImageProvider_OnFrame);
-            this._imageProvider.StartPresentation();
+            this.cmbImageProvider.Items.AddRange(ImageProvider.GetAvailableProviders());
+            this.cmbImageProvider.SelectedIndex = 0;
 
 
             this._cnnProjectHolder.ProjectChanged += new CNNProjectHolder.ProjectChangedDelegate(CnnProjectHolder_ProjectChanged);
@@ -523,6 +517,52 @@ namespace Clustered_NN.Forms
             {
                 _imageProvider.StartPresentation();
             }
+        }
+
+
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the cmbImageProvider control.
+        /// Initialises the differen ImageProviders
+        /// </summary>
+        /// <remarks>
+        /// same function as in DetecForm.cs
+        /// </remarks>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void cmbImageProvider_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (this._imageProvider != null)
+            {
+                this._imageProvider.StopPresentation();
+            }
+
+            // our favourite provider - webcam & tv-cards
+            if (cmbImageProvider.SelectedIndex == 0)
+            {
+                this._imageProvider = new MultithreadedVFWImageProvider(
+                    this.pictureBox,
+                    this.pnlDeviceControl,
+                    this.Handle
+                );
+            }
+            else if (cmbImageProvider.SelectedIndex == 1)
+            {
+                this._imageProvider = new DirectShowImageProvider(
+                    this.pictureBox,
+                    this.pnlDeviceControl
+                );
+            }
+
+            // whoops!
+            else
+            {
+                throw new NotImplementedException("No code was defined for the ImageProvider with the number " + cmbImageProvider.SelectedIndex + "!");
+
+            }
+
+            this._imageProvider.OnFrame += new ImageProvider.OnFrameDelegate(ImageProvider_OnFrame);
+            this._imageProvider.StartPresentation();
         }
 
     }

@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Diagnostics;
 using System.Threading;
+using Clustered_NN.Classes.SelectingPictureBox;
 
 namespace Clustered_NN.Classes
 {
@@ -82,14 +83,14 @@ namespace Clustered_NN.Classes
             this._lblTrainInfo = lblTrainInfo;
 
             _oberserveSizes = new List<Size>();
-            //_oberserveSizes.Add(new Size(20, 20));
-            //_oberserveSizes.Add(new Size(40, 40));
-            //_oberserveSizes.Add(new Size(60, 60));
-            //_oberserveSizes.Add(new Size(80, 80));
-            //_oberserveSizes.Add(new Size(100, 100));
-            //_oberserveSizes.Add(new Size(120, 120));
-            _oberserveSizes.Add(new Size(150, 150));
             //_oberserveSizes.Add(new Size(240, 240));
+            _oberserveSizes.Add(new Size(150, 150)); // this is the same size as the default rectangle =)
+            //_oberserveSizes.Add(new Size(120, 120));
+            //_oberserveSizes.Add(new Size(100, 100));
+            //_oberserveSizes.Add(new Size(80, 80));
+            //_oberserveSizes.Add(new Size(60, 60));
+            //_oberserveSizes.Add(new Size(40, 40));
+            //_oberserveSizes.Add(new Size(20, 20));
         }
 
 
