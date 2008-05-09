@@ -53,11 +53,11 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlDeviceControl = new System.Windows.Forms.FlowLayoutPanel();
             this.cmbImageProvider = new System.Windows.Forms.ComboBox();
+            this.pictureBox = new Clustered_NN.Classes.SelectingPictureBox.ImageSelectingPictureBox();
             this.tblNavigation = new System.Windows.Forms.TableLayoutPanel();
             this.btnNext = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.pictureBox = new Clustered_NN.Classes.SelectingPictureBox.ImageSelectingPictureBox();
             this.pnlContentHolder.SuspendLayout();
             this.tblContent.SuspendLayout();
             this.gbTrainingQueue.SuspendLayout();
@@ -66,8 +66,8 @@
             this.toolStripNotMatching.SuspendLayout();
             this.gbImageProvider.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tblNavigation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.tblNavigation.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTooltip
@@ -353,6 +353,16 @@
             this.cmbImageProvider.TabIndex = 7;
             this.cmbImageProvider.SelectedIndexChanged += new System.EventHandler(this.cmbImageProvider_SelectedIndexChanged);
             // 
+            // pictureBox
+            // 
+            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox.Location = new System.Drawing.Point(168, 3);
+            this.pictureBox.Name = "pictureBox";
+            this.tableLayoutPanel3.SetRowSpan(this.pictureBox, 2);
+            this.pictureBox.Size = new System.Drawing.Size(352, 288);
+            this.pictureBox.TabIndex = 5;
+            this.pictureBox.TabStop = false;
+            // 
             // tblNavigation
             // 
             this.tblNavigation.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -398,16 +408,6 @@
             this.saveFileDialog.Filter = "JPEG files|*.jpg";
             this.saveFileDialog.Title = "Save Files(s)";
             // 
-            // pictureBox
-            // 
-            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox.Location = new System.Drawing.Point(168, 3);
-            this.pictureBox.Name = "pictureBox";
-            this.tableLayoutPanel3.SetRowSpan(this.pictureBox, 2);
-            this.pictureBox.Size = new System.Drawing.Size(352, 288);
-            this.pictureBox.TabIndex = 5;
-            this.pictureBox.TabStop = false;
-            // 
             // CollectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -434,8 +434,8 @@
             this.toolStripNotMatching.PerformLayout();
             this.gbImageProvider.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.tblNavigation.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.tblNavigation.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

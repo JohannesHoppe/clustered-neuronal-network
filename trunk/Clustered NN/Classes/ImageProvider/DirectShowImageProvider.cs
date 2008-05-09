@@ -26,11 +26,11 @@ namespace Clustered_NN.Classes.ImageProvider
     class DirectShowImageProvider : ImageProvider
     {
         // common video format
-        //private int _frameWidth = 320;
-        //private int _frameHeight = 240;
+        private int _frameWidth = 320;
+        private int _frameHeight = 240;
 
-        private int _frameWidth = 384;
-        private int _frameHeight = 288;
+        //private int _frameWidth = 384;
+        //private int _frameHeight = 288;
         
 
         //private int _time = 0;
