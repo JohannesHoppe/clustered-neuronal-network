@@ -33,7 +33,7 @@ namespace Clustered_NN.Classes
         [NonSerialized]
         private Label _lblTrainInfo;
         [NonSerialized]
-        private List<Size> _oberserveSizes;
+        private List<Size> _observeSizes;
         
         [NonSerialized]
         private List<ImageDetectionNeuralNetwork_DetectThreadWork> _threadWorkList;
@@ -82,15 +82,15 @@ namespace Clustered_NN.Classes
             this._pbTrain = pbTrain;
             this._lblTrainInfo = lblTrainInfo;
 
-            _oberserveSizes = new List<Size>();
-            //_oberserveSizes.Add(new Size(240, 240));
-            _oberserveSizes.Add(new Size(150, 150)); // this is the same size as the default rectangle =)
-            //_oberserveSizes.Add(new Size(120, 120));
-            //_oberserveSizes.Add(new Size(100, 100));
-            //_oberserveSizes.Add(new Size(80, 80));
-            //_oberserveSizes.Add(new Size(60, 60));
-            //_oberserveSizes.Add(new Size(40, 40));
-            //_oberserveSizes.Add(new Size(20, 20));
+            _observeSizes = new List<Size>();
+            //_observeSizes.Add(new Size(240, 240));
+            _observeSizes.Add(new Size(150, 150));
+            _observeSizes.Add(new Size(120, 120));
+            //_observeSizes.Add(new Size(100, 100));
+            //_observeSizes.Add(new Size(80, 80));
+            //_observeSizes.Add(new Size(60, 60));
+            //_observeSizes.Add(new Size(40, 40));
+            //_observeSizes.Add(new Size(20, 20));
         }
 
 
@@ -110,7 +110,7 @@ namespace Clustered_NN.Classes
             // the factory creates a Backward Propagation Neural Network
             BackPropNetworkFactory factory = new BackPropNetworkFactory();
 
-            // the arralist holds the number of neurons in each layer
+            // the arrayList holds the number of neurons in each layer
             ArrayList layers = new ArrayList();
 
             // 400 neurons in first layer
@@ -120,7 +120,7 @@ namespace Clustered_NN.Classes
             // 1 neurons in the output layer
             layers.Add(1);
 
-            // provide the arraylist as the parameter, to create a network
+            // provide the arrayList as the parameter, to create a network
             _network = factory.CreateNetwork(layers);
 
             
@@ -132,7 +132,7 @@ namespace Clustered_NN.Classes
         #region network training
 
         /// <summary>
-        /// just used to store the training data temporarely
+        /// just used to store the training data temporarily
         /// </summary>
         private class TrainingItem
         {
@@ -152,9 +152,9 @@ namespace Clustered_NN.Classes
             private bool _matching;
 
             /// <summary>
-            /// Gets or sets a value indicating whether the caontaining image is a matching one
+            /// Gets or sets a value indicating whether the containing image is a matching one
             /// </summary>
-            /// <value><c>true</c> if matchin; otherwise, <c>false</c>.</value>
+            /// <value><c>true</c> if matching; otherwise, <c>false</c>.</value>
             public bool Matching
             {
                 get { return _matching; }
@@ -219,7 +219,7 @@ namespace Clustered_NN.Classes
             #endregion
 
             // filled list gets shuffled
-            // (maybe this optimzes the result)
+            // (maybe this optimizes the result)
             StaticClasses.Shuffle<TrainingItem>(trainingItemList);
             #endregion
 
@@ -236,7 +236,7 @@ namespace Clustered_NN.Classes
                 Image img = trainingItem.Image;
                 ArrayList arryListInput;
                 #region fills arryListInput
-                // Converts an image of any size to a pattern that can be feeded to the network.
+                // Converts an image of any size to a pattern that can be feed to the network.
                 ImageProcessingHelper imgHelper = new ImageProcessingHelper();
                 //note: this is a (monochrome) collection of 0's and 1's !!
                 arryListInput = imgHelper.ArrayListFromImage(img);
@@ -248,7 +248,7 @@ namespace Clustered_NN.Classes
 
                 #region Debugging
                 /*
-                // Convert an arraylist by rounding each value to a pattern of 0s and 1s 
+                // Convert an arrayList by rounding each value to a pattern of 0s and 1s 
                 PatternProcessingHelper patHelper = new PatternProcessingHelper();
                 String tmpPatern = patHelper.PatternFromArraylist(tmpImgList);
                 Debug.WriteLine("Added : " + tmpPatern);
@@ -379,7 +379,7 @@ namespace Clustered_NN.Classes
         /// <param name="pictureBox">The picture box.</param>
         /// <param name="imagePatternSize">Working size of a detection pattern (as defined in _cnnProjectHolder.CNNProject.ImagePatternSize)</param>
         /// <param name="currentImage">Just for testing: pictureBox to display the current image (original size)</param>
-        /// <param name="currentImageSmall">Just for testing: PictureBox to display the current resized and generalized image - as it gets feeded to the network</param>
+        /// <param name="currentImageSmall">Just for testing: PictureBox to display the current resized and generalized image - as it gets feed to the network</param>
         public void StartDetectPattern(ScanSelectingPictureBox pictureBox, Size imagePatternSize,
                                        PictureBox currentImage, PictureBox currentImageSmall)
         {
@@ -393,14 +393,14 @@ namespace Clustered_NN.Classes
                 _threadList = new List<Thread>();
 
                 int i = 0;
-                foreach (Size oberserveSize in _oberserveSizes)
+                foreach (Size observeSize in _observeSizes)
                 {
                     i++;
 
                     ImageDetectionNeuralNetwork_DetectThreadWork threadWork =
                         new ImageDetectionNeuralNetwork_DetectThreadWork(pictureBox.Image,
                                                                   imagePatternSize,
-                                                                  oberserveSize,
+                                                                  observeSize,
                                                                   10,
                                                                   detectPatternDelegate,
                                                                   currentImage,
@@ -433,10 +433,10 @@ namespace Clustered_NN.Classes
         public bool DetectPattern(Image img)
         {
 
-            //Step 1 : Convert the image to an arraylist
+            //Step 1 : Convert the image to an arrayList
             ArrayList arryListInput;
             #region fills arryListInput
-            // Converts an image of any size to a pattern that can be feeded to the network.
+            // Converts an image of any size to a pattern that can be feed to the network.
             ImageProcessingHelper imgHelper = new ImageProcessingHelper();
             //note: this is a (monochrome) collection of 0's and 1's !!
             arryListInput = imgHelper.ArrayListFromImage(img);

@@ -18,6 +18,8 @@ namespace Clustered_NN.Classes.SelectingPictureBox
         Size _observeSize;
         int _stepSize;
 
+
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ScanSelectingPictureBox"/> class.
         /// </summary>
@@ -31,9 +33,9 @@ namespace Clustered_NN.Classes.SelectingPictureBox
         /// Initializes a new instance of the <see cref="ScanSelectingPictureBox"/> class.
         /// </summary>
         /// <param name="image">The image.</param>
-        /// <param name="oberserveSize">Size of the oberserve area / rectangle</param>
+        /// <param name="observeSize">Size of the observe area / rectangle</param>
         /// <param name="stepSize">pixel-size of one step to move the rectangle to right and down</param>
-        public ScanSelectingPictureBox(Image image, Size oberserveSize, int stepSize)
+        public ScanSelectingPictureBox(Image image, Size observeSize, int stepSize)
         {
             if (image == null)
             {
@@ -44,7 +46,7 @@ namespace Clustered_NN.Classes.SelectingPictureBox
             this.Width = image.Width;
             this.Height = image.Height;
 
-            _observeSize = oberserveSize;
+            _observeSize = observeSize;
             _stepSize = stepSize;
         }
 
@@ -70,9 +72,8 @@ namespace Clustered_NN.Classes.SelectingPictureBox
 
 
         /// <summary>
-        /// Resets the used configurated vars
+        /// Resets the used configuration vars
         /// </summary>
-        /// <param name="observeSize">Size of the observed area</param>
         public void ResetScan()
         {
             // area at point 0/0
@@ -81,8 +82,9 @@ namespace Clustered_NN.Classes.SelectingPictureBox
             _rectangleFinalShape = GetRectangle(point1, point2);
 
 
-            //TODO: debugging
-            CenterRectangle(ref _rectangleFinalShape);
+            // for debugging we can start at the center of the area
+            // (since usually we will have the object in the near of the center)
+            //CenterRectangle(ref _rectangleFinalShape);
         }
 
         /// <summary>

@@ -14,7 +14,7 @@ namespace Clustered_NN.Classes.ImageProvider
     /// <summary>
     /// Provides an interface to DirectX / DirectShow
     /// 
-    /// Warning: hacked in a no-sleep-lots-of-redbull-near-deadline night!
+    /// Warning: hacked in a no-sleep-lots-of-red-bull-near-deadline night!
     ///
     /// This class extracts single frames from movie files which have to be
     /// supported by the installed codecs on the local machine.

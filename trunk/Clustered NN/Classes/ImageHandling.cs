@@ -493,7 +493,7 @@ namespace Clustered_NN.Classes
         /// 
         /// see: http://www.codersource.net/csharp_histogram_equalization.aspx
         /// </summary>
-        /// <param name="bmp">The equilized bitmap image</param>
+        /// <param name="bmp">The equalized bitmap image</param>
         public static void EquilizeHistogram(Bitmap bmp)
         {
 
@@ -612,7 +612,7 @@ namespace Clustered_NN.Classes
             get
             {
                 return "It is not possible to crop the image." + StaticClasses.NL
-                     + "Take care that the rectanlge stays within coordinatesof the image!";
+                     + "Take care that the rectangle stays within coordinates of the image!";
             }
         }
     }

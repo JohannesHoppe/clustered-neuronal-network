@@ -29,7 +29,7 @@ namespace Clustered_NN.Classes
         #region Properties
 
         /// <summary>
-        /// Contains the data of the enty
+        /// Contains the data of the entry
         /// </summary>
         /// <value>The buffer.</value>
         public byte[] Buffer

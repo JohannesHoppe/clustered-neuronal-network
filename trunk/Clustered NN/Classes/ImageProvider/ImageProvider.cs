@@ -40,7 +40,7 @@ namespace Clustered_NN.Classes.ImageProvider
 
 
     /// <summary>
-    /// containts the current bitmap frame
+    /// contains the current bitmap frame
     /// </summary>
     public class OnFrameEventArgs : EventArgs
     {

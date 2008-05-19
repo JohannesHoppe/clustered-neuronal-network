@@ -11,7 +11,10 @@ namespace Clustered_NN.Forms
 {
     public partial class WelcomeForm : Form
     {
-       
+
+        /// <summary>
+        /// Shows a welcome screen
+        /// </summary>
         public WelcomeForm()
         {
             InitializeComponent();

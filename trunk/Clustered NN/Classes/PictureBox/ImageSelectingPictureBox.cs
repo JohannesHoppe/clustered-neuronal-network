@@ -16,7 +16,7 @@ namespace Clustered_NN.Classes.SelectingPictureBox
         private bool _bMouseIsDown;
         private bool _bMoveRectangle;
 
-        // additional rectangle used for creating new rectangle or while moving existing final rectanle
+        // additional rectangle used for creating new rectangle or while moving existing final rectangle
         private Rectangle _rectangleTempShape;
 
         private Point _pointMouseDown;
