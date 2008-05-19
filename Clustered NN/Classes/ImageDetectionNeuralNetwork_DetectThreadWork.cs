@@ -32,20 +32,20 @@ namespace Clustered_NN.Classes
         /// </summary>
         /// <param name="image">The complete image on which the pattern should be searched</param>
         /// <param name="imagePatternSize">Working size of a detection pattern (as defined in _cnnProjectHolder.CNNProject.ImagePatternSize)</param>
-        /// <param name="oberserveSize">the 'scalation' - size of the rectangle that scans over the image</param>
+        /// <param name="observeSize">the 'scale' - size of the rectangle that scans over the image</param>
         /// <param name="stepSize">pixel-size of one step to move the rectangle to right and down</param>
         /// <param name="detectPatternDelegate">The detect pattern delegate.</param>
         /// <param name="currentImage">Just for testing: pictureBox to display the current image (original size)</param>
-        /// <param name="currentImageSmall">Just for testing: PictureBox to display the current resized and generalized image - as it gets feeded to the network</param>
+        /// <param name="currentImageSmall">Just for testing: PictureBox to display the current resized and generalized image - as it gets feed to the network</param>
         public ImageDetectionNeuralNetwork_DetectThreadWork(Image image,
                                                      Size imagePatternSize,
-                                                     Size oberserveSize,
+                                                     Size observeSize,
                                                      int stepSize,
                                                      ImageDetectionNeuralNetwork.DetectPatternDelegate detectPatternDelegate,
                                                      PictureBox currentImage,
                                                      PictureBox currentImageSmall)
         {
-            _scanSelectingPictureBox = new ScanSelectingPictureBox(image, oberserveSize, stepSize);
+            _scanSelectingPictureBox = new ScanSelectingPictureBox(image, observeSize, stepSize);
             _imagePatternSize = imagePatternSize;
             _detectPatternDelegate = detectPatternDelegate;
             _currentImage = currentImage;
@@ -57,7 +57,7 @@ namespace Clustered_NN.Classes
 
 
         /// <summary>
-        /// Enumerates all possibles areas until a match 
+        /// Enumerates all possible areas until a match 
         /// </summary>
         public void ThreadWork()
         {
@@ -84,27 +84,48 @@ namespace Clustered_NN.Classes
             {
                 CurrentLoop.Increment();
 
-                // also possible:
-                //Image smallImage = _scanSelectingPictureBox.GetResizedSelectedArea(_imagePatternSize);
-
-                Image bigImage = _scanSelectingPictureBox.SelectedArea;
-                Image smallImage = ImageHandling.GeneralizeImage(ImageHandling.ResizeImage(bigImage, _imagePatternSize));
-
-                UpdateCurrentImage(_currentImage, bigImage);
-                UpdateCurrentImage(_currentImageSmall, smallImage);
-                
-
-                bool match = _detectPatternDelegate(smallImage);
-
-                if (match)
+                try
                 {
-                    Match = true;
-                    UpdateCurrentImageBorder(_currentImage, Color.Green);
-                    UpdateCurrentImageBorder(_currentImageSmall, Color.Green);
-                    break;
+                    // also possible:
+                    //Image smallImage = _scanSelectingPictureBox.GetResizedSelectedArea(_imagePatternSize);
+
+                    Image bigImage = _scanSelectingPictureBox.SelectedArea;
+                    Image smallImage = ImageHandling.GeneralizeImage(ImageHandling.ResizeImage(bigImage, _imagePatternSize));
+
+                    UpdateCurrentImage(_currentImage, bigImage);
+                    UpdateCurrentImage(_currentImageSmall, smallImage);
+
+
+                    bool match = _detectPatternDelegate(smallImage);
+
+                    if (match)
+                    {
+                        Match = true;
+                        UpdateCurrentImageBorder(_currentImage, Color.Green);
+                        UpdateCurrentImageBorder(_currentImageSmall, Color.Green);
+                        break;
+                    }
+                }
+                // this happens if you scroll within the video during detection
+                catch (Exception ex)
+                {
+                    StaticClasses.ShowException(ex);
+                    return;
                 }
 
             }
+
+        }
+
+
+        /// <summary>
+        /// Gets the observed area, which is simply the RectangleFinalShape of the 
+        /// used _scanSelectingPictureBox
+        /// </summary>
+        /// <value>The observed area.</value>
+        public Rectangle ObservedArea
+        {
+            get { return _scanSelectingPictureBox.RectangleFinalShape; }
 
         }
 
@@ -131,8 +152,16 @@ namespace Clustered_NN.Classes
         }
 
 
+        /// <summary>
+        /// delegate used by UpdateCurrentImage
+        /// </summary>
         private delegate void UpdateCurrentImageDelegate(PictureBox invokedPictureBox, Image newImage);
 
+        /// <summary>
+        /// Invokes the given PictureBox by updating its image
+        /// </summary>
+        /// <param name="invokedPictureBox">The invoked picture box.</param>
+        /// <param name="newImage">The new image.</param>
         public void UpdateCurrentImage(PictureBox invokedPictureBox, Image newImage)
         {
             if (!invokedPictureBox.InvokeRequired)

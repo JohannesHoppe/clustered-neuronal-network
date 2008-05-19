@@ -14,7 +14,7 @@ namespace Clustered_NN.Forms
     public partial class CollectForm : Form
     {
         /// <summary>
-        /// holds the imported form elemets,
+        /// holds the imported form elements,
         /// you also need following controls: lblTooltip + pnlContentHolder !
         /// </summary>
         private ToolStripContainer _toolStripContainer = new ToolStripContainer();
@@ -141,7 +141,7 @@ namespace Clustered_NN.Forms
 
         #region checkbox toggle
         /// <summary>
-        /// toggles beetwen chkMatching and chkNotMatching
+        /// toggles between chkMatching and chkNotMatching
         /// </summary>
         private void chkMatching_CheckedChanged(object sender, EventArgs e)
         {
@@ -151,7 +151,7 @@ namespace Clustered_NN.Forms
 
 
         /// <summary>
-        /// toggles beetwen chkMatching and chkNotMatching
+        /// toggles between chkMatching and chkNotMatching
         /// </summary>
         private void chkNotMatching_CheckedChanged(object sender, EventArgs e)
         {
@@ -183,7 +183,7 @@ namespace Clustered_NN.Forms
 
 
         /// <summary>
-        /// The project has changed, we have to rereference and rebuild some things
+        /// The project has changed, we have to re-reference and rebuild some things
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
@@ -320,7 +320,7 @@ namespace Clustered_NN.Forms
             // not to forget, increments the counter !
             counterUsed.Increment();
 
-            // scroll down in list (and select the last itemn, too)
+            // scroll down in list (and select the last item, too)
             lvi.Selected = true;
             lvi.EnsureVisible();
         }
@@ -451,7 +451,7 @@ namespace Clustered_NN.Forms
             }
 
 
-            // scroll down in list (and select the last itemn, too)
+            // scroll down in list (and select the last item, too)
             lvi.Selected = true;
             lvi.EnsureVisible();
 
@@ -522,10 +522,10 @@ namespace Clustered_NN.Forms
 
         /// <summary>
         /// Handles the SelectedIndexChanged event of the cmbImageProvider control.
-        /// Initialises the differen ImageProviders
+        /// Initialises the different ImageProviders
         /// </summary>
         /// <remarks>
-        /// same function as in DetecForm.cs
+        /// same function as in DetectForm.cs
         /// </remarks>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>

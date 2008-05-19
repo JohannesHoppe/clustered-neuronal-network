@@ -39,13 +39,13 @@ namespace Clustered_NN.Forms
         #region ballon tooltip for electric bulb
 
         /// <summary>
-        /// Shows the ballon tooltip on the electric bulb icon (pictureBox1)
+        /// Shows the balloon tooltip on the electric bulb icon (pictureBox1)
         /// </summary>
         /// <param name="newText">The new text.</param>
         /// <param name="time">The time in milliseconds</param>
         /// <param name="parent">The generating form (since we redirect the controls)</param>
         /// <param name="permanent">if set to <c>true</c> the tooltip will come again</param>
-        public void ShowPictureBoxBallon(string newText, int time, Form parent, bool permanent) {
+        public void ShowPictureBoxBalloon(string newText, int time, Form parent, bool permanent) {
 
             balloonToolTipInfo.SetBalloonText(
                 this.pbxIcon,
@@ -72,7 +72,7 @@ namespace Clustered_NN.Forms
 
 
         /// <summary>
-        /// Hides the showed ballon tooltip again after fade in
+        /// Hides the showed balloon tooltip again after fade in
         /// </summary>
         private void timerToolTip_Tick(object sender, EventArgs e)
         {
@@ -82,7 +82,7 @@ namespace Clustered_NN.Forms
 
 
         /// <summary>
-        /// Shows the ballon tooltip immedeately
+        /// Shows the balloon tooltip immediately
         /// </summary>
         void pictureBox1_MouseEnter(object sender, EventArgs e)
         {
@@ -101,7 +101,7 @@ namespace Clustered_NN.Forms
 
 
         /// <summary>
-        /// Hides the ballon tooltip immedeately
+        /// Hides the balloon tooltip immediately
         /// </summary>
         void pictureBox1_MouseLeave(object sender, EventArgs e)
         {
@@ -113,7 +113,7 @@ namespace Clustered_NN.Forms
 
 
         /// <summary>
-        /// Imports the toolstripContainer with all his nice controls into the given form
+        /// Imports the toolStripContainer with all his nice controls into the given form
         /// also adds the controls from this.pnlContentHolder to masterFormContents.pnlContentHolder
         /// </summary>
         public static void InitializeContent(Form newForm,
@@ -140,7 +140,7 @@ namespace Clustered_NN.Forms
 
             int time = (cnnProjectHolder.CNNProject.ExpertMode) ? 1 : 5000;
 
-            masterFormContents.ShowPictureBoxBallon(lblTooltip.Text, time, newForm, true);
+            masterFormContents.ShowPictureBoxBalloon(lblTooltip.Text, time, newForm, true);
             masterFormContents.lblHeading.Text = newForm.Text;
 
         }

@@ -213,7 +213,7 @@ namespace Clustered_NN.Classes.SelectingPictureBox
 
         
         /// <summary>
-        /// Resets all values of the given rectanlge to zero
+        /// Resets all values of the given rectangle to zero
         /// </summary>
         /// <param name="rect">The rectangle</param>
         protected void ResetRectangle(ref Rectangle rect)
@@ -294,18 +294,16 @@ namespace Clustered_NN.Classes.SelectingPictureBox
         }
 
 
-        /*
         /// <summary>
-        /// Gets or sets the rectangle final shape.
+        /// Gets the rectangle final shape.
         /// </summary>
         /// <value>The rectangle final shape.</value>
         public Rectangle RectangleFinalShape
         {
             get { return _rectangleFinalShape; }
-            set { _rectangleFinalShape = value; }
+            //set { _rectangleFinalShape = value; }
 
         }
-        */
 
     }
 

@@ -10,7 +10,6 @@ using System.Windows.Forms.Design;
  * BalloonToolTip 
  * 
  * A Custom BalloonToolTip for .Net v1.1
- * by Noor Abuhamdeh
  * http://www.codeproject.com/KB/miscctrl/ballontooltip.aspx
  */
 namespace Clustered_NN.Classes
@@ -137,7 +136,7 @@ namespace Clustered_NN.Classes
 
 
         /// <summary>
-        /// Extend any control except itself and the form, this function get called for use automaticly by the designer.
+        /// Extend any control except itself and the form, this function get called for use automatically by the designer.
         /// </summary>
 		public bool CanExtend(object extendee)
 		{
@@ -151,7 +150,7 @@ namespace Clustered_NN.Classes
 
 
         /// <summary>
-        /// This is not a regular funtion, its our extender property seprated as two functions for get and set.
+        /// This is not a regular function, its our extender property separated as two functions for get and set.
         /// </summary>
 		public string GetBalloonText(Control parent)
 		{
@@ -427,7 +426,7 @@ namespace Clustered_NN.Classes
 
 
         /// <summary>
-        /// show the balloon tooltip programatically,
+        /// show the balloon tooltip,
         /// to make it visible without the user have to hover over the control
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -444,7 +443,7 @@ namespace Clustered_NN.Classes
 
             tf.flag = TTF_IDISHWND | TTF_ABSOLUTE | TTF_TRACK;
             //tf.size = Marshal.SizeOf(typeof(toolinfo));
-            //tf.text="dfasdfasdf";
+            //tf.text="test";
             Marshal.StructureToPtr(tf, tempptr, false);
             SendMessage(toolwindow, TTM_SETTOOLINFO, 0, tempptr);
 

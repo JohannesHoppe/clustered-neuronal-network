@@ -89,7 +89,7 @@ namespace Clustered_NN.Forms
 
 
         /// <summary>
-        /// The project has changed, we have to rereference and rebuild some things
+        /// The project has changed, we have to re-reference and rebuild some things
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
@@ -147,9 +147,11 @@ namespace Clustered_NN.Forms
 
             foreach (ImageDetectionNeuralNetwork_DetectThreadWork threadWork in _cnnProjectHolder.CNNProject.ImgDetectionNN.ThreadWorkList)
             {
-                threadList.Items.Add(threadWork.Name + " (" + threadWork.CurrentLoop + "/" + threadWork.TotalLoops + ")"
-                    + (threadWork.Match ? "- MATCHED!" : "")
-                
+                threadList.Items.Add(
+                       threadWork.Name + " (Loops " + threadWork.CurrentLoop + "/" + threadWork.TotalLoops + ")"
+                    + (threadWork.Match ? 
+                        "- MATCHED at Point " + threadWork.ObservedArea.X + " / " + threadWork.ObservedArea.Y
+                        : "")             
                 );
             }
 
@@ -169,7 +171,7 @@ namespace Clustered_NN.Forms
 
         /// <summary>
         /// Handles the SelectedIndexChanged event of the cmbImageProvider control.
-        /// Initialises the differen ImageProviders
+        /// Initialises the different ImageProviders
         /// </summary>
         /// <remarks>
         /// same function as in CollectForm.cs

@@ -12,7 +12,7 @@ namespace Clustered_NN.Forms
     public partial class TrainForm : Form
     {
         /// <summary>
-        /// holds the imported form elemets,
+        /// holds the imported form elements,
         /// you also need following controls: lblTooltip + pnlContentHolder !
         /// </summary>
         private ToolStripContainer _toolStripContainer = new ToolStripContainer();
@@ -105,7 +105,7 @@ namespace Clustered_NN.Forms
 
 
         /// <summary>
-        /// The project has changed, we have to rereference and rebuild some things
+        /// The project has changed, we have to re-reference and rebuild some things
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
