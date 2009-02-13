@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Comment CommentText="Image Source / Picture Box">
+    <Position X="0.595" Y="7.25" Height="0.612" Width="6.353" />
+  </Comment>
+  <Comment CommentText="Step 1">
+    <Position X="4.564" Y="3.526" Height="0.263" Width="0.7" />
+  </Comment>
+  <Comment CommentText="Step 2">
+    <Position X="6.379" Y="3.574" Height="0.263" Width="0.7" />
+  </Comment>
+  <Comment CommentText="Step 3">
+    <Position X="8.114" Y="3.574" Height="0.263" Width="0.7" />
+  </Comment>
+  <Comment CommentText="Info">
+    <Position X="2.887" Y="3.542" Height="0.263" Width="0.7" />
+  </Comment>
+  <Comment CommentText="This class is used to load / save / change the project">
+    <Position X="12.601" Y="1.883" Height="0.263" Width="3.522" />
+  </Comment>
+  <Comment CommentText="holds all configuration as well as usage data of a complete project">
+    <Position X="12.601" Y="2.851" Height="0.263" Width="3.765" />
+  </Comment>
+  <Comment CommentText="Training">
+    <Position X="11.426" Y="4.463" Height="0.263" Width="0.7" />
+  </Comment>
+  <Comment CommentText="Parallel Detection">
+    <Position X="14.487" Y="4.457" Height="0.263" Width="1.477" />
+  </Comment>
+  <Comment CommentText="Webcam&#xD;&#xA;TV-Card&#xD;&#xA;&#xD;&#xA;Planned:&#xD;&#xA;Video">
+    <Position X="0.5" Y="11.362" Height="0.825" Width="1.775" />
+  </Comment>
+  <Comment CommentText="Helper Classes">
+    <Position X="10.75" Y="7.25" Height="0.612" Width="6.353" />
+  </Comment>
+  <Comment CommentText="Helper Classes">
+    <Position X="0.737" Y="0.5" Height="0.612" Width="8.533" />
+  </Comment>
+  <Comment CommentText="Project Management">
+    <Position X="10.739" Y="0.5" Height="0.612" Width="6.353" />
+  </Comment>
+  <Class Name="Clustered_NN.Classes.BalloonToolTip" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Classes\BalloonToolTip.cs</FileName>
+      <HashCode>AUAAmQEyTTBJAMwCdmDAAYcCBAAEoAIByQAAcAUjwEA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Clustered_NN.Classes.CNNProject" Collapsed="true">
+    <Position X="10.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Classes\CNNProject.cs</FileName>
+      <HashCode>AAAEIDAAAAAAEYAAEAgICAAAAIAAAAAAAAAAAIAAAAg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Classes.CNNProjectHolder" Collapsed="true">
+    <Position X="10.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Classes\CNNProjectHolder.cs</FileName>
+      <HashCode>ABQAEAgQAAAIICSABQAEAAAAAAEQkAAABAIQAAAECAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Classes.Counter" Collapsed="true">
+    <Position X="13.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Classes\Counter.cs</FileName>
+      <HashCode>AAAAAAAAAAAABAAEIABAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Classes.ImageDetectionNeuralNetwork" Collapsed="true">
+    <Position X="10.75" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>Classes\ImageDetectionNeuralNetwork.cs</FileName>
+      <HashCode>AAAEAAAyAAEAoAIAAAAAAAGAEASAECBAIAAAAAQBEgA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Classes.ImageDetectionNeuralNetworkThreadWork" Collapsed="true">
+    <Position X="13.5" Y="3.75" Width="3.25" />
+    <TypeIdentifier>
+      <FileName>Classes\ImageDetectionNeuralNetworkThreadWork.cs</FileName>
+      <HashCode>AAJAMgAAQAgAAQAAAAABEAQAAACAAAAAAAAIACAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Classes.ImageHandling" Collapsed="true">
+    <Position X="11" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Classes\ImageHandling.cs</FileName>
+      <HashCode>IAAAAAgBAAAAAAQAABFAAAAAABAJAAABAAAAAQAAACA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Classes.RectangleDoesNotFitToImageException" Collapsed="true">
+    <Position X="11.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Classes\ImageHandling.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Classes.ImageProvider" Collapsed="true">
+    <Position X="1" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Classes\ImageProvider.cs</FileName>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAABAAiAAAAAAAgAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Classes.OnFrameEventArgs" Collapsed="true">
+    <Position X="0.5" Y="10.5" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>Classes\ImageProvider.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAE=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Classes.MultithreadedVFWImageProvider" Collapsed="true">
+    <Position X="0.5" Y="9.75" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>Classes\MultithreadedVFWImageProvider.cs</FileName>
+      <HashCode>IAAAAAQAAQBkEAAAAACAIABCAiAIAAAIIgAIBAIAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Classes.BaseSelectingPictureBox" Collapsed="true">
+    <Position X="4.5" Y="8.25" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>Classes\PictureBox\BaseSelectingPictureBox.cs</FileName>
+      <HashCode>AAAACCAAIGQAAAAAAIAAAAAAAAAAAAIACEAAQgEAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Classes.ImageNotInitializedException" Collapsed="true">
+    <Position X="4.5" Y="10.75" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>Classes\PictureBox\BaseSelectingPictureBox.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Classes.ImageSelectingPictureBox" Collapsed="true">
+    <Position X="3.5" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <FileName>Classes\PictureBox\ImageSelectingPictureBox.cs</FileName>
+      <HashCode>QIABAAAABAAAAAAAAEAAAAAAgAAAAMBAAQAQQCBAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Classes.ScanSelectingPictureBox" Collapsed="true">
+    <Position X="6" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <FileName>Classes\PictureBox\ScanSelectingPictureBox.cs</FileName>
+      <HashCode>ABAABAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAQAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Classes.StaticClasses" Collapsed="true">
+    <Position X="13.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Classes\StaticClasses.cs</FileName>
+      <HashCode>AAAAAAARAAAAAAAAAAQAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Classes.ZipFileEntry" Collapsed="true">
+    <Position X="11" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\ZipFileEntry.cs</FileName>
+      <HashCode>AAAAEAQgAEACAAKAAAAAAAAQAAAAAIACAgEAIBBAUAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Forms.CollectForm" Collapsed="true">
+    <Position X="4.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\CollectForm.cs</FileName>
+      <HashCode>BiQEgAAGACQAZgoAACDQQBEiAyIBKAwckWAIAhCAqBA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Forms.DetectForm" Collapsed="true">
+    <Position X="7.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\DetectForm.cs</FileName>
+      <HashCode>AAgAAAAAACQZIiIAAAGQSAAiACAAAQVAgSAAAwAAiBA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Forms.ErrorBox" Collapsed="true">
+    <Position X="0.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\ErrorBox.cs</FileName>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAMAAAAAEAAAABAAAI=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Forms.MasterForm" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\MasterForm.cs</FileName>
+      <HashCode>AICCAlGQADAAADSAEDCigIWiiUiAQIgIgwAAUiBIwAU=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Forms.TrainForm" Collapsed="true">
+    <Position X="6" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\TrainForm.cs</FileName>
+      <HashCode>AAQAwAIQECAAaCIDANCwCFQiBAAAAAUAAQAAQQCEgDQ=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Forms.WelcomeForm" Collapsed="true">
+    <Position X="2.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\WelcomeForm.cs</FileName>
+      <HashCode>AAAABEAQACAAAAAAAACAAAICJAAAAQSAgAAAABAEgCA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Clustered_NN.Program" Collapsed="true">
+    <Position X="0.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Program.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+</ClassDiagram>

@@ -1,0 +1,190 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{37CDFFE0-6D2B-4FF3-9AB3-2F073033736F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Clustered_NN</RootNamespace>
+    <AssemblyName>Clustered NN</AssemblyName>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Debug\Clustered NN.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.DexterLib, Version=1.0.0.0, Culture=neutral" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\CNNProject.cs" />
+    <Compile Include="Classes\BalloonToolTip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\CNNProjectHolder.cs" />
+    <Compile Include="Classes\Counter.cs" />
+    <Compile Include="Classes\ImageDetectionNeuralNetwork.cs" />
+    <Compile Include="Classes\ImageDetectionNeuralNetwork_DetectThreadWork.cs" />
+    <Compile Include="Classes\ImageHandling.cs" />
+    <Compile Include="Classes\ImageProvider\DirectShowImageProvider.cs" />
+    <Compile Include="Classes\PictureBox\ImageSelectingPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageProvider\ImageProvider.cs">
+    </Compile>
+    <Compile Include="Classes\PictureBox\BaseSelectingPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\PictureBox\ScanSelectingPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\StaticClasses.cs" />
+    <Compile Include="Classes\ImageProvider\MultithreadedVFWImageProvider.cs">
+    </Compile>
+    <Compile Include="Forms\ZipFileEntry.cs" />
+    <Compile Include="Forms\DetectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DetectForm.Designer.cs">
+      <DependentUpon>DetectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ErrorBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ErrorBox.designer.cs">
+      <DependentUpon>ErrorBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MasterFormExample.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MasterFormExample.Designer.cs">
+      <DependentUpon>MasterFormExample.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TrainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TrainForm.Designer.cs">
+      <DependentUpon>TrainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\WelcomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WelcomeForm.Designer.cs">
+      <DependentUpon>WelcomeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MasterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MasterForm.Designer.cs">
+      <DependentUpon>MasterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CollectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CollectForm.Designer.cs">
+      <DependentUpon>CollectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\DetectForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DetectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ErrorBox.resx">
+      <DependentUpon>ErrorBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MasterFormExample.resx">
+      <DependentUpon>MasterFormExample.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TrainForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TrainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WelcomeForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WelcomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MasterForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MasterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CollectForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CollectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="ClassDiagram1.cd">
+      <SubType>
+      </SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NeuralFramework\NeuralFramework.vbproj">
+      <Project>{60788E18-4370-40B6-A230-686D79BFD029}</Project>
+      <Name>NeuralFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharpZipLib\ICSharpCode.SharpZLib.csproj">
+      <Project>{0E7413FF-EB9E-4714-ACF2-BE3A6A7B2FFD}</Project>
+      <Name>ICSharpCode.SharpZLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebCamera\WebCamera.csproj">
+      <Project>{BA9083CA-0BDE-43E0-A2FC-B659A10454C6}</Project>
+      <Name>WebCamera</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Classes\ImageProvider\Interop.DexterLib.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
